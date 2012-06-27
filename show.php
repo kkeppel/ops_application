@@ -12,7 +12,13 @@ if(getUserGroup($curUser) != 'staff')
 	if($_SERVER['REQUEST_METHOD']=='POST')
 	{
 	$order = $_POST['order'];
-	echo $order;
+	$sql = "Update order_requests SET `show`=0  WHERE id_order	='".$order."'";
+		    mysql_query($sql);
+	$message = "Thank you, you can enter another order id<br> "	;
+	}
+	else
+	{
+		$message = "Please indicate here the order id you don't want to show in calendar <br>";
 	}
 
 ?>
@@ -40,11 +46,12 @@ $template = array(
 		</style>
 	',
 	
-	'grey_bar' => 'Show orders'
+	'grey_bar' => 'Filter order'
 	);
 
 require 'header.php';
 ?>
+<? echo $message; ?>
 <form method="post">
 <input type="text" name="order"/>
 <input type="submit"  name = "Submit"  value="Submit"  />

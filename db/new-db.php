@@ -8,7 +8,7 @@ var maxsteps=28;
 
 <?
 
-mysql_connect('localhost','cater2me','dJ75abK2h') or die(mysql_error());
+mysql_connect('localhost','root','dbAcc3ss!') or die(mysql_error());
 
 
 
@@ -1383,7 +1383,7 @@ document.getElementById('perc').innerHTML = "Operation complete. If you don't se
 
 
 /*
-mysql_connect('localhost','cater2me','dJ75abK2h') or die(mysql_error());
+mysql_connect('localhost','root','dbAcc3ss!') or die(mysql_error());
 mysql_select_db('cater2medev') or die(mysql_error());
 mysql_set_charset('latin1') or die(mysql_error());
 */

@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 	if(!move_uploaded_file($_FILES['upload_file']['tmp_name'], './dump.sql')) die('Err: could not move file');
 
 
-mysql_connect('localhost','cater2me','dJ75abK2h');
+mysql_connect('localhost','root','dbAcc3ss!');
 mysql_select_db('cater2me');
 mysql_set_charset('utf8');
 
@@ -24,9 +24,9 @@ system('find . -name "*.sql" -print | xargs sed -i \'s/CREATE DATABASE/#CREATE D
 system('find . -name "*.sql" -print | xargs sed -i \'s/USE `/#USE `/g\'');
 
 
-system('mysql -ucater2me -pdJ75abK2h -hlocalhost cater2me < dump.sql');
+system('mysql -uroot -pdbAcc3ss! -hlocalhost cater2me < dump.sql');
 
-mysql_connect('localhost','cater2me','dJ75abK2h');
+mysql_connect('localhost','root','dbAcc3ss!');
 mysql_select_db('cater2me');
 mysql_set_charset('utf8');
 
