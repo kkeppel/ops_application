@@ -1,0 +1,1449 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Bowtie WordPress Theme\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-08-23 14:49+0200\n"
+"PO-Revision-Date: 2011-08-23 14:49+0200\n"
+"Last-Translator: Jami Gibbs <envato@jamigibbs.com>\n"
+"Language-Team: Jami Gibbs <envato@jamigibbs.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__;esc_attr_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: 404.php:43
+msgid "oops! Not Found."
+msgstr ""
+
+#: 404.php:44
+msgid "Try to search or a link from the sitemap instead"
+msgstr ""
+
+#: 404.php:49
+#: search.php:110
+msgid "Search the Site"
+msgstr ""
+
+#: 404.php:59
+msgid "Site Pages"
+msgstr ""
+
+#: archive.php:19
+msgid "Archive for the"
+msgstr ""
+
+#: archive.php:19
+msgid "Category"
+msgstr ""
+
+#: archive.php:21
+msgid "Posts Tagged"
+msgstr ""
+
+#: archive.php:23
+#: archive.php:25
+#: archive.php:27
+msgid "Archive for"
+msgstr ""
+
+#: archive.php:29
+msgid "Author Archive"
+msgstr ""
+
+#: archive.php:31
+msgid "Blog Archives"
+msgstr ""
+
+#: archive.php:68
+#: index.php:58
+#: search.php:40
+#: taxonomy.php:51
+#, php-format
+msgid "Permanent Link to %s"
+msgstr ""
+
+#: archive.php:76
+#: archive.php:126
+#: comments.php:31
+#: index.php:66
+#: index.php:116
+#: search.php:46
+#: single.php:71
+msgid "No Comments"
+msgstr ""
+
+#: archive.php:76
+#: archive.php:126
+#: index.php:66
+#: index.php:116
+#: search.php:46
+#: single.php:71
+msgid "1 Comment"
+msgstr ""
+
+#: archive.php:76
+#: archive.php:126
+#: comments.php:31
+#: index.php:66
+#: index.php:116
+#: search.php:46
+#: single.php:71
+msgid "% Comments"
+msgstr ""
+
+#: archive.php:86
+#: archive.php:136
+#: index.php:76
+#: index.php:126
+#: search.php:52
+msgid "Tags:"
+msgstr ""
+
+#: archive.php:104
+#: index.php:94
+#: page.php:75
+#: single-portfolio.php:78
+#: single.php:90
+#: taxonomy.php:79
+msgid "Click to view image"
+msgstr ""
+
+#: archive.php:115
+#: archive.php:148
+#: index.php:105
+#: index.php:138
+#: taxonomy.php:98
+msgid "read more"
+msgstr ""
+
+#: archive.php:175
+#: index.php:165
+#: page.php:107
+#: search.php:103
+#: single-portfolio.php:146
+#: single.php:152
+#: taxonomy.php:121
+msgid "Error 404 - Not Found"
+msgstr ""
+
+#: archive.php:178
+#: index.php:168
+#: page.php:110
+#: search.php:106
+#: single-portfolio.php:149
+#: single.php:155
+#: taxonomy.php:124
+msgid "Sorry, but you are looking for something that isn't here."
+msgstr ""
+
+#: comments.php:17
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+
+#: comments.php:31
+msgid "One Comment"
+msgstr ""
+
+#: comments.php:31
+msgid "on"
+msgstr ""
+
+#: comments.php:41
+msgid "Trackbacks for this post"
+msgstr ""
+
+#: comments.php:59
+msgid "Comments are now closed."
+msgstr ""
+
+#: comments.php:69
+msgid "Comments are closed."
+msgstr ""
+
+#: comments.php:85
+msgid "Here&#39;s your chance to leave a comment!"
+msgstr ""
+
+#: comments.php:85
+#, php-format
+msgid "Leave a Comment to %s"
+msgstr ""
+
+#: comments.php:92
+#, php-format
+msgid "You must be %1$slogged in%2$s to post a comment."
+msgstr ""
+
+#: comments.php:99
+#, php-format
+msgid "Logged in as %1$s. %2$sLog out &raquo;%3$s"
+msgstr ""
+
+#: comments.php:99
+msgid "Log out of this account"
+msgstr ""
+
+#: comments.php:104
+msgid "Name"
+msgstr ""
+
+#: comments.php:104
+#: comments.php:107
+msgid "*"
+msgstr ""
+
+#: comments.php:107
+msgid "Email"
+msgstr ""
+
+#: comments.php:107
+msgid "(never pulished)"
+msgstr ""
+
+#: comments.php:110
+msgid "Website"
+msgstr ""
+
+#: footer.php:191
+msgid "Share this site"
+msgstr ""
+
+#: functions.php:140
+msgid "Main Menu"
+msgstr ""
+
+#: functions.php:141
+msgid "Footer Menu"
+msgstr ""
+
+#: options.php:91
+msgid "Header"
+msgstr ""
+
+#: options.php:94
+msgid "Logo"
+msgstr ""
+
+#: options.php:95
+msgid "Upload the image you would like to display as your logo.  The optimal size is 285x79 but any size will be accepted."
+msgstr ""
+
+#: options.php:99
+msgid "Navigation Hover Effect"
+msgstr ""
+
+#: options.php:100
+msgid "Choose how or if you want to assign a 6 digit hex color to the navigation background color. Please read theme instructions for more details."
+msgstr ""
+
+#: options.php:108
+msgid "Home Call to Action"
+msgstr ""
+
+#: options.php:111
+msgid "Display Call to Action Area on home page?"
+msgstr ""
+
+#: options.php:112
+msgid "Choose if you want to display the home page call to action area."
+msgstr ""
+
+#: options.php:118
+msgid "Call to Action Sentence"
+msgstr ""
+
+#: options.php:119
+msgid "Enter the sentence to be displayed in the call to action area."
+msgstr ""
+
+#: options.php:125
+msgid "Home Portfolio"
+msgstr ""
+
+#: options.php:128
+msgid "Display Portfolio on home page?"
+msgstr ""
+
+#: options.php:129
+msgid "Choose if you want to display your latest portfolio items on the home page."
+msgstr ""
+
+#: options.php:135
+msgid "Portfolio Section Title"
+msgstr ""
+
+#: options.php:136
+msgid "Enter the title you want displayed for the home page portfolio area."
+msgstr ""
+
+#: options.php:142
+msgid "Home Blog"
+msgstr ""
+
+#: options.php:145
+msgid "Display Blog Area on home page?"
+msgstr ""
+
+#: options.php:146
+msgid "Choose if you want to display your latest blog posts on the home page."
+msgstr ""
+
+#: options.php:152
+msgid "Blog Section Title"
+msgstr ""
+
+#: options.php:153
+msgid "Enter the title you want displayed for the home page blog area."
+msgstr ""
+
+#: options.php:158
+msgid "Display Specific Blog Category?"
+msgstr ""
+
+#: options.php:159
+msgid "Choose if you want to display a specific blog category, or, most recent post regardless of category."
+msgstr ""
+
+#: options.php:165
+msgid "Select Home Blog Category"
+msgstr ""
+
+#: options.php:166
+msgid "If you want a specific category displayed from your blog on the home page."
+msgstr ""
+
+#: options.php:171
+msgid "Blog List Title"
+msgstr ""
+
+#: options.php:172
+msgid "Enter the title you want displayed for the home page blog list area."
+msgstr ""
+
+#: options.php:177
+msgid "Blog List Number"
+msgstr ""
+
+#: options.php:178
+msgid "Enter the number of posts you want to list."
+msgstr ""
+
+#: options.php:184
+msgid "Home Services"
+msgstr ""
+
+#: options.php:187
+msgid "Display Services Area on home page?"
+msgstr ""
+
+#: options.php:188
+msgid "Choose if you want to display services area on the home page."
+msgstr ""
+
+#: options.php:194
+msgid "Services Section Title"
+msgstr ""
+
+#: options.php:195
+msgid "Enter the title you want displayed for the home services area."
+msgstr ""
+
+#: options.php:202
+msgid "Slider"
+msgstr ""
+
+#: options.php:205
+msgid "Slider Choice"
+msgstr ""
+
+#: options.php:206
+msgid "Choose the slider you want to display on the home page."
+msgstr ""
+
+#: options.php:213
+msgid "Content Slider Options"
+msgstr ""
+
+#: options.php:214
+msgid "If you have chosen the Content Slider as your home page slider, then you can adjust these options."
+msgstr ""
+
+#: options.php:217
+msgid "Content Slider Play Time"
+msgstr ""
+
+#: options.php:218
+msgid "Enter the slide play time you want in milliseconds. Enter 0 if you don't want slider to auto move. e.g. 6000"
+msgstr ""
+
+#: options.php:223
+msgid "Content Slider Pause Time"
+msgstr ""
+
+#: options.php:224
+msgid "Enter the slide pause time you want in milliseconds. e.g. 4500"
+msgstr ""
+
+#: options.php:229
+msgid "Content Slider Rotation Time"
+msgstr ""
+
+#: options.php:230
+msgid "Enter the slide rotation time you want in milliseconds. e.g. 600"
+msgstr ""
+
+#: options.php:236
+msgid "Nivo Slider Options"
+msgstr ""
+
+#: options.php:237
+msgid "If you have chosen Nivo as your home page slider, then you can adjust these options."
+msgstr ""
+
+#: options.php:240
+msgid "Nivo Slide Effect"
+msgstr ""
+
+#: options.php:241
+msgid "Select the transition effect you want."
+msgstr ""
+
+#: options.php:247
+msgid "Nivo Slices"
+msgstr ""
+
+#: options.php:248
+msgid "Enter the number of slices you want if using a slice effect. e.g. 15"
+msgstr ""
+
+#: options.php:253
+msgid "Nivo Box Columns"
+msgstr ""
+
+#: options.php:254
+msgid "Enter the number of box columns you want if using a box effect. e.g. 8"
+msgstr ""
+
+#: options.php:259
+msgid "Nivo Box Rows"
+msgstr ""
+
+#: options.php:260
+msgid "Enter the number of box rows you want if using a box effect. e.g. 4"
+msgstr ""
+
+#: options.php:265
+msgid "Nivo Slide Transition Speed"
+msgstr ""
+
+#: options.php:266
+msgid "Enter the slide transition speed you want in milliseconds. e.g. 500"
+msgstr ""
+
+#: options.php:271
+msgid "Nivo Slide Pause Time"
+msgstr ""
+
+#: options.php:272
+msgid "Enter the slide pause time you want in milliseconds. e.g. 3000"
+msgstr ""
+
+#: options.php:277
+msgid "Nivo Caption Opacity"
+msgstr ""
+
+#: options.php:278
+msgid "Enter the amount of opacity you want if using a slide caption. e.g. 0.8"
+msgstr ""
+
+#: options.php:284
+msgid "Pages & Posts"
+msgstr ""
+
+#: options.php:287
+msgid "Right or Left Sidebars"
+msgstr ""
+
+#: options.php:288
+msgid "Select the side of post sidebars."
+msgstr ""
+
+#: options.php:297
+msgid "Blog Page Title"
+msgstr ""
+
+#: options.php:298
+msgid "Enter your blog page title."
+msgstr ""
+
+#: options.php:303
+msgid "Portfolio Page Title"
+msgstr ""
+
+#: options.php:304
+msgid "Enter your portfolio page title."
+msgstr ""
+
+#: options.php:309
+msgid "404 Error Page Title"
+msgstr ""
+
+#: options.php:310
+msgid "Enter your 404 error page title."
+msgstr ""
+
+#: options.php:315
+msgid "Display Author Box on Posts"
+msgstr ""
+
+#: options.php:316
+msgid "Choose if you want to display the author info box at the end of posts."
+msgstr ""
+
+#: options.php:324
+msgid "Footer"
+msgstr ""
+
+#: options.php:327
+msgid "Display Footer Widgets?"
+msgstr ""
+
+#: options.php:328
+msgid "Choose if you want to display the footer widgets at all."
+msgstr ""
+
+#: options.php:334
+msgid "Display Footer Widgets as a Dropdown?"
+msgstr ""
+
+#: options.php:335
+msgid "Choose if you want to display the footer widgets as a dropdown or as a standard display."
+msgstr ""
+
+#: options.php:341
+msgid "Copyright Text"
+msgstr ""
+
+#: options.php:342
+msgid "Enter the text you want displayed in the footer copyright area."
+msgstr ""
+
+#: options.php:347
+msgid "Social Icons"
+msgstr ""
+
+#: options.php:350
+msgid "Twitter Username"
+msgstr ""
+
+#: options.php:351
+msgid "Paste your Twitter username"
+msgstr ""
+
+#: options.php:356
+msgid "Twitter Title"
+msgstr ""
+
+#: options.php:357
+msgid "Enter the Twitter link title"
+msgstr ""
+
+#: options.php:362
+msgid "Facebook Link"
+msgstr ""
+
+#: options.php:363
+msgid "Paste your Facebook URL"
+msgstr ""
+
+#: options.php:368
+msgid "Facebook Title"
+msgstr ""
+
+#: options.php:369
+msgid "Enter the Facebook link title"
+msgstr ""
+
+#: options.php:374
+msgid "Linkedin Link"
+msgstr ""
+
+#: options.php:375
+msgid "Paste your Linkedin URL"
+msgstr ""
+
+#: options.php:380
+msgid "Linkedin Title"
+msgstr ""
+
+#: options.php:381
+msgid "Enter the Linkedin link title"
+msgstr ""
+
+#: options.php:386
+msgid "Dribbble Link"
+msgstr ""
+
+#: options.php:387
+msgid "Paste your Dribbble URL"
+msgstr ""
+
+#: options.php:392
+msgid "Dribbble Title"
+msgstr ""
+
+#: options.php:393
+msgid "Enter the Dribbble link title"
+msgstr ""
+
+#: options.php:398
+msgid "Forrst Link"
+msgstr ""
+
+#: options.php:399
+msgid "Paste your Forrst URL"
+msgstr ""
+
+#: options.php:404
+msgid "Forrst Title"
+msgstr ""
+
+#: options.php:405
+msgid "Enter the Forrst link title"
+msgstr ""
+
+#: options.php:410
+msgid "Google Plus Link"
+msgstr ""
+
+#: options.php:411
+msgid "Paste your Google Plus URL"
+msgstr ""
+
+#: options.php:416
+msgid "Google Plus Title"
+msgstr ""
+
+#: options.php:417
+msgid "Enter the Google Plus link title"
+msgstr ""
+
+#: options.php:422
+msgid "RSS Feed Link"
+msgstr ""
+
+#: options.php:423
+msgid "Paste your RSS Feed URL"
+msgstr ""
+
+#: options.php:428
+msgid "RSS Feed Title"
+msgstr ""
+
+#: options.php:429
+msgid "Enter the RSS feed title"
+msgstr ""
+
+#: options.php:434
+msgid "Contact Link"
+msgstr ""
+
+#: options.php:435
+msgid "Paste a link to your contact form or any other contact URL."
+msgstr ""
+
+#: options.php:440
+msgid "Contact Title"
+msgstr ""
+
+#: options.php:441
+msgid "Enter the contact link title"
+msgstr ""
+
+#: options.php:446
+msgid "Share This Site HTML Code"
+msgstr ""
+
+#: options.php:447
+msgid "Enter your ShareThis code.  http://sharethis.com/ "
+msgstr ""
+
+#: options.php:452
+msgid "ShareThis Publisher ID"
+msgstr ""
+
+#: options.php:453
+msgid "Enter your publisher ID from ShareThis. http://sharethis.com/"
+msgstr ""
+
+#: options.php:462
+msgid "Styles"
+msgstr ""
+
+#: options.php:465
+msgid "Call to Action Text"
+msgstr ""
+
+#: options.php:466
+msgid "Font style for the call to action area on the home page and call to action on single posts. Default is Lato."
+msgstr ""
+
+#: options.php:471
+msgid "Post Text"
+msgstr ""
+
+#: options.php:472
+msgid "Font style for the main reading area in posts (paragraphy tags). Default is Droid Sans."
+msgstr ""
+
+#: options.php:477
+msgid "Post Title Text"
+msgstr ""
+
+#: options.php:478
+msgid "Font style for the post titles. Default is Lato."
+msgstr ""
+
+#: options.php:483
+msgid "Navigation Text"
+msgstr ""
+
+#: options.php:484
+msgid "Font style for the navigation. Default is Lato #8A8A8A."
+msgstr ""
+
+#: options.php:489
+msgid "Links Hover Color"
+msgstr ""
+
+#: options.php:490
+msgid "Color to display when a link is hovered. Default is #458AB3."
+msgstr ""
+
+#: options.php:495
+msgid "Custom Style"
+msgstr ""
+
+#: options.php:496
+msgid "Enter your custom style here."
+msgstr ""
+
+#: options.php:505
+msgid "Other"
+msgstr ""
+
+#: options.php:509
+msgid "Map Widget API"
+msgstr ""
+
+#: options.php:510
+msgid "If using the Map Widget, enter your Google API here. Don't have one yet?  Go here: http://code.google.com/intl/en-US/apis/maps/signup.html"
+msgstr ""
+
+#: options.php:515
+msgid "Favicon"
+msgstr ""
+
+#: options.php:516
+msgid "A favicon is most commonly 16x16 pixels in size.  It will be displayed in your browser tab when your website is loaded.  If you need help generating a favicon, you can go here: www.favicon.cc"
+msgstr ""
+
+#: options.php:520
+msgid "Analytics Tracking Code"
+msgstr ""
+
+#: options.php:521
+msgid "Paste your tracking code here i.e. Google Analytics."
+msgstr ""
+
+#: page.php:94
+#: single-portfolio.php:123
+#: single.php:74
+msgid "edit"
+msgstr ""
+
+#: search.php:17
+msgid "Search Results for"
+msgstr ""
+
+#: search.php:79
+msgid "read more &rarr;"
+msgstr ""
+
+#: search.php:94
+msgid "&larr; Older Entries"
+msgstr ""
+
+#: search.php:95
+msgid "Newer Entries &rarr;"
+msgstr ""
+
+#: searchform.php:3
+msgid "type your search and hit enter"
+msgstr ""
+
+#: single-portfolio.php:101
+msgid "Details:"
+msgstr ""
+
+#: single.php:68
+msgid "Published on"
+msgstr ""
+
+#: single.php:69
+msgid "by"
+msgstr ""
+
+#: single.php:70
+msgid "in"
+msgstr ""
+
+#: single.php:127
+msgid "Written by"
+msgstr ""
+
+#: single.php:129
+#, php-format
+msgid "%s "
+msgstr ""
+
+#: taxonomy.php:16
+msgid "Archive for 'Portfolio' Items"
+msgstr ""
+
+#: template-archives.php:72
+msgid "Last 20 Posts"
+msgstr ""
+
+#: template-archives.php:81
+msgid "Archives by Month"
+msgstr ""
+
+#: template-archives.php:87
+msgid "Archives by Subject"
+msgstr ""
+
+#: template-home.php:18
+msgid "slide"
+msgstr ""
+
+#: template-home.php:136
+msgid "Drag a widget into the 'Call to Action' area."
+msgstr ""
+
+#: template-home.php:275
+msgid "Posted:"
+msgstr ""
+
+#: template-home.php:293
+#: template-home.php:299
+msgid "&nbsp; Read more &rarr;"
+msgstr ""
+
+#: template-portfolio-gallery.php:48
+#: template-portfolio-one.php:48
+#: template-portfolio-three.php:46
+#: template-portfolio-two.php:48
+msgid "Sort"
+msgstr ""
+
+#: template-portfolio-gallery.php:53
+#: template-portfolio-one.php:53
+#: template-portfolio-three.php:51
+#: template-portfolio-two.php:53
+msgid "All"
+msgstr ""
+
+#: template-portfolio-gallery.php:113
+#: template-portfolio-one.php:118
+msgid "Click to view"
+msgstr ""
+
+#: template-portfolio-one.php:152
+#: template-portfolio-two.php:147
+msgid "More Details:"
+msgstr ""
+
+#: admin/options-framework.php:169
+#: admin/options-framework.php:384
+msgid "Theme Options"
+msgstr ""
+
+#: admin/options-framework.php:258
+msgid "Save Options"
+msgstr ""
+
+#: admin/options-framework.php:259
+msgid "Restore Defaults"
+msgstr ""
+
+#: admin/options-framework.php:259
+msgid "Click OK to reset. Any theme settings will be lost!"
+msgstr ""
+
+#: admin/options-framework.php:289
+msgid "Default options restored."
+msgstr ""
+
+#: admin/options-framework.php:336
+msgid "Options saved."
+msgstr ""
+
+#: admin/options-medialibrary-uploader.php:26
+msgid "Options Framework Internal Container"
+msgstr ""
+
+#: admin/options-medialibrary-uploader.php:128
+msgid "Upload"
+msgstr ""
+
+#: admin/options-medialibrary-uploader.php:151
+msgid "View File"
+msgstr ""
+
+#: admin/options-medialibrary-uploader.php:288
+msgid "Gallery"
+msgstr ""
+
+#: admin/options-medialibrary-uploader.php:288
+msgid "Previously Uploaded"
+msgstr ""
+
+#: includes/comments.php:18
+#, php-format
+msgid "<cite class=\"fn\">%s</cite> <span class=\"says\">says:</span>"
+msgstr ""
+
+#: includes/comments.php:21
+#: includes/comments.php:48
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: includes/comments.php:25
+#: includes/comments.php:52
+#, php-format
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: includes/comments.php:25
+#: includes/comments.php:52
+msgid "(Edit)"
+msgstr ""
+
+#: includes/comments.php:45
+#, php-format
+msgid "<cite class=\"fn\">%s</cite> <span class=\"says\">wrote:</span>"
+msgstr ""
+
+#: includes/customposts/customfields.php:15
+msgid "Client or Project Name"
+msgstr ""
+
+#: includes/customposts/customfields.php:21
+msgid "Date Completed"
+msgstr ""
+
+#: includes/customposts/customfields.php:27
+msgid "Tasks or Skills"
+msgstr ""
+
+#: includes/customposts/customfields.php:98
+msgid "Portfolio Item Details"
+msgstr ""
+
+#: includes/customposts/posttypes.php:11
+msgid "Slides"
+msgstr ""
+
+#: includes/customposts/posttypes.php:12
+msgid "Slide"
+msgstr ""
+
+#: includes/customposts/posttypes.php:13
+msgid "slides"
+msgstr ""
+
+#: includes/customposts/posttypes.php:15
+msgid "Add New Slide"
+msgstr ""
+
+#: includes/customposts/posttypes.php:16
+msgid "Edit Slide"
+msgstr ""
+
+#: includes/customposts/posttypes.php:17
+msgid "New Slide"
+msgstr ""
+
+#: includes/customposts/posttypes.php:18
+msgid "View Slide"
+msgstr ""
+
+#: includes/customposts/posttypes.php:19
+msgid "Search Slides"
+msgstr ""
+
+#: includes/customposts/posttypes.php:20
+msgid "No slides found"
+msgstr ""
+
+#: includes/customposts/posttypes.php:21
+msgid "No slides found in Trash"
+msgstr ""
+
+#: includes/customposts/posttypes.php:46
+msgid "Nivo Slide Details"
+msgstr ""
+
+#: includes/customposts/posttypes.php:64
+msgid "Enter the Nivo slide title:"
+msgstr ""
+
+#: includes/customposts/posttypes.php:67
+msgid "Enter a link for the Nivo slide:"
+msgstr ""
+
+#: includes/customposts/posttypes.php:118
+#: includes/customposts/posttypes.php:119
+msgid "Portfolio"
+msgstr ""
+
+#: includes/customposts/posttypes.php:120
+msgid "portfolios"
+msgstr ""
+
+#: includes/customposts/posttypes.php:122
+msgid "Add New Portfolio"
+msgstr ""
+
+#: includes/customposts/posttypes.php:123
+msgid "Edit Portfolio"
+msgstr ""
+
+#: includes/customposts/posttypes.php:124
+msgid "New Portfolio"
+msgstr ""
+
+#: includes/customposts/posttypes.php:125
+msgid "View Portfolio"
+msgstr ""
+
+#: includes/customposts/posttypes.php:126
+msgid "Search Portfolio"
+msgstr ""
+
+#: includes/customposts/posttypes.php:127
+msgid "No portfolios found"
+msgstr ""
+
+#: includes/customposts/posttypes.php:128
+msgid "No portfolios found in Trash"
+msgstr ""
+
+#: includes/customposts/posttypes.php:145
+#: includes/customposts/posttypes.php:182
+#: includes/customposts/posttypes.php:209
+msgid "portfolio"
+msgstr ""
+
+#: includes/customposts/posttypes.php:157
+#, php-format
+msgid "Slide updated. <a href=\"%s\">View slide</a>"
+msgstr ""
+
+#: includes/customposts/posttypes.php:158
+#: includes/customposts/posttypes.php:186
+msgid "Custom field updated."
+msgstr ""
+
+#: includes/customposts/posttypes.php:159
+#: includes/customposts/posttypes.php:187
+msgid "Custom field deleted."
+msgstr ""
+
+#: includes/customposts/posttypes.php:160
+msgid "Slide updated."
+msgstr ""
+
+#: includes/customposts/posttypes.php:162
+#, php-format
+msgid "Slide restored to revision from %s"
+msgstr ""
+
+#: includes/customposts/posttypes.php:163
+#, php-format
+msgid "Slide published. <a href=\"%s\">View slide</a>"
+msgstr ""
+
+#: includes/customposts/posttypes.php:164
+msgid "Slide saved."
+msgstr ""
+
+#: includes/customposts/posttypes.php:165
+#, php-format
+msgid "Slide submitted. <a target=\"_blank\" href=\"%s\">Preview slide</a>"
+msgstr ""
+
+#: includes/customposts/posttypes.php:166
+#, php-format
+msgid "Slide scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\">Preview slide</a>"
+msgstr ""
+
+#: includes/customposts/posttypes.php:168
+#: includes/customposts/posttypes.php:196
+msgid "M j, Y @ G:i"
+msgstr ""
+
+#: includes/customposts/posttypes.php:169
+#, php-format
+msgid "Slide draft updated. <a target=\"_blank\" href=\"%s\">Preview slide</a>"
+msgstr ""
+
+#: includes/customposts/posttypes.php:185
+#, php-format
+msgid "Portfolio updated. <a href=\"%s\">View portfolio</a>"
+msgstr ""
+
+#: includes/customposts/posttypes.php:188
+msgid "Portfolio updated."
+msgstr ""
+
+#: includes/customposts/posttypes.php:190
+#, php-format
+msgid "Portfolio restored to revision from %s"
+msgstr ""
+
+#: includes/customposts/posttypes.php:191
+#, php-format
+msgid "Portfolio published. <a href=\"%s\">View portfolio</a>"
+msgstr ""
+
+#: includes/customposts/posttypes.php:192
+msgid "Portfolio saved."
+msgstr ""
+
+#: includes/customposts/posttypes.php:193
+#, php-format
+msgid "Portfolio submitted. <a target=\"_blank\" href=\"%s\">Preview portfolio</a>"
+msgstr ""
+
+#: includes/customposts/posttypes.php:194
+#, php-format
+msgid "Portfolio scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\">Preview portfolio</a>"
+msgstr ""
+
+#: includes/customposts/posttypes.php:197
+#, php-format
+msgid "Portfolio draft updated. <a target=\"_blank\" href=\"%s\">Preview portfolio</a>"
+msgstr ""
+
+#: includes/customposts/posttypes.php:209
+#: includes/customposts/posttypes.php:247
+msgid "skill-type"
+msgstr ""
+
+#: includes/customposts/posttypes.php:209
+msgid "Categories"
+msgstr ""
+
+#: includes/customposts/posttypes.php:216
+msgid "Slide Title"
+msgstr ""
+
+#: includes/customposts/posttypes.php:231
+msgid "Portfolio Item Title"
+msgstr ""
+
+#: includes/customposts/posttypes.php:232
+#: includes/customposts/posttypes.php:246
+msgid "type"
+msgstr ""
+
+#: includes/customposts/walker.php:11
+#, php-format
+msgid "View all posts filed under %s"
+msgstr ""
+
+#: includes/customposts/walker.php:27
+#, php-format
+msgid "Feed for all posts filed under %s"
+msgstr ""
+
+#: includes/meta/functions.php:27
+msgid "Theme Meta Box"
+msgstr ""
+
+#: includes/meta/functions.php:129
+msgid "Video Options"
+msgstr ""
+
+#: includes/meta/functions.php:137
+msgid "Use this area to display a video for this portfolio post."
+msgstr ""
+
+#: includes/meta/functions.php:139
+msgid "Use Video"
+msgstr ""
+
+#: includes/meta/functions.php:144
+msgid "Select Video type"
+msgstr ""
+
+#: includes/meta/functions.php:152
+msgid "Youtube Video ID (ex. EhkHFenJ3rM)"
+msgstr ""
+
+#: includes/meta/functions.php:154
+msgid "Vimeo Video ID (ex. 11334082)"
+msgstr ""
+
+#: includes/meta/functions.php:156
+msgid "Dailymotion Video ID (ex. xil34i_nicki-minaj-super-bass_music)"
+msgstr ""
+
+#: includes/meta/custom/meta.php:5
+msgid "Use this area to enter a call to action sentence for the top of the single page, post, or the subtitle on the portfolio item details page."
+msgstr ""
+
+#: includes/meta/custom/meta.php:7
+msgid "Call to Action &amp; Portfolio Page Title"
+msgstr ""
+
+#: includes/meta/custom/meta.php:11
+msgid "Enter a call to action for the page"
+msgstr ""
+
+#: includes/plugins/wp-pagenavi.php:42
+msgid "PageNavi"
+msgstr ""
+
+#: includes/plugins/wp-pagenavi.php:202
+msgid "Page %CURRENT_PAGE% of %TOTAL_PAGES%"
+msgstr ""
+
+#: includes/plugins/wp-pagenavi.php:205
+msgid "&laquo; First"
+msgstr ""
+
+#: includes/plugins/wp-pagenavi.php:206
+msgid "Last &raquo;"
+msgstr ""
+
+#: includes/plugins/wp-pagenavi.php:207
+msgid "&raquo;"
+msgstr ""
+
+#: includes/plugins/wp-pagenavi.php:208
+msgid "&laquo;"
+msgstr ""
+
+#: includes/plugins/wp-pagenavi.php:209
+#: includes/plugins/wp-pagenavi.php:210
+msgid "..."
+msgstr ""
+
+#: includes/plugins/sidebar_generator/generate_sidebars.php:7
+msgid "Sidebar "
+msgstr ""
+
+#: includes/plugins/sidebar_generator/infinite_sidebars.php:74
+msgid "Show sidebar"
+msgstr ""
+
+#: includes/shortcodes/tinymce/window_page.php:6
+#: includes/shortcodes/tinymce/window_post.php:6
+msgid "You are not allowed to be here"
+msgstr ""
+
+#: includes/shortcodes/tinymce/window_page.php:42
+#: includes/shortcodes/tinymce/window_post.php:42
+msgid "Select Shortcodes"
+msgstr ""
+
+#: includes/widgets/ad120x240.php:17
+msgid "Displays a single 120x240 Banner."
+msgstr ""
+
+#: includes/widgets/ad120x240.php:23
+msgid "Amplifier 120x240 Ad"
+msgstr ""
+
+#: includes/widgets/ad120x240.php:81
+#: includes/widgets/ad125x125.php:196
+#: includes/widgets/ad300x250.php:111
+#: includes/widgets/popular_posts.php:129
+#: includes/widgets/recent_posts.php:132
+#: includes/widgets/tabbed-blog.php:259
+msgid "Title:"
+msgstr ""
+
+#: includes/widgets/ad120x240.php:86
+#: includes/widgets/ad300x250.php:117
+msgid "Ad image url:"
+msgstr ""
+
+#: includes/widgets/ad120x240.php:91
+#: includes/widgets/ad300x250.php:123
+msgid "Ad link url:"
+msgstr ""
+
+#: includes/widgets/ad125x125.php:24
+msgid "Displays 125x125 ads blocks."
+msgstr ""
+
+#: includes/widgets/ad125x125.php:35
+msgid "Amplifier 125x125 Ads"
+msgstr ""
+
+#: includes/widgets/ad125x125.php:202
+msgid "Ad 1 image url:"
+msgstr ""
+
+#: includes/widgets/ad125x125.php:208
+msgid "Ad 1 link url:"
+msgstr ""
+
+#: includes/widgets/ad125x125.php:214
+msgid "Ad 2 image url:"
+msgstr ""
+
+#: includes/widgets/ad125x125.php:220
+msgid "Ad 2 link url:"
+msgstr ""
+
+#: includes/widgets/ad125x125.php:226
+msgid "Ad 3 image url:"
+msgstr ""
+
+#: includes/widgets/ad125x125.php:232
+msgid "Ad 3 link url:"
+msgstr ""
+
+#: includes/widgets/ad125x125.php:238
+msgid "Ad 4 image url:"
+msgstr ""
+
+#: includes/widgets/ad125x125.php:244
+msgid "Ad 4 link url:"
+msgstr ""
+
+#: includes/widgets/ad125x125.php:250
+msgid "Ad 5 image url:"
+msgstr ""
+
+#: includes/widgets/ad125x125.php:256
+msgid "Ad 5 link url:"
+msgstr ""
+
+#: includes/widgets/ad125x125.php:262
+msgid "Ad 6 image url:"
+msgstr ""
+
+#: includes/widgets/ad125x125.php:268
+msgid "Ad 6 link url:"
+msgstr ""
+
+#: includes/widgets/ad125x125.php:274
+msgid "Randomize order of ads?"
+msgstr ""
+
+#: includes/widgets/ad300x250.php:24
+msgid "Displays a single 300x250 Banner."
+msgstr ""
+
+#: includes/widgets/ad300x250.php:35
+msgid "Amplifier 300x250 Ad"
+msgstr ""
+
+#: includes/widgets/popular_posts.php:22
+msgid "Displays your most popuar posts."
+msgstr ""
+
+#: includes/widgets/popular_posts.php:26
+msgid "Amplifier Popular Posts"
+msgstr ""
+
+#: includes/widgets/popular_posts.php:135
+#: includes/widgets/recent_posts.php:138
+msgid "Count"
+msgstr ""
+
+#: includes/widgets/recent_posts.php:23
+msgid "Displays your most recent posts."
+msgstr ""
+
+#: includes/widgets/recent_posts.php:27
+msgid "Amplifier Recent Posts"
+msgstr ""
+
+#: includes/widgets/tabbed-blog.php:35
+msgid "A tabbed widget that display popular posts, recent posts, comments and tags."
+msgstr ""
+
+#: includes/widgets/tabbed-blog.php:46
+msgid "Amplifier Blog Tabs"
+msgstr ""
+
+#: includes/widgets/tabbed-blog.php:191
+#: includes/widgets/tabbed-blog.php:193
+msgid "on "
+msgstr ""
+
+#: includes/widgets/tabbed-blog.php:265
+msgid "Tab 1 Title:"
+msgstr ""
+
+#: includes/widgets/tabbed-blog.php:271
+msgid "Tab 2 Title:"
+msgstr ""
+
+#: includes/widgets/tabbed-blog.php:277
+msgid "Tab 3 Title:"
+msgstr ""
+
+#: includes/widgets/tabbed-blog.php:283
+msgid "Tab 4 Title:"
+msgstr ""
+
+#: includes/widgets/twitter/twitter-updates-widget.php:148
+msgid "Title"
+msgstr ""
+
+#: includes/widgets/twitter/twitter-updates-widget.php:150
+msgid "Twitter Usernames<br> 'username1','username2'...:"
+msgstr ""
+
+#: includes/widgets/twitter/twitter-updates-widget.php:152
+msgid "List name:"
+msgstr ""
+
+#: includes/widgets/twitter/twitter-updates-widget.php:154
+msgid "Search Query:"
+msgstr ""
+
+#: includes/widgets/twitter/twitter-updates-widget.php:156
+msgid "How many updates to be retrieved?"
+msgstr ""
+
+#: includes/widgets/twitter/twitter-updates-widget.php:242
+msgid "Show user's avatar?"
+msgstr ""
+
+#: includes/widgets/twitter/twitter-updates-widget.php:253
+msgid "Show tweets' date?"
+msgstr ""
+
+#: includes/widgets/twitter/twitter-updates-widget.php:264
+msgid "Auto-Next?"
+msgstr ""
+
+#: includes/widgets/twitter/twitter-updates-widget.php:267
+msgid "The duration between moves in auto-mode:"
+msgstr ""
+
+#: includes/widgets/twitter/twitter-updates-widget.php:284
+msgid "Loading text:"
+msgstr ""
+
