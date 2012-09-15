@@ -67,4 +67,6 @@ OpsApplication::Application.configure do
 
   #devise need
   config.action_mailer.default_url_options = { :host => 'dev.cater2.me:3000' }
+
+  config.assets.compile = true
 end
