@@ -1,0 +1,32 @@
+<% if @users %>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Company/Restaurant</th>
+        <th>Role</th>
+        <th>Email</th>
+        <th>Active?</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%=	user.first_name %></td>
+            <td><%= user.last_name %></td>
+            <td>cater2me</td>
+            <td><%=	user.roles.last %></td>
+            <td><%=	user.email %></td>
+            <% if user.active? %>
+                <td><%=	link_to "Deactivate", activation_admin_user_path(user, type: "deactivate"), :remote => true, :class => "btn btn-inverse", :id => user.id %></td>
+            <% else %>
+                <td><%=	link_to "Activate", activation_admin_user_path(user, type: "activate"), :remote => true, :class => "btn btn-inverse", :id => user.id %></td>
+            <% end %>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% end %>
