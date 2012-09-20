@@ -1,8 +1,24 @@
 OpsApplication::Application.routes.draw do
 
+  resources :roles
+
   devise_for :users
+  namespace "admin" do
+    resources :users do
+      collection do
+        get "clients/" => "users#fetch_users"
+        get "vendors/" => "users#fetch_users"
+        get "others/" => "users#fetch_users"
+      end
+      member do
+        get "activation/" => "users#activation"
+      end
+    end
+  end
 
   root :to => "static_pages#home"
+
+
 
   # The priority is based upon order of creation:
 
