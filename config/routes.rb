@@ -1,5 +1,11 @@
 OpsApplication::Application.routes.draw do
 
+  resources :client_profiles
+
+  resources :vendor_profiles
+
+  resources :locations
+
   resources :roles
 
   devise_for :users

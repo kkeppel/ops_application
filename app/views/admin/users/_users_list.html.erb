@@ -25,6 +25,7 @@
             <% else %>
                 <td><%=	link_to "Activate", activation_admin_user_path(user, type: "activate"), :remote => true, :class => "btn btn-inverse", :id => user.id %></td>
             <% end %>
+            <td><i class="icon-pencil hide"></i></td>
           </tr>
       <% end %>
       </tbody>
