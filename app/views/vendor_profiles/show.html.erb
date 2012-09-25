@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Key:</b>
+  <%= @vendor_profile.key %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @vendor_profile.value %>
+</p>
+
+<p>
+  <b>Value2:</b>
+  <%= @vendor_profile.value2 %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @vendor_profile.user_id %>
+</p>
+
+<p>
+  <b>Vendor type:</b>
+  <%= @vendor_profile.vendor_type_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_vendor_profile_path(@vendor_profile) %> |
+<%= link_to 'Back', vendor_profiles_path %>

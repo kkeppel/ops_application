@@ -1,0 +1,31 @@
+<h1>Listing vendor_profiles</h1>
+
+<table>
+  <tr>
+    <th>Key</th>
+    <th>Value</th>
+    <th>Value2</th>
+    <th>User</th>
+    <th>Vendor type</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @vendor_profiles.each do |vendor_profile| %>
+  <tr>
+    <td><%= vendor_profile.key %></td>
+    <td><%= vendor_profile.value %></td>
+    <td><%= vendor_profile.value2 %></td>
+    <td><%= vendor_profile.user_id %></td>
+    <td><%= vendor_profile.vendor_type_id %></td>
+    <td><%= link_to 'Show', vendor_profile %></td>
+    <td><%= link_to 'Edit', edit_vendor_profile_path(vendor_profile) %></td>
+    <td><%= link_to 'Destroy', vendor_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Vendor profile', new_vendor_profile_path %>
