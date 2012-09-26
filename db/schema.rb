@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120921230719) do
+ActiveRecord::Schema.define(:version => 20120926001758) do
 
   create_table "cities", :force => true do |t|
     t.string  "name"
@@ -29,13 +29,9 @@ ActiveRecord::Schema.define(:version => 20120921230719) do
     t.string   "key"
     t.text     "value"
     t.text     "value2"
-    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  add_index "client_profiles", ["key"], :name => "index_client_profiles_on_key"
-  add_index "client_profiles", ["user_id"], :name => "index_client_profiles_on_user_id"
 
   create_table "locations", :force => true do |t|
     t.string   "name"
@@ -91,23 +87,25 @@ ActiveRecord::Schema.define(:version => 20120921230719) do
     t.boolean  "active",                               :default => true
     t.boolean  "is_client",                            :default => false
     t.boolean  "is_vendor",                            :default => false
+    t.integer  "client_profile_id"
+    t.integer  "vendor_profile_id"
   end
 
+  add_index "users", ["client_profile_id"], :name => "index_users_on_client_profile_id"
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["vendor_profile_id"], :name => "index_users_on_vendor_profile_id"
 
   create_table "vendor_profiles", :force => true do |t|
     t.string   "key"
     t.text     "value"
     t.text     "value2"
-    t.integer  "user_id"
     t.integer  "vendor_type_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
 
   add_index "vendor_profiles", ["key"], :name => "index_vendor_profiles_on_key"
-  add_index "vendor_profiles", ["user_id"], :name => "index_vendor_profiles_on_user_id"
   add_index "vendor_profiles", ["vendor_type_id"], :name => "index_vendor_profiles_on_vendor_type_id"
 
 end
