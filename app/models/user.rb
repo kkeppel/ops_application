@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,:token_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :newsletter
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :newsletter, :role_ids
 
 
   #return true if the user is not vendor or client
