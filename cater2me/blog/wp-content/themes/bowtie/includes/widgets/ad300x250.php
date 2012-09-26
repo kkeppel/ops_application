@@ -1,0 +1,123 @@
+<?php
+
+// Add function to widgets_init that'll load our widget
+add_action( 'widgets_init', 'jg_ad300x250' );
+
+// Register widget
+function jg_ad300x250() {
+	register_widget( 'jg_Ad300_Widget' );
+}
+
+// Widget class
+class jg_ad300_widget extends WP_Widget {
+
+
+/*-----------------------------------------------------------------------------------*/
+/*	Widget Setup
+/*-----------------------------------------------------------------------------------*/
+	
+function jg_Ad300_Widget() {
+
+	// Widget settings
+	$widget_ops = array(
+		'classname' => 'jg_ad300x250',
+		'description' => __('Displays a single 300x250 Banner.', 'Bowtie')
+	);
+
+	// Create the widget
+	$this->WP_Widget( 'jg_ad300_widget', __('Bowtie 300x250 Ad', 'Bowtie'), $widget_ops );
+	
+}
+
+
+/*-----------------------------------------------------------------------------------*/
+/*	Display Widget
+/*-----------------------------------------------------------------------------------*/
+	
+function widget( $args, $instance ) {
+	extract( $args );
+
+	// Our variables from the widget settings
+	$title = apply_filters('widget_title', $instance['title'] );
+	$ad = $instance['ad'];
+	$link = $instance['link'];
+
+	// Before widget (defined by theme functions file)
+	echo $before_widget;
+
+	// Display the widget title if one was input
+	if ( $title )
+		echo $before_title . $title . $after_title;
+		
+	// Display a containing div
+	echo '<div class="ads-300">';
+
+	// Display Ad
+	if ( $link )
+		echo '<a href="' . $link . '"><img src="' . $ad . '" width="300" height="250" alt="" /></a>';
+		
+	elseif ( $ad )
+	 	echo '<img src="' . $ad . '" width="300" height="250" alt="" />';
+		
+	echo '</div>';
+
+	// After widget (defined by theme functions file)
+	echo $after_widget;
+}
+
+
+/*-----------------------------------------------------------------------------------*/
+/*	Update Widget
+/*-----------------------------------------------------------------------------------*/
+	
+function update( $new_instance, $old_instance ) {
+	$instance = $old_instance;
+
+	// Strip tags to remove HTML (important for text inputs)
+	$instance['title'] = strip_tags( $new_instance['title'] );
+
+	// No need to strip tags
+	$instance['ad'] = $new_instance['ad'];
+	$instance['link'] = $new_instance['link'];
+
+	return $instance;
+}
+
+
+/*-----------------------------------------------------------------------------------*/
+/*	Widget Settings (Displays the widget settings controls on the widget panel)
+/*-----------------------------------------------------------------------------------*/
+	
+function form( $instance ) {
+
+	// Set up some default widget settings
+	$defaults = array(
+		'title' => '',
+		'ad' => get_template_directory_uri()."/images/ad300x250.jpg",
+		'link' => 'http://themeforest.net/user/JamiGibbs/profile',
+	);
+	
+	$instance = wp_parse_args( (array) $instance, $defaults ); ?>
+
+	<!-- Widget Title: Text Input -->
+	<p>
+		<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title:', 'Bowtie') ?></label>
+		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" />
+	</p>
+
+	<!-- Ad image url: Text Input -->
+	<p>
+		<label for="<?php echo $this->get_field_id( 'ad' ); ?>"><?php _e('Ad image url:', 'Bowtie') ?></label>
+		<input class="widefat" id="<?php echo $this->get_field_id( 'ad' ); ?>" name="<?php echo $this->get_field_name( 'ad' ); ?>" value="<?php echo $instance['ad']; ?>" />
+	</p>
+	
+	<!-- Ad link url: Text Input -->
+	<p>
+		<label for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e('Ad link url:', 'Bowtie') ?></label>
+		<input class="widefat" id="<?php echo $this->get_field_id( 'link' ); ?>" name="<?php echo $this->get_field_name( 'link' ); ?>" value="<?php echo $instance['link']; ?>" />
+	</p>
+	
+	<?php
+	}
+}
+?>
