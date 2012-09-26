@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  key: MyString
+  value: 
+  value2: 
+  user_id: 1
+  vendor_type_id: 1
+
+two:
+  key: MyString
+  value: 
+  value2: 
+  user_id: 1
+  vendor_type_id: 1

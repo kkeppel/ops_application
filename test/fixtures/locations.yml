@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  address1: MyString
+  address2: MyString
+  floor: 1
+  perimeter: 1.5
+  time_required: 1
+  city_id: 1
+  vendor_profile_id: 1
+  client_profile_id: 1
+
+two:
+  name: MyString
+  address1: MyString
+  address2: MyString
+  floor: 1
+  perimeter: 1.5
+  time_required: 1
+  city_id: 1
+  vendor_profile_id: 1
+  client_profile_id: 1
