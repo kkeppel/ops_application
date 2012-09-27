@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120926001758) do
+ActiveRecord::Schema.define(:version => 20120927003604) do
 
   create_table "cities", :force => true do |t|
     t.string  "name"
@@ -33,21 +33,32 @@ ActiveRecord::Schema.define(:version => 20120926001758) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "companies", :force => true do |t|
+    t.string   "company_name"
+    t.string   "website"
+    t.integer  "nb_employee"
+    t.string   "phone"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "companies", ["company_name"], :name => "index_companies_on_company_name"
+
   create_table "locations", :force => true do |t|
     t.string   "name"
     t.string   "address1"
     t.string   "address2"
     t.integer  "floor"
     t.integer  "city_id"
-    t.integer  "vendor_profile_id"
-    t.integer  "client_profile_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.integer  "vendor_id"
+    t.integer  "company_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "locations", ["city_id"], :name => "index_locations_on_city_id"
-  add_index "locations", ["client_profile_id"], :name => "index_locations_on_client_profile_id"
-  add_index "locations", ["vendor_profile_id"], :name => "index_locations_on_vendor_profile_id"
+  add_index "locations", ["company_id"], :name => "index_locations_on_client_profile_id"
+  add_index "locations", ["vendor_id"], :name => "index_locations_on_vendor_profile_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -107,5 +118,18 @@ ActiveRecord::Schema.define(:version => 20120926001758) do
 
   add_index "vendor_profiles", ["key"], :name => "index_vendor_profiles_on_key"
   add_index "vendor_profiles", ["vendor_type_id"], :name => "index_vendor_profiles_on_vendor_type_id"
+
+  create_table "vendors", :force => true do |t|
+    t.string   "name"
+    t.string   "public_name"
+    t.text     "tagline"
+    t.string   "website"
+    t.text     "bio"
+    t.integer  "vendor_type"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "vendors", ["public_name"], :name => "index_vendors_on_public_name"
 
 end

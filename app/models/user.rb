@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   has_one :vendor_profile
 
+
   # Include default devise modules. Others available are:
   # :confirmable,
   # :lockable, :timeoutable and :omniauthable

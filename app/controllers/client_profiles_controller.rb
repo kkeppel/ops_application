@@ -25,7 +25,6 @@ class ClientProfilesController < ApplicationController
   # GET /client_profiles/new.json
   def new
     @client_profile = ClientProfile.new
-    @client_profile.locations.build()
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @client_profile }

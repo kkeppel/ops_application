@@ -1,5 +1,9 @@
 OpsApplication::Application.routes.draw do
 
+  resources :vendors
+
+  resources :companies
+
   resources :client_profiles
 
   resources :vendor_profiles
