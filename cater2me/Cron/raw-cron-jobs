@@ -1,8 +1,0 @@
-# m h  dom mon dow   command
-0 10 * * * wget -q -O /dev/null http://cater2.me/Cron/Signup-reminders.php?auth=ok
-0 10 * * 7 wget -q -O /dev/null http://cater2.me/Cron/Weekly-reminders.php?auth=ok
-0 13 * * * wget -q -O /dev/null http://cater2.me/Cron/Staff-reminders.php?auth=ok
-0 13 * * * wget -q -O /dev/null http://cater2.me/Cron/Cronfirmation-reminders.php?ahead=3&auth=ok
-0 13 * * * wget -q -O /dev/null http://cater2.me/Cron/Cronfirmation-reminders.php?ahead=2&auth=ok
-0 13 * * * wget -q -O /dev/null http://cater2.me/Cron/Cronfirmation-reminders.php?ahead=1&auth=ok
-
