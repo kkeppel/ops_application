@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  public_name: MyString
+  tagline: MyText
+  website: MyString
+  bio: MyText
+  vendor_type: 1
+
+two:
+  name: MyString
+  public_name: MyString
+  tagline: MyText
+  website: MyString
+  bio: MyText
+  vendor_type: 1
