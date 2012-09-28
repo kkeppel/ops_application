@@ -1,7 +1,7 @@
 <div class="row-fluid">
 
   <div class="span6">
-    <h1 xmlns="http://www.w3.org/1999/html">User List</h1>
+    <h1 xmlns="http://www.w3.org/1999/html">Edit User</h1>
   </div>
 
   <div class="span2 offset2">
@@ -13,11 +13,6 @@
     </form>
   </div>
 
-</div>
-<div class="btn-group management">
-  <%= link_to "Manage Clients", clients_admin_users_path(type: "client") ,:remote => true, :class => "btn" %>
-  <%= link_to "Manage Vendors", vendors_admin_users_path(type: "vendor") ,:remote => true, :class => "btn" %>
-  <%= link_to "Manage C2me Users", others_admin_users_path(type: "other") ,:remote => true, :class => "btn" %>
 </div>
 
 
@@ -35,9 +30,10 @@
           </div>
       <% end %>
 
-
-      <div class="field"><%= f.label :email %><br />
-        <%= f.email_field :email %></div>
+      <div class="field">
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+      </div>
 
       <div class="field">
         <%= f.label :First_name %>
@@ -53,9 +49,12 @@
         <%= f.label :role_id %>
         <%= f.select(:role_ids, options_for_select(@roles, @user.roles.last.id))  %>
       </div>
-
-      <div class="actions">
-        <%= f.submit %>
+      <br/>
+      <div class="actions btn">
+        <%= link_to_submit('Edit User') %>
+      </div>
+      <div class="btn">
+        <%= link_to 'Back', admin_users_path %>
       </div>
   <% end %>
 </div>

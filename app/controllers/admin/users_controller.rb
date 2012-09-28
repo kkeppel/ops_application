@@ -10,6 +10,7 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user.update_attributes(params[:user])
+    @user.client_or_vendor(params[:user][:role_ids])
     redirect_to :action => 'index'
     flash[:notice] = "Successfully updated user. Good for you!"
   end

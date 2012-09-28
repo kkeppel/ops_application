@@ -4,6 +4,19 @@ body { padding-top: 60px; }
 
 /* universal */
 
+#error_explanation {
+  @extend .alert;
+  @extend .alert-error;
+  @extend .alert-block; /* optional */
+  h2{
+    color: #b70000;
+  }
+}
+
+.field_with_errors {
+  @extend .control-group.error
+}
+
 .loading{
   background: url("loader.gif") no-repeat center;
   width: 100%;
@@ -78,4 +91,13 @@ p {
 /* buttons */
 .btn-group {
   margin: 10px 0
+}
+
+/* tables */
+table#edit tr td i.icon-pencil { display:none; }
+table#edit tr:hover td i.icon-pencil {
+  display:inline-block;
+  margin-right:-15px;
+  margin-top: 5px;
+  padding-right: 5px;
 }

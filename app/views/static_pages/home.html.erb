@@ -10,8 +10,26 @@
         <span class="caret"></span>
       </a>
       <ul class="dropdown-menu">
-        <li><%= link_to "Manage Users", admin_users_path %> </li>
-        <li><%= link_to "Manage Clients", new_client_profile_path %></li>
+        <% if current_user.role?('admin') %>
+          <li><%= link_to "Manage Users", admin_users_path %> </li>
+          <li><%= link_to "Manage Clients", new_client_profile_path %></li>
+        <% elsif current_user.is_client  %>
+            <li>Manage Employees</li>
+            <li>View Order Status</li>
+        <% elsif current_user.is_vendor %>
+            <li>Manage Carriers</li>
+            <li>Manage Orders</li>
+        <% else %>
+
+        <% end %>
       </ul>
     </div>
+
+    <% if current_user.role?('admin') %>
+        You're an admin! You can do all of the things!!
+    <% elsif current_user.is_client  %>
+        You're a client! You can look at all of your client things!!
+    <% elsif current_user.is_vendor %>
+        You're a vendor! You can look at all of your vendor things!!
+    <% end %>
 <% end %>

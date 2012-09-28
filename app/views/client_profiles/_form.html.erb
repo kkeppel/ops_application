@@ -17,13 +17,41 @@
   </div>
   <div class="field">
     <%= f.label :Nb_employee %>
-    <%= f.text_area :nb_employee %>
+    <%= f.number_field :nb_employee %>
   </div>
   <div class="field">
     <%= f.label :website %>
-    <%= f.text_area :website %>
+    <%= f.text_field :website %>
   </div>
+  <div class="field">
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+  </div>
+  <h2>Add a primary location</h2>
+  <%= f.fields_for :locations do |loc| %>
+    <div class="field">
+      <%= loc.label :location_name %>
+      <%= loc.text_field :name %>
+    </div>
+    <div class="field">
+      <%= loc.label :address1 %>
+      <%= loc.text_field :address1 %>
+    </div>
+    <div class="field">
+      <%= loc.label :address2 %>
+      <%= loc.text_field :address2 %>
+    </div>
+    <div>
+      <%=	loc.label :city %>
+      <%= collection_select :city, :city_id, City.all, :id, :name  %>
+    </div>
+    <div class="field">
+      <%= loc.label :floor %>
+      <%= loc.number_field :floor %>
+    </div>
+  <% end %>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Create client", class: "btn btn-large btn-primary"%>
   </div>
+
 <% end %>
