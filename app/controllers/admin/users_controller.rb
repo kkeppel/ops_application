@@ -4,6 +4,17 @@ class Admin::UsersController < ApplicationController
   def index
   end
 
+  def edit
+    @roles = Role.find_by_sql('SELECT * from roles group by name').map {|r| [r.name, r.id]}
+  end
+
+  def update
+    @user.update_attributes(params[:user])
+    @user.client_or_vendor(params[:user][:role_ids])
+    redirect_to :action => 'index'
+    flash[:notice] = "Successfully updated user. Good for you!"
+  end
+
   def fetch_users
     if params[:type] == 'client'
       @users = User.where(:is_client =>true).all

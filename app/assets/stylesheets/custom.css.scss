@@ -92,3 +92,12 @@ p {
 .btn-group {
   margin: 10px 0
 }
+
+/* tables */
+table#edit tr td i.icon-pencil { display:none; }
+table#edit tr:hover td i.icon-pencil {
+  display:inline-block;
+  margin-right:-15px;
+  margin-top: 5px;
+  padding-right: 5px;
+}

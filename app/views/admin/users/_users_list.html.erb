@@ -1,5 +1,5 @@
 <% if @users %>
-    <table class="table table-hover">
+    <table class="table table-hover" id="edit">
       <thead>
       <tr>
         <th>#</th>
@@ -25,7 +25,11 @@
             <% else %>
                 <td><%=	link_to "Activate", activation_admin_user_path(user, type: "activate"), :remote => true, :class => "btn btn-inverse", :id => user.id %></td>
             <% end %>
-            <td><i class="icon-pencil hide"></i></td>
+            <td width="20">
+                <a href="<%= edit_admin_user_path user %>" class="editUserTooltip" rel="tooltip" title="Edit User!">
+                  <i class="icon-pencil"></i>
+                </a>
+            </td>
           </tr>
       <% end %>
       </tbody>
