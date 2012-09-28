@@ -1,8 +1,5 @@
 OpsApplication::Application.routes.draw do
 
-  resources :vendors
-
-  resources :companies
 
   resources :client_profiles
 
@@ -14,6 +11,8 @@ OpsApplication::Application.routes.draw do
 
   devise_for :users
   namespace "admin" do
+    resources :vendors
+    resources :companies
     resources :users do
       collection do
         get "clients/" => "users#fetch_users"

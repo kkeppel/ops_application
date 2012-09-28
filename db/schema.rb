@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120927003604) do
+ActiveRecord::Schema.define(:version => 20120927182100) do
 
   create_table "cities", :force => true do |t|
     t.string  "name"
@@ -100,6 +100,10 @@ ActiveRecord::Schema.define(:version => 20120927003604) do
     t.boolean  "is_vendor",                            :default => false
     t.integer  "client_profile_id"
     t.integer  "vendor_profile_id"
+    t.string   "confirmation_token"
+    t.string   "unconfirmed_email"
+    t.string   "confirmed_at"
+    t.string   "confirmation_sent_at"
   end
 
   add_index "users", ["client_profile_id"], :name => "index_users_on_client_profile_id"
