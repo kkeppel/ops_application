@@ -30,8 +30,10 @@ class User < ActiveRecord::Base
     role_name = Role.where(:id => role_id).select(:name).first.to_s
     if client_roles.include?(role_name)
       self.is_client = true
+      self.is_vendor = false
     elsif vendor_roles.include?(role_name)
       self.is_vendor = true
+      self.is_client = false
     end
     self.save
   end
