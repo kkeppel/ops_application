@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @vendor.name %>
+</p>
+
+<p>
+  <b>Public name:</b>
+  <%= @vendor.public_name %>
+</p>
+
+<p>
+  <b>Tagline:</b>
+  <%= @vendor.tagline %>
+</p>
+
+<p>
+  <b>Website:</b>
+  <%= @vendor.website %>
+</p>
+
+<p>
+  <b>Bio:</b>
+  <%= @vendor.bio %>
+</p>
+
+<p>
+  <b>Vendor type:</b>
+  <%= @vendor.vendor_type %>
+</p>
+
+
+<%= link_to 'Edit', edit_vendor_path(@vendor) %> |
+<%= link_to 'Back', vendors_path %>

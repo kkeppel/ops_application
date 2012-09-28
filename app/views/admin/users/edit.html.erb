@@ -1,0 +1,59 @@
+<div class="row-fluid">
+
+  <div class="span6">
+    <h1 xmlns="http://www.w3.org/1999/html">Edit User</h1>
+  </div>
+
+  <div class="span2 offset2">
+    <form class="form-search">
+      <div class="input-append">
+        <input type="text" class="span12 search-query" placeholder="Type a company name, restaurant...">
+        <button type="submit" class="btn">Search</button>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+
+<div id="users">
+  <%= form_for(@user, :url => admin_user_path(@user), :html => { :method => :put }) do |f| %>
+      <% if @user.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@user.errors.count, "error") %> prohibited this client_profile from being saved:</h2>
+
+            <ul>
+              <% @user.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <div class="field">
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+      </div>
+
+      <div class="field">
+        <%= f.label :First_name %>
+        <%= f.text_field :first_name%>
+      </div>
+
+      <div class="field">
+        <%= f.label :Last_name %>
+        <%= f.text_field :last_name%>
+      </div>
+
+      <div class="field">
+        <%= f.label :role_id %>
+        <%= f.select(:role_ids, options_for_select(@roles, @user.roles.last.id))  %>
+      </div>
+      <br/>
+      <div class="actions btn btn-primary">
+        <%= link_to_submit('Edit User') %>
+      </div>
+
+      <%= link_to 'Back', admin_users_path, :class => "btn" %>
+  <% end %>
+</div>

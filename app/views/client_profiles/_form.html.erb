@@ -1,0 +1,57 @@
+<%= form_for(@client_profile) do |f| %>
+  <% if @client_profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@client_profile.errors.count, "error") %> prohibited this client_profile from being saved:</h2>
+
+      <ul>
+      <% @client_profile.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :Company_name %>
+    <%= f.text_field :company_name %>
+  </div>
+  <div class="field">
+    <%= f.label :Nb_employee %>
+    <%= f.number_field :nb_employee %>
+  </div>
+  <div class="field">
+    <%= f.label :website %>
+    <%= f.text_field :website %>
+  </div>
+  <div class="field">
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+  </div>
+  <h2>Add a primary location</h2>
+  <%= f.fields_for :locations do |loc| %>
+    <div class="field">
+      <%= loc.label :location_name %>
+      <%= loc.text_field :name %>
+    </div>
+    <div class="field">
+      <%= loc.label :address1 %>
+      <%= loc.text_field :address1 %>
+    </div>
+    <div class="field">
+      <%= loc.label :address2 %>
+      <%= loc.text_field :address2 %>
+    </div>
+    <div>
+      <%=	loc.label :city %>
+      <%= collection_select :city, :city_id, City.all, :id, :name  %>
+    </div>
+    <div class="field">
+      <%= loc.label :floor %>
+      <%= loc.number_field :floor %>
+    </div>
+  <% end %>
+  <div class="actions">
+    <%= f.submit "Create client", class: "btn btn-large btn-primary"%>
+  </div>
+
+<% end %>
