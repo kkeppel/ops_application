@@ -1,7 +1,0 @@
-ErrorDocument 404 /pagenotfound.html
-ErrorDocument 500 /pagenotfound.html
-php_flag display_errors 1
-
-php_flag output_buffering Off  
-php_flag zlib.output_compression Off  
-
