@@ -2,7 +2,7 @@ class Client < User
 
   belongs_to :client_profile
 
-  default_scope where(:is_client => 1)
+  default_scope where(:is_client => 1, :is_vendor => 0)
 
   ClientProfile::KEYS.each{|k|
     define_method(k) {
