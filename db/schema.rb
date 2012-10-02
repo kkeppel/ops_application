@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(:version => 20121001212356) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "client_profiles", ["key"], :name => "index_client_profiles_on_key"
+
   create_table "companies", :force => true do |t|
     t.string   "company_name"
     t.string   "website"

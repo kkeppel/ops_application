@@ -1,4 +1,4 @@
-class CompaniesController < ApplicationController
+class Admin::CompaniesController < ApplicationController
   # GET /companies
   # GET /companies.json
   def index
