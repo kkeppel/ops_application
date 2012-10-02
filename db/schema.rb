@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120927182100) do
+ActiveRecord::Schema.define(:version => 20121001212356) do
 
   create_table "cities", :force => true do |t|
     t.string  "name"
@@ -72,6 +72,11 @@ ActiveRecord::Schema.define(:version => 20120927182100) do
     t.integer "user_id"
   end
 
+  create_table "staffs", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "states", :force => true do |t|
     t.string "name"
     t.string "code"
@@ -102,8 +107,8 @@ ActiveRecord::Schema.define(:version => 20120927182100) do
     t.integer  "vendor_profile_id"
     t.string   "confirmation_token"
     t.string   "unconfirmed_email"
-    t.string   "confirmed_at"
-    t.string   "confirmation_sent_at"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
   end
 
   add_index "users", ["client_profile_id"], :name => "index_users_on_client_profile_id"
