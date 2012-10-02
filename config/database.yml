@@ -15,8 +15,8 @@ development:
   database: OpsApplication_development
   pool: 5
   username: root
-  password: dbAcc3ss!
-  host: localhost
+  password: bailey-k1N5
+  host: 127.0.0.1
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -38,5 +38,5 @@ production:
   database: OpsApplication_production
   pool: 5
   username: root
-  password: dbAcc3ss!
-  host: localhost
+  password: bailey-k1N5
+  host: 127.0.0.1

@@ -9,8 +9,19 @@ OpsApplication::Application.routes.draw do
 
   resources :roles
 
-  devise_for :users
+
+
+  devise_for :users do
+    get "/" => "dashboard#index"
+    get "/staff_dashboard" => "dashboard#staff_dashboard"
+    get "/vendor_dashboard" => "dashboard#vendor_dashboard"
+    get "/client_dashboard" => "dashboard#client_dashboard"
+  end
+
+  resources :dashboard
+
   namespace "admin" do
+
     resources :vendors
     resources :companies
     resources :users do
@@ -25,7 +36,7 @@ OpsApplication::Application.routes.draw do
     end
   end
 
-  root :to => "static_pages#home"
+  root :to => "dashboard#index"
 
 
 

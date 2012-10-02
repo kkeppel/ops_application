@@ -23,12 +23,4 @@
         <% end %>
       </ul>
     </div>
-
-    <% if current_user.role?('admin') %>
-        You're an admin! You can do all of the things!!
-    <% elsif current_user.is_client  %>
-        You're a client! You can look at all of your client things!!
-    <% elsif current_user.is_vendor %>
-        You're a vendor! You can look at all of your vendor things!!
-    <% end %>
 <% end %>
