@@ -15,7 +15,7 @@ development:
   database: OpsApplication_development
   pool: 5
   username: root
-  password: bailey-k1N5
+  password: dbAcc3ss!
   host: 127.0.0.1
 
 # Warning: The database defined as "test" will be erased and
@@ -38,5 +38,5 @@ production:
   database: OpsApplication_production
   pool: 5
   username: root
-  password: bailey-k1N5
-  host: 127.0.0.1
+  password: dbAcc3ss!
+  host: localhost
