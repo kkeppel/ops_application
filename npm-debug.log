@@ -1,0 +1,886 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'install', 'now' ]
+2 info using npm@1.1.61
+3 info using node@v0.9.2-pre
+4 verbose read json /home/ubuntu/cater2me/package.json
+5 verbose read json /home/ubuntu/cater2me/node_modules/now/package.json
+6 verbose read json /home/ubuntu/cater2me/package.json
+7 verbose cache add [ 'now', null ]
+8 silly cache add name=undefined spec="now" args=["now",null]
+9 verbose parsed url { pathname: 'now', path: 'now', href: 'now' }
+10 silly lockFile c9bc849a-now now
+11 verbose lock now /home/ubuntu/.npm/c9bc849a-now.lock
+12 silly lockFile c9bc849a-now now
+13 verbose addNamed [ 'now', '' ]
+14 verbose addNamed [ null, '' ]
+15 silly lockFile 1193e862-now now@
+16 verbose lock now@ /home/ubuntu/.npm/1193e862-now.lock
+17 silly addNameRange { name: 'now', range: '', hasData: false }
+18 verbose url raw now
+19 verbose url resolving [ 'https://registry.npmjs.org/', './now' ]
+20 verbose url resolved https://registry.npmjs.org/now
+21 info trying registry request attempt 1 at 22:53:52
+22 verbose etag "3Y8902A5BHD3AB8LKPLP99SC8"
+23 http GET https://registry.npmjs.org/now
+24 http 304 https://registry.npmjs.org/now
+25 silly registry.get cb [ 304,
+25 silly registry.get   { server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+25 silly registry.get     etag: '"3Y8902A5BHD3AB8LKPLP99SC8"',
+25 silly registry.get     date: 'Mon, 01 Oct 2012 22:53:55 GMT',
+25 silly registry.get     'content-length': '0' } ]
+26 verbose etag now from cache
+27 silly addNameRange number 2 { name: 'now', range: '', hasData: true }
+28 silly addNameRange versions [ 'now',
+28 silly addNameRange   [ '0.2.0',
+28 silly addNameRange     '0.2.1',
+28 silly addNameRange     '0.2.2',
+28 silly addNameRange     '0.2.3',
+28 silly addNameRange     '0.2.4',
+28 silly addNameRange     '0.3.0',
+28 silly addNameRange     '0.3.1',
+28 silly addNameRange     '0.3.2',
+28 silly addNameRange     '0.5.0',
+28 silly addNameRange     '0.5.1',
+28 silly addNameRange     '0.5.2',
+28 silly addNameRange     '0.5.3',
+28 silly addNameRange     '0.6.0',
+28 silly addNameRange     '0.6.1',
+28 silly addNameRange     '0.7.0',
+28 silly addNameRange     '0.7.1',
+28 silly addNameRange     '0.7.2',
+28 silly addNameRange     '0.7.3',
+28 silly addNameRange     '0.7.4',
+28 silly addNameRange     '0.7.5',
+28 silly addNameRange     '0.7.6',
+28 silly addNameRange     '0.8.0',
+28 silly addNameRange     '0.8.1' ] ]
+29 verbose addNamed [ 'now', '0.8.1' ]
+30 verbose addNamed [ '0.8.1', '0.8.1' ]
+31 silly lockFile 00d2b6cb-now-0-8-1 now@0.8.1
+32 verbose lock now@0.8.1 /home/ubuntu/.npm/00d2b6cb-now-0-8-1.lock
+33 verbose read json /home/ubuntu/.npm/now/0.8.1/package/package.json
+34 silly lockFile 00d2b6cb-now-0-8-1 now@0.8.1
+35 silly lockFile 1193e862-now now@
+36 silly resolved [ { author: { name: 'Flotype' },
+36 silly resolved     name: 'now',
+36 silly resolved     description: 'NowJS: An easy to use real-time RPC library',
+36 silly resolved     version: '0.8.1',
+36 silly resolved     repository: { type: 'git', url: 'git://github.com/Flotype/now.git' },
+36 silly resolved     main: 'lib/server.js',
+36 silly resolved     engines: { node: '>= v0.4.0' },
+36 silly resolved     dependencies: { 'socket.io': '>= 0.8.7', 'node-proxy': '>= 0.4.0' },
+36 silly resolved     devDependencies: {},
+36 silly resolved     readme: 'Get NowJS http://www.nowjs.com/\n=========\n\n###NowJS makes realtime web apps really easy.\n\n\n<a href="https://github.com/Flotype/now/">Go to Github</a> or \n<a href="https://github.com/Flotype/now/tarball/master">Download the master tgz</a>\n\n\nInstall From npm\n----------------\n\n`npm install now` or `npm install now -g` to install globally\n\n\n\nNowJS is a Node.js module. The client javascript (now.js) is served by the NowJS server.\n\n\nNowJS uses the excellent <a href="https://github.com/LearnBoost/Socket.IO-node">socket.io</a> and <a href="https://github.com/isaacs/node-proxy">node-proxy</a> libraries.\n\n2 Step Setup\n==============\n\n**1. On the server**\n\n    \n    var httpServer = require(\'http\').createServer(function(req, response){ /* Serve your static files */ })\n    httpServer.listen(8080);\n    \n    var nowjs = require("now");\n    var everyone = nowjs.initialize(httpServer);\n    \n    everyone.now.logStuff = function(msg){\n        console.log(msg);\n    }\n    \n**2. On the client**\n<pre><code>\n&lt;script type="text/javascript" src="http://localhost:8080/nowjs/now.js">&lt;/script>\n\n&lt;script type="text/javascript"&gt;\n  now.ready(function(){\n    // "Hello World!" will print on server\n    now.logStuff("Hello World!");\n  });\n&lt;/script>\n</code></pre>\n\nFAQ\n-------\n\n**Q: Can I pass in a callback or closure, for example, if the remote function is asynchronous?**\n\nA: Yes. This is 100% supported\n\n\n**Q: How do I use NowJS with [Express](https://github.com/visionmedia/express)?**\n\nA: Very easily. \n    var app = express.createServer();\n    app.listen(3000);\n    var everyone = require("now").initialize(app);\n\n**Q: How do I disable WebSockets or only use xhr-polling?**\n\nA: You can specifiy exactly which transports to use as an initialization options as follows:\n    \n    var nowjs = require("now");\n    var everyone = nowjs.initialize(yourHttpServer, {socketio: {transports: [\'xhr-polling\', \'jsonp-polling\']}});\n\n\n**Q: Error: " SyntaxError: Unexpected token *" / Can I statically host the now.js file?**\n\nA: On the client side, make sure you link to now.js like this\n\n     <script src="http://myserver:myport/nowjs/now.js"></script>\n\nYou do not need to host the file /nowjs/now.js. It is automatically hosted by the NowJS using the http server you pass into the .initialize(...) in your server code. If you choose to host now.js yourself, you can, but **do not use the version in github repo** you MUST save the file at `http://myserver:myport/nowjs/now.js` and host that, because it is automatically configured for your server.\n\nFurther Reading\n---------------\n\nNow that you have NowJS, try the NowJS [User Manual](http://nowjs.com/doc) and [Quick Chat Example](http://nowjs.com/guide) \n\nHave more questions? Please contact us:\nEmail: team@nowjs.com\n\nIRC: [#nowjs on freenode](http://webchat.freenode.net/?nick=nowjs.&channels=nowjs)\n\nTwitter: [@NowJSTeam](http://twitter.com/nowjsteam)',
+36 silly resolved     _id: 'now@0.8.1',
+36 silly resolved     _from: 'now' } ]
+37 info install now@0.8.1 into /home/ubuntu/cater2me
+38 info installOne now@0.8.1
+39 verbose from cache /home/ubuntu/.npm/now/0.8.1/package/package.json
+40 info /home/ubuntu/cater2me/node_modules/now unbuild
+41 verbose read json /home/ubuntu/cater2me/node_modules/now/package.json
+42 verbose tar unpack /home/ubuntu/.npm/now/0.8.1/package.tgz
+43 silly lockFile dc33e494-ubuntu-cater2me-node-modules-now /home/ubuntu/cater2me/node_modules/now
+44 verbose lock /home/ubuntu/cater2me/node_modules/now /home/ubuntu/.npm/dc33e494-ubuntu-cater2me-node-modules-now.lock
+45 silly gunzTarPerm modes [ '755', '644' ]
+46 silly gunzTarPerm extractEntry package.json
+47 silly gunzTarPerm extractEntry .npmignore
+48 silly gunzTarPerm extractEntry LICENSE
+49 silly gunzTarPerm extractEntry readme.md
+50 silly gunzTarPerm extractEntry examples/helloworld_example/helloworld_server.js
+51 silly gunzTarPerm extractEntry examples/helloworld_example/helloworld.html
+52 silly gunzTarPerm extractEntry examples/express_example/app.js
+53 silly gunzTarPerm extractEntry examples/express_example/views/index.ejs
+54 silly gunzTarPerm extractEntry examples/express_example/views/layout.ejs
+55 silly gunzTarPerm extractEntry examples/express_example/views/chat.ejs
+56 silly gunzTarPerm extractEntry examples/multiroomchat_example/multiroomchat_server.js
+57 silly gunzTarPerm extractEntry examples/multiroomchat_example/multiroomchat.html
+58 silly gunzTarPerm extractEntry examples/nodeclient_example/server.js
+59 silly gunzTarPerm extractEntry examples/nodeclient_example/chat.js
+60 silly gunzTarPerm extractEntry examples/nodeclient_example/index.html
+61 silly gunzTarPerm extractEntry Makefile
+62 silly gunzTarPerm extractEntry bin/build.js
+63 silly gunzTarPerm extractEntry doc/public/user_manual.md
+64 silly gunzTarPerm extractEntry doc/public/best_practices.md
+65 silly gunzTarPerm extractEntry doc/public/company.md
+66 silly gunzTarPerm extractEntry doc/public/jobs.md
+67 silly gunzTarPerm extractEntry doc/public/getting_started.md
+68 silly gunzTarPerm extractEntry doc/jsdoc/symbols/Group#now.html
+69 silly gunzTarPerm extractEntry doc/jsdoc/symbols/src/now_lib_scopeTable.js.html
+70 silly gunzTarPerm extractEntry doc/jsdoc/symbols/src/now_lib_support.js.html
+71 silly gunzTarPerm extractEntry doc/jsdoc/symbols/src/flotype_now_lib_group.js.html
+72 silly gunzTarPerm extractEntry doc/jsdoc/symbols/src/flotype_now_lib_user.js.html
+73 silly gunzTarPerm extractEntry doc/jsdoc/symbols/src/now_lib_group.js.html
+74 silly gunzTarPerm extractEntry doc/jsdoc/symbols/src/now_lib_now.js.html
+75 silly gunzTarPerm extractEntry doc/jsdoc/symbols/src/now_lib_user.js.html
+76 silly gunzTarPerm extractEntry doc/jsdoc/symbols/src/flotype_now_lib_now.js.html
+77 silly gunzTarPerm extractEntry doc/jsdoc/symbols/src/now_lib_handlers.js.html
+78 silly gunzTarPerm extractEntry doc/jsdoc/symbols/src/flotype_now_lib_proxy.js.html
+79 silly gunzTarPerm extractEntry doc/jsdoc/symbols/src/now_lib_fileServer.js.html
+80 silly gunzTarPerm extractEntry doc/jsdoc/symbols/src/flotype_now_lib_server.js.html
+81 silly gunzTarPerm extractEntry doc/jsdoc/symbols/src/flotype_now_lib_fileServer.js.html
+82 silly gunzTarPerm extractEntry doc/jsdoc/symbols/src/now_lib_server.js.html
+83 silly gunzTarPerm extractEntry doc/jsdoc/symbols/src/now_lib_function.js.html
+84 silly gunzTarPerm extractEntry doc/jsdoc/symbols/src/now_lib_proxy.js.html
+85 silly gunzTarPerm extractEntry doc/jsdoc/symbols/src/flotype_now_lib_function.js.html
+86 silly gunzTarPerm extractEntry doc/jsdoc/symbols/src/now_lib_nowUtil.js.html
+87 silly gunzTarPerm extractEntry doc/jsdoc/symbols/src/flotype_now_lib_nowUtil.js.html
+88 silly gunzTarPerm extractEntry doc/jsdoc/symbols/src/flotype_now_lib_scopeTable.js.html
+89 silly gunzTarPerm extractEntry doc/jsdoc/symbols/src/flotype_now_lib_support.js.html
+90 silly gunzTarPerm extractEntry doc/jsdoc/symbols/src/flotype_now_lib_handlers.js.html
+91 silly gunzTarPerm extractEntry doc/jsdoc/symbols/User#user.html
+92 silly gunzTarPerm extractEntry doc/jsdoc/symbols/User.html
+93 silly gunzTarPerm extractEntry doc/jsdoc/symbols/User#now.html
+94 silly gunzTarPerm extractEntry doc/jsdoc/symbols/nowjs.html
+95 silly gunzTarPerm extractEntry doc/jsdoc/symbols/_global_.html
+96 silly gunzTarPerm extractEntry doc/jsdoc/symbols/Group.html
+97 silly gunzTarPerm extractEntry doc/jsdoc/index.html
+98 silly gunzTarPerm extractEntry doc/jsdoc/files.html
+99 silly gunzTarPerm extractEntry lib/support.js
+100 silly gunzTarPerm extractEntry lib/nowUtil.js
+101 silly gunzTarPerm extractEntry lib/handlers.js
+102 silly gunzTarPerm extractEntry lib/function.js
+103 silly gunzTarPerm extractEntry lib/user.js
+104 silly gunzTarPerm extractEntry lib/now.js
+105 silly gunzTarPerm extractEntry lib/proxy.js
+106 silly gunzTarPerm extractEntry lib/group.js
+107 silly gunzTarPerm extractEntry lib/scopeTable.js
+108 silly gunzTarPerm extractEntry lib/fileServer.js
+109 silly gunzTarPerm extractEntry lib/server.js
+110 silly gunzTarPerm extractEntry lib/client/now.js
+111 silly gunzTarPerm extractEntry lib/nodeclient/now.js
+112 silly gunzTarPerm extractEntry dist/now.js
+113 silly gunzTarPerm extractEntry changelog.md
+114 verbose read json /home/ubuntu/cater2me/node_modules/now/package.json
+115 silly lockFile dc33e494-ubuntu-cater2me-node-modules-now /home/ubuntu/cater2me/node_modules/now
+116 info preinstall now@0.8.1
+117 verbose from cache /home/ubuntu/cater2me/node_modules/now/package.json
+118 verbose readDependencies using package.json deps
+119 verbose from cache /home/ubuntu/cater2me/node_modules/now/package.json
+120 verbose readDependencies using package.json deps
+121 verbose cache add [ 'socket.io@>= 0.8.7', null ]
+122 silly cache add name=undefined spec="socket.io@>= 0.8.7" args=["socket.io@>= 0.8.7",null]
+123 verbose parsed url { pathname: 'socket.io@%3E=%200.8.7',
+123 verbose parsed url   path: 'socket.io@%3E=%200.8.7',
+123 verbose parsed url   href: 'socket.io@%3E=%200.8.7' }
+124 silly cache add name="socket.io" spec=">= 0.8.7" args=["socket.io",">= 0.8.7"]
+125 verbose parsed url { pathname: '%3E=%200.8.7',
+125 verbose parsed url   path: '%3E=%200.8.7',
+125 verbose parsed url   href: '%3E=%200.8.7' }
+126 verbose addNamed [ 'socket.io', '>= 0.8.7' ]
+127 verbose addNamed [ null, '>=0.8.7' ]
+128 silly lockFile a92e7cf4-socket-io-0-8-7 socket.io@>= 0.8.7
+129 verbose lock socket.io@>= 0.8.7 /home/ubuntu/.npm/a92e7cf4-socket-io-0-8-7.lock
+130 verbose cache add [ 'node-proxy@>= 0.4.0', null ]
+131 silly cache add name=undefined spec="node-proxy@>= 0.4.0" args=["node-proxy@>= 0.4.0",null]
+132 verbose parsed url { pathname: 'node-proxy@%3E=%200.4.0',
+132 verbose parsed url   path: 'node-proxy@%3E=%200.4.0',
+132 verbose parsed url   href: 'node-proxy@%3E=%200.4.0' }
+133 silly cache add name="node-proxy" spec=">= 0.4.0" args=["node-proxy",">= 0.4.0"]
+134 verbose parsed url { pathname: '%3E=%200.4.0',
+134 verbose parsed url   path: '%3E=%200.4.0',
+134 verbose parsed url   href: '%3E=%200.4.0' }
+135 verbose addNamed [ 'node-proxy', '>= 0.4.0' ]
+136 verbose addNamed [ null, '>=0.4.0' ]
+137 silly lockFile 592bcf82-node-proxy-0-4-0 node-proxy@>= 0.4.0
+138 verbose lock node-proxy@>= 0.4.0 /home/ubuntu/.npm/592bcf82-node-proxy-0-4-0.lock
+139 silly addNameRange { name: 'socket.io', range: '>=0.8.7', hasData: false }
+140 silly addNameRange { name: 'node-proxy', range: '>=0.4.0', hasData: false }
+141 verbose url raw socket.io
+142 verbose url resolving [ 'https://registry.npmjs.org/', './socket.io' ]
+143 verbose url resolved https://registry.npmjs.org/socket.io
+144 info trying registry request attempt 1 at 22:53:53
+145 verbose etag "BRK6ZTME421RJFR7S7TZUKHJM"
+146 http GET https://registry.npmjs.org/socket.io
+147 verbose url raw node-proxy
+148 verbose url resolving [ 'https://registry.npmjs.org/', './node-proxy' ]
+149 verbose url resolved https://registry.npmjs.org/node-proxy
+150 info trying registry request attempt 1 at 22:53:53
+151 verbose etag "96MNE6GHEF4Y05AQ9KQIFITY"
+152 http GET https://registry.npmjs.org/node-proxy
+153 http 304 https://registry.npmjs.org/node-proxy
+154 silly registry.get cb [ 304,
+154 silly registry.get   { server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+154 silly registry.get     etag: '"96MNE6GHEF4Y05AQ9KQIFITY"',
+154 silly registry.get     date: 'Mon, 01 Oct 2012 22:53:56 GMT',
+154 silly registry.get     'content-length': '0' } ]
+155 verbose etag node-proxy from cache
+156 silly addNameRange number 2 { name: 'node-proxy', range: '>=0.4.0', hasData: true }
+157 silly addNameRange versions [ 'node-proxy',
+157 silly addNameRange   [ '0.3.1', '0.3.2', '0.4.0', '0.5.0', '0.5.1', '0.5.2', '0.6.0' ] ]
+158 verbose addNamed [ 'node-proxy', '0.6.0' ]
+159 verbose addNamed [ '0.6.0', '0.6.0' ]
+160 silly lockFile 4095cacd-node-proxy-0-6-0 node-proxy@0.6.0
+161 verbose lock node-proxy@0.6.0 /home/ubuntu/.npm/4095cacd-node-proxy-0-6-0.lock
+162 verbose read json /home/ubuntu/.npm/node-proxy/0.6.0/package/package.json
+163 silly lockFile 4095cacd-node-proxy-0-6-0 node-proxy@0.6.0
+164 silly lockFile 592bcf82-node-proxy-0-4-0 node-proxy@>= 0.4.0
+165 http 304 https://registry.npmjs.org/socket.io
+166 silly registry.get cb [ 304,
+166 silly registry.get   { server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+166 silly registry.get     etag: '"BRK6ZTME421RJFR7S7TZUKHJM"',
+166 silly registry.get     date: 'Mon, 01 Oct 2012 22:53:56 GMT',
+166 silly registry.get     'content-length': '0' } ]
+167 verbose etag socket.io from cache
+168 silly addNameRange number 2 { name: 'socket.io', range: '>=0.8.7', hasData: true }
+169 silly addNameRange versions [ 'socket.io',
+169 silly addNameRange   [ '0.3.8',
+169 silly addNameRange     '0.4.0',
+169 silly addNameRange     '0.4.1',
+169 silly addNameRange     '0.5.1',
+169 silly addNameRange     '0.5.3',
+169 silly addNameRange     '0.6.0',
+169 silly addNameRange     '0.6.1',
+169 silly addNameRange     '0.6.3',
+169 silly addNameRange     '0.6.4',
+169 silly addNameRange     '0.6.5',
+169 silly addNameRange     '0.6.6',
+169 silly addNameRange     '0.6.7',
+169 silly addNameRange     '0.6.8',
+169 silly addNameRange     '0.6.9',
+169 silly addNameRange     '0.6.10',
+169 silly addNameRange     '0.6.11',
+169 silly addNameRange     '0.6.12',
+169 silly addNameRange     '0.6.14',
+169 silly addNameRange     '0.6.15',
+169 silly addNameRange     '0.6.16',
+169 silly addNameRange     '0.6.17',
+169 silly addNameRange     '0.6.18',
+169 silly addNameRange     '0.7.0',
+169 silly addNameRange     '0.7.1',
+169 silly addNameRange     '0.7.2',
+169 silly addNameRange     '0.7.3',
+169 silly addNameRange     '0.7.4',
+169 silly addNameRange     '0.7.5',
+169 silly addNameRange     '0.7.6',
+169 silly addNameRange     '0.7.7',
+169 silly addNameRange     '0.7.8',
+169 silly addNameRange     '0.7.9',
+169 silly addNameRange     '0.7.10',
+169 silly addNameRange     '0.7.11',
+169 silly addNameRange     '0.8.0',
+169 silly addNameRange     '0.8.1',
+169 silly addNameRange     '0.8.2',
+169 silly addNameRange     '0.8.3',
+169 silly addNameRange     '0.8.4',
+169 silly addNameRange     '0.8.5',
+169 silly addNameRange     '0.8.6',
+169 silly addNameRange     '0.8.7',
+169 silly addNameRange     '0.9.0',
+169 silly addNameRange     '0.9.1',
+169 silly addNameRange     '0.9.1-1',
+169 silly addNameRange     '0.9.2',
+169 silly addNameRange     '0.9.3',
+169 silly addNameRange     '0.9.4',
+169 silly addNameRange     '0.9.5',
+169 silly addNameRange     '0.9.6',
+169 silly addNameRange     '0.9.7',
+169 silly addNameRange     '0.9.8',
+169 silly addNameRange     '0.9.9',
+169 silly addNameRange     '0.9.10' ] ]
+170 verbose addNamed [ 'socket.io', '0.9.10' ]
+171 verbose addNamed [ '0.9.10', '0.9.10' ]
+172 silly lockFile 5127d080-socket-io-0-9-10 socket.io@0.9.10
+173 verbose lock socket.io@0.9.10 /home/ubuntu/.npm/5127d080-socket-io-0-9-10.lock
+174 verbose read json /home/ubuntu/.npm/socket.io/0.9.10/package/package.json
+175 silly lockFile 5127d080-socket-io-0-9-10 socket.io@0.9.10
+176 silly lockFile a92e7cf4-socket-io-0-8-7 socket.io@>= 0.8.7
+177 silly resolved [ { name: 'node-proxy',
+177 silly resolved     version: '0.6.0',
+177 silly resolved     description: 'A module for node implementing __noSuchMethod__-type handlers, such as object overloading, as part of the Harmony Catch-All Proxies specification found at http://wiki.ecmascript.org/doku.php?id=harmony:proxies',
+177 silly resolved     keywords: [ 'interceptor', 'proxy', 'overload', '__noSuchMethod__' ],
+177 silly resolved     contributors: [ [Object], [Object], [Object] ],
+177 silly resolved     licenses: [ [Object] ],
+177 silly resolved     bugs: { url: 'http://github.com/samshull/node-proxy/issues' },
+177 silly resolved     implements: [ 'http://wiki.ecmascript.org/doku.php?id=harmony:proxies' ],
+177 silly resolved     engines: { node: '>=0.6', npm: '>= 1.1.17' },
+177 silly resolved     repositories: [ [Object] ],
+177 silly resolved     main: './lib/node-proxy.js',
+177 silly resolved     scripts:
+177 silly resolved      { install: 'node-gyp configure build',
+177 silly resolved        test: 'node test/test.js' },
+177 silly resolved     readme: 'node-proxy is an implementation of Harmony Proxies http://wiki.ecmascript.org/doku.php?id=harmony:proxies\nthat allows the developer to create "catch-all" property handlers for an object or a function in node.js.\n\nAuthor: Sam Shull  \nRepository: http://github.com/samshull/node-proxy  \nIssues: http://github.com/samshull/node-proxy/issues  \n\n*** This does not work appropriately in node versions 0.1.100 - 0.1.102. You will need to install node_version.h in $PREFIX/include/node\n\nMethods:\n\nObject create(ProxyHandler handler [, Object proto ] ) throws Error, TypeError\n\nFunction createFunction(ProxyHandler handler, Function callTrap [, Function constructTrap ] ) throws Error, TypeError\n\nBoolean isTrapping(Object obj) throws Error\n\n\nAdditional Methods (for ECMAScript 5 compatibliity): @see http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-262.pdf\n\nBoolean freeze(Object obj) throws Error, TypeError\n\nBoolean seal(Object obj) throws Error, TypeError\n\nBoolean preventExtensions(Object obj) throws Error, TypeError\n\nBoolean isFrozen(Object obj) throws Error, TypeError\n\nBoolean isSealed(Object obj) throws Error, TypeError\n\nBoolean isExtensible(Object obj) throws Error, TypeError\n\nPropertyDescriptor getOwnPropertyDescriptor(Object obj, String name) throws Error, TypeError\n\nBoolean defineProperty(Object obj, String name, PropertyDescriptor pd) throws Error, TypeError\n\nBoolean defineProperties(Object obj, Object descriptors) throws Error, TypeError\n\n\nMore methods:\n\nObject hidden(Object obj, String name [, Object value ] ) throws Error\n- Set or retrieve a hidden property on an Object\n\nObject clone(Object obj) throws Error\n- Create a shallow copy of an Object\n\nBoolean isProxy(Object obj)\n- determine if an object was created by Proxy\n\nBoolean setPrototype(Object obj, Object obj) throws Error\n-set the prototype of a given object to the second given object\n',
+177 silly resolved     _id: 'node-proxy@0.6.0',
+177 silly resolved     _from: 'node-proxy@>= 0.4.0' },
+177 silly resolved   { name: 'socket.io',
+177 silly resolved     version: '0.9.10',
+177 silly resolved     description: 'Real-time apps made cross-browser & easy with a WebSocket-like API',
+177 silly resolved     homepage: 'http://socket.io',
+177 silly resolved     keywords: [ 'websocket', 'socket', 'realtime', 'socket.io', 'comet', 'ajax' ],
+177 silly resolved     author: { name: 'Guillermo Rauch', email: 'guillermo@learnboost.com' },
+177 silly resolved     contributors: [ [Object], [Object], [Object], [Object] ],
+177 silly resolved     repository:
+177 silly resolved      { type: 'git',
+177 silly resolved        url: 'https://github.com/LearnBoost/socket.io.git' },
+177 silly resolved     dependencies:
+177 silly resolved      { 'socket.io-client': '0.9.10',
+177 silly resolved        policyfile: '0.0.4',
+177 silly resolved        redis: '0.7.2' },
+177 silly resolved     devDependencies:
+177 silly resolved      { expresso: '0.9.2',
+177 silly resolved        should: '*',
+177 silly resolved        benchmark: '0.2.2',
+177 silly resolved        microtime: '0.1.3-1',
+177 silly resolved        colors: '0.5.1' },
+177 silly resolved     main: 'index',
+177 silly resolved     engines: { node: '>= 0.4.0' },
+177 silly resolved     scripts: { test: 'make test' },
+177 silly resolved     readme: '# Socket.IO\n\nSocket.IO is a Node.JS project that makes WebSockets and realtime possible in\nall browsers. It also enhances WebSockets by providing built-in multiplexing,\nhorizontal scalability, automatic JSON encoding/decoding, and more.\n\n## How to Install\n\n```bash\nnpm install socket.io\n```\n\n## How to use\n\nFirst, require `socket.io`:\n\n```js\nvar io = require(\'socket.io\');\n```\n\nNext, attach it to a HTTP/HTTPS server. If you\'re using the fantastic `express`\nweb framework:\n\n#### Express 3.x\n\n```js\nvar app = express()\n  , server = require(\'http\').createServer(app)\n  , io = io.listen(server);\n\nserver.listen(80);\n\nio.sockets.on(\'connection\', function (socket) {\n  socket.emit(\'news\', { hello: \'world\' });\n  socket.on(\'my other event\', function (data) {\n    console.log(data);\n  });\n});\n```\n\n#### Express 2.x\n\n```js\nvar app = express.createServer()\n  , io = io.listen(app);\n\napp.listen(80);\n\nio.sockets.on(\'connection\', function (socket) {\n  socket.emit(\'news\', { hello: \'world\' });\n  socket.on(\'my other event\', function (data) {\n    console.log(data);\n  });\n});\n```\n\nFinally, load it from the client side code:\n\n```html\n<script src="/socket.io/socket.io.js"></script>\n<script>\n  var socket = io.connect(\'http://localhost\');\n  socket.on(\'news\', function (data) {\n    console.log(data);\n    socket.emit(\'my other event\', { my: \'data\' });\n  });\n</script>\n```\n\nFor more thorough examples, look at the `examples/` directory.\n\n## Short recipes\n\n### Sending and receiving events.\n\nSocket.IO allows you to emit and receive custom events.\nBesides `connect`, `message` and `disconnect`, you can emit custom events:\n\n```js\n// note, io.listen(<port>) will create a http server for you\nvar io = require(\'socket.io\').listen(80);\n\nio.sockets.on(\'connection\', function (socket) {\n  io.sockets.emit(\'this\', { will: \'be received by everyone\' });\n\n  socket.on(\'private message\', function (from, msg) {\n    console.log(\'I received a private message by \', from, \' saying \', msg);\n  });\n\n  socket.on(\'disconnect\', function () {\n    io.sockets.emit(\'user disconnected\');\n  });\n});\n```\n\n### Storing data associated to a client\n\nSometimes it\'s necessary to store data associated with a client that\'s\nnecessary for the duration of the session.\n\n#### Server side\n\n```js\nvar io = require(\'socket.io\').listen(80);\n\nio.sockets.on(\'connection\', function (socket) {\n  socket.on(\'set nickname\', function (name) {\n    socket.set(\'nickname\', name, function () { socket.emit(\'ready\'); });\n  });\n\n  socket.on(\'msg\', function () {\n    socket.get(\'nickname\', function (err, name) {\n      console.log(\'Chat message by \', name);\n    });\n  });\n});\n```\n\n#### Client side\n\n```html\n<script>\n  var socket = io.connect(\'http://localhost\');\n\n  socket.on(\'connect\', function () {\n    socket.emit(\'set nickname\', prompt(\'What is your nickname?\'));\n    socket.on(\'ready\', function () {\n      console.log(\'Connected !\');\n      socket.emit(\'msg\', prompt(\'What is your message?\'));\n    });\n  });\n</script>\n```\n\n### Restricting yourself to a namespace\n\nIf you have control over all the messages and events emitted for a particular\napplication, using the default `/` namespace works.\n\nIf you want to leverage 3rd-party code, or produce code to share with others,\nsocket.io provides a way of namespacing a `socket`.\n\nThis has the benefit of `multiplexing` a single connection. Instead of\nsocket.io using two `WebSocket` connections, it\'ll use one.\n\nThe following example defines a socket that listens on \'/chat\' and one for\n\'/news\':\n\n#### Server side\n\n```js\nvar io = require(\'socket.io\').listen(80);\n\nvar chat = io\n  .of(\'/chat\')\n  .on(\'connection\', function (socket) {\n    socket.emit(\'a message\', { that: \'only\', \'/chat\': \'will get\' });\n    chat.emit(\'a message\', { everyone: \'in\', \'/chat\': \'will get\' });\n  });\n\nvar news = io\n  .of(\'/news\');\n  .on(\'connection\', function (socket) {\n    socket.emit(\'item\', { news: \'item\' });\n  });\n```\n\n#### Client side:\n\n```html\n<script>\n  var chat = io.connect(\'http://localhost/chat\')\n    , news = io.connect(\'http://localhost/news\');\n\n  chat.on(\'connect\', function () {\n    chat.emit(\'hi!\');\n  });\n\n  news.on(\'news\', function () {\n    news.emit(\'woot\');\n  });\n</script>\n```\n\n### Sending volatile messages.\n\nSometimes certain messages can be dropped. Let\'s say you have an app that\nshows realtime tweets for the keyword `bieber`. \n\nIf a certain client is not ready to receive messages (because of network slowness\nor other issues, or because he\'s connected through long polling and is in the\nmiddle of a request-response cycle), if he doesn\'t receive ALL the tweets related\nto bieber your application won\'t suffer.\n\nIn that case, you might want to send those messages as volatile messages.\n\n#### Server side\n\n```js\nvar io = require(\'socket.io\').listen(80);\n\nio.sockets.on(\'connection\', function (socket) {\n  var tweets = setInterval(function () {\n    getBieberTweet(function (tweet) {\n      socket.volatile.emit(\'bieber tweet\', tweet);\n    });\n  }, 100);\n\n  socket.on(\'disconnect\', function () {\n    clearInterval(tweets);\n  });\n});\n```\n\n#### Client side\n\nIn the client side, messages are received the same way whether they\'re volatile\nor not.\n\n### Getting acknowledgements\n\nSometimes, you might want to get a callback when the client confirmed the message\nreception.\n\nTo do this, simply pass a function as the last parameter of `.send` or `.emit`.\nWhat\'s more, when you use `.emit`, the acknowledgement is done by you, which\nmeans you can also pass data along:\n\n#### Server side\n\n```js\nvar io = require(\'socket.io\').listen(80);\n\nio.sockets.on(\'connection\', function (socket) {\n  socket.on(\'ferret\', function (name, fn) {\n    fn(\'woot\');\n  });\n});\n```\n\n#### Client side\n\n```html\n<script>\n  var socket = io.connect(); // TIP: .connect with no args does auto-discovery\n  socket.on(\'connect\', function () { // TIP: you can avoid listening on `connect` and listen on events directly too!\n    socket.emit(\'ferret\', \'tobi\', function (data) {\n      console.log(data); // data will be \'woot\'\n    });\n  });\n</script>\n```\n\n### Broadcasting messages\n\nTo broadcast, simply add a `broadcast` flag to `emit` and `send` method calls.\nBroadcasting means sending a message to everyone else except for the socket\nthat starts it.\n\n#### Server side\n\n```js\nvar io = require(\'socket.io\').listen(80);\n\nio.sockets.on(\'connection\', function (socket) {\n  socket.broadcast.emit(\'user connected\');\n  socket.broadcast.json.send({ a: \'message\' });\n});\n```\n\n### Rooms\n\nSometimes you want to put certain sockets in the same room, so that it\'s easy\nto broadcast to all of them together.\n\nThink of this as built-in channels for sockets. Sockets `join` and `leave`\nrooms in each socket.\n\n#### Server side\n\n```js\nvar io = require(\'socket.io\').listen(80);\n\nio.sockets.on(\'connection\', function (socket) {\n  socket.join(\'justin bieber fans\');\n  socket.broadcast.to(\'justin bieber fans\').emit(\'new fan\');\n  io.sockets.in(\'rammstein fans\').emit(\'new non-fan\');\n});\n```\n\n### Using it just as a cross-browser WebSocket\n\nIf you just want the WebSocket semantics, you can do that too.\nSimply leverage `send` and listen on the `message` event:\n\n#### Server side\n\n```js\nvar io = require(\'socket.io\').listen(80);\n\nio.sockets.on(\'connection\', function (socket) {\n  socket.on(\'message\', function () { });\n  socket.on(\'disconnect\', function () { });\n});\n```\n\n#### Client side\n\n```html\n<script>\n  var socket = io.connect(\'http://localhost/\');\n  socket.on(\'connect\', function () {\n    socket.send(\'hi\');\n\n    socket.on(\'message\', function (msg) {\n      // my msg\n    });\n  });\n</script>\n```\n\n### Changing configuration\n\nConfiguration in socket.io is TJ-style:\n\n#### Server side\n\n```js\nvar io = require(\'socket.io\').listen(80);\n\nio.configure(function () {\n  io.set(\'transports\', [\'websocket\', \'flashsocket\', \'xhr-polling\']);\n});\n\nio.configure(\'development\', function () {\n  io.set(\'transports\', [\'websocket\', \'xhr-polling\']);\n  io.enable(\'log\');\n});\n```\n\n## License \n\n(The MIT License)\n\nCopyright (c) 2011 Guillermo Rauch &lt;guillermo@learnboost.com&gt;\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n\'Software\'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \'AS IS\', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n',
+177 silly resolved     _id: 'socket.io@0.9.10',
+177 silly resolved     _from: 'socket.io@>= 0.8.7' } ]
+178 info install node-proxy@0.6.0 into /home/ubuntu/cater2me/node_modules/now
+179 info install socket.io@0.9.10 into /home/ubuntu/cater2me/node_modules/now
+180 info installOne node-proxy@0.6.0
+181 info installOne socket.io@0.9.10
+182 verbose from cache /home/ubuntu/.npm/node-proxy/0.6.0/package/package.json
+183 info /home/ubuntu/cater2me/node_modules/now/node_modules/node-proxy unbuild
+184 verbose read json /home/ubuntu/cater2me/node_modules/now/node_modules/node-proxy/package.json
+185 verbose from cache /home/ubuntu/.npm/socket.io/0.9.10/package/package.json
+186 info /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io unbuild
+187 verbose read json /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/package.json
+188 verbose tar unpack /home/ubuntu/.npm/node-proxy/0.6.0/package.tgz
+189 silly lockFile feb06e3a-ules-now-node-modules-node-proxy /home/ubuntu/cater2me/node_modules/now/node_modules/node-proxy
+190 verbose lock /home/ubuntu/cater2me/node_modules/now/node_modules/node-proxy /home/ubuntu/.npm/feb06e3a-ules-now-node-modules-node-proxy.lock
+191 verbose tar unpack /home/ubuntu/.npm/socket.io/0.9.10/package.tgz
+192 silly lockFile 464320b4-dules-now-node-modules-socket-io /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io
+193 verbose lock /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io /home/ubuntu/.npm/464320b4-dules-now-node-modules-socket-io.lock
+194 silly gunzTarPerm modes [ '755', '644' ]
+195 silly gunzTarPerm modes [ '755', '644' ]
+196 silly gunzTarPerm extractEntry package.json
+197 silly gunzTarPerm extractEntry package.json
+198 silly gunzTarPerm extractEntry .npmignore
+199 silly gunzTarPerm extractEntry README.md
+200 silly gunzTarPerm extractEntry .npmignore
+201 silly gunzTarPerm extractEntry LICENSE
+202 silly gunzTarPerm extractEntry LICENSE.txt
+203 silly gunzTarPerm extractEntry index.js
+204 silly gunzTarPerm extractEntry src/node-proxy.cc
+205 silly gunzTarPerm extractEntry src/node-proxy.h
+206 silly gunzTarPerm extractEntry Readme.md
+207 silly gunzTarPerm extractEntry Makefile
+208 silly gunzTarPerm extractEntry test/test.js
+209 silly gunzTarPerm extractEntry examples/autoload-namespace/autoload-namespace.js
+210 silly gunzTarPerm extractEntry History.md
+211 silly gunzTarPerm extractEntry .travis.yml
+212 silly gunzTarPerm extractEntry examples/autoload-namespace/autoload-test.js
+213 silly gunzTarPerm extractEntry examples/autoload-namespace/org/w3c/DOM/Document.js
+214 silly gunzTarPerm extractEntry lib/namespace.js
+215 silly gunzTarPerm extractEntry examples/autoload-namespace/org/w3c/DOM/Document/String/Test.js
+216 silly gunzTarPerm extractEntry lib/node-proxy.js
+217 silly gunzTarPerm extractEntry lib/static.js
+218 silly gunzTarPerm extractEntry lib/socket.io.js
+219 silly gunzTarPerm extractEntry binding.gyp
+220 silly gunzTarPerm extractEntry lib/util.js
+221 silly gunzTarPerm extractEntry lib/logger.js
+222 silly gunzTarPerm extractEntry lib/client.js
+223 silly gunzTarPerm extractEntry lib/store.js
+224 silly gunzTarPerm extractEntry lib/socket.js
+225 silly gunzTarPerm extractEntry lib/manager.js
+226 silly gunzTarPerm extractEntry lib/transport.js
+227 silly gunzTarPerm extractEntry lib/parser.js
+228 silly gunzTarPerm extractEntry lib/stores/redis.js
+229 silly gunzTarPerm extractEntry lib/stores/memory.js
+230 silly gunzTarPerm extractEntry lib/transports/http-polling.js
+231 silly gunzTarPerm extractEntry lib/transports/http.js
+232 silly gunzTarPerm extractEntry lib/transports/index.js
+233 silly gunzTarPerm extractEntry lib/transports/flashsocket.js
+234 silly gunzTarPerm extractEntry lib/transports/xhr-polling.js
+235 silly gunzTarPerm extractEntry lib/transports/websocket.js
+236 silly gunzTarPerm extractEntry lib/transports/htmlfile.js
+237 silly gunzTarPerm extractEntry lib/transports/jsonp-polling.js
+238 silly gunzTarPerm extractEntry lib/transports/websocket/default.js
+239 silly gunzTarPerm extractEntry lib/transports/websocket/index.js
+240 silly gunzTarPerm extractEntry lib/transports/websocket/hybi-16.js
+241 silly gunzTarPerm extractEntry lib/transports/websocket/hybi-07-12.js
+242 silly gunzTarPerm extractEntry benchmarks/runner.js
+243 silly gunzTarPerm extractEntry benchmarks/encode.bench.js
+244 silly gunzTarPerm extractEntry benchmarks/decode.bench.js
+245 verbose read json /home/ubuntu/cater2me/node_modules/now/node_modules/node-proxy/package.json
+246 silly lockFile feb06e3a-ules-now-node-modules-node-proxy /home/ubuntu/cater2me/node_modules/now/node_modules/node-proxy
+247 info preinstall node-proxy@0.6.0
+248 verbose from cache /home/ubuntu/cater2me/node_modules/now/node_modules/node-proxy/package.json
+249 verbose readDependencies using package.json deps
+250 verbose from cache /home/ubuntu/cater2me/node_modules/now/node_modules/node-proxy/package.json
+251 verbose readDependencies using package.json deps
+252 silly resolved []
+253 verbose about to build /home/ubuntu/cater2me/node_modules/now/node_modules/node-proxy
+254 info build /home/ubuntu/cater2me/node_modules/now/node_modules/node-proxy
+255 verbose from cache /home/ubuntu/cater2me/node_modules/now/node_modules/node-proxy/package.json
+256 verbose linkStuff [ false,
+256 verbose linkStuff   false,
+256 verbose linkStuff   false,
+256 verbose linkStuff   '/home/ubuntu/cater2me/node_modules/now/node_modules' ]
+257 info linkStuff node-proxy@0.6.0
+258 verbose linkBins node-proxy@0.6.0
+259 verbose linkMans node-proxy@0.6.0
+260 verbose rebuildBundles node-proxy@0.6.0
+261 info install node-proxy@0.6.0
+262 verbose unsafe-perm in lifecycle false
+263 verbose set uid from=0 to=1000
+264 silly exec sh "-c" "node-gyp configure build"
+265 silly sh,-c,node-gyp configure build,/home/ubuntu/cater2me/node_modules/now/node_modules/node-proxy spawning
+266 verbose read json /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/package.json
+267 silly lockFile 464320b4-dules-now-node-modules-socket-io /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io
+268 info preinstall socket.io@0.9.10
+269 verbose from cache /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/package.json
+270 verbose readDependencies using package.json deps
+271 verbose from cache /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/package.json
+272 verbose readDependencies using package.json deps
+273 verbose cache add [ 'socket.io-client@0.9.10', null ]
+274 silly cache add name=undefined spec="socket.io-client@0.9.10" args=["socket.io-client@0.9.10",null]
+275 verbose parsed url { pathname: 'socket.io-client@0.9.10',
+275 verbose parsed url   path: 'socket.io-client@0.9.10',
+275 verbose parsed url   href: 'socket.io-client@0.9.10' }
+276 silly cache add name="socket.io-client" spec="0.9.10" args=["socket.io-client","0.9.10"]
+277 verbose parsed url { pathname: '0.9.10', path: '0.9.10', href: '0.9.10' }
+278 verbose addNamed [ 'socket.io-client', '0.9.10' ]
+279 verbose addNamed [ '0.9.10', '0.9.10' ]
+280 silly lockFile 147e2402-socket-io-client-0-9-10 socket.io-client@0.9.10
+281 verbose lock socket.io-client@0.9.10 /home/ubuntu/.npm/147e2402-socket-io-client-0-9-10.lock
+282 verbose cache add [ 'policyfile@0.0.4', null ]
+283 silly cache add name=undefined spec="policyfile@0.0.4" args=["policyfile@0.0.4",null]
+284 verbose parsed url { pathname: 'policyfile@0.0.4',
+284 verbose parsed url   path: 'policyfile@0.0.4',
+284 verbose parsed url   href: 'policyfile@0.0.4' }
+285 silly cache add name="policyfile" spec="0.0.4" args=["policyfile","0.0.4"]
+286 verbose parsed url { pathname: '0.0.4', path: '0.0.4', href: '0.0.4' }
+287 verbose addNamed [ 'policyfile', '0.0.4' ]
+288 verbose addNamed [ '0.0.4', '0.0.4' ]
+289 silly lockFile 8b99131a-policyfile-0-0-4 policyfile@0.0.4
+290 verbose lock policyfile@0.0.4 /home/ubuntu/.npm/8b99131a-policyfile-0-0-4.lock
+291 verbose cache add [ 'redis@0.7.2', null ]
+292 silly cache add name=undefined spec="redis@0.7.2" args=["redis@0.7.2",null]
+293 verbose parsed url { pathname: 'redis@0.7.2',
+293 verbose parsed url   path: 'redis@0.7.2',
+293 verbose parsed url   href: 'redis@0.7.2' }
+294 silly cache add name="redis" spec="0.7.2" args=["redis","0.7.2"]
+295 verbose parsed url { pathname: '0.7.2', path: '0.7.2', href: '0.7.2' }
+296 verbose addNamed [ 'redis', '0.7.2' ]
+297 verbose addNamed [ '0.7.2', '0.7.2' ]
+298 silly lockFile b62421fe-redis-0-7-2 redis@0.7.2
+299 verbose lock redis@0.7.2 /home/ubuntu/.npm/b62421fe-redis-0-7-2.lock
+300 verbose url raw socket.io-client/0.9.10
+301 verbose url resolving [ 'https://registry.npmjs.org/', './socket.io-client/0.9.10' ]
+302 verbose url resolved https://registry.npmjs.org/socket.io-client/0.9.10
+303 info trying registry request attempt 1 at 22:53:53
+304 verbose etag "DT1FIZVLJNN64WY9GPUQGYRJA"
+305 http GET https://registry.npmjs.org/socket.io-client/0.9.10
+306 verbose url raw policyfile/0.0.4
+307 verbose url resolving [ 'https://registry.npmjs.org/', './policyfile/0.0.4' ]
+308 verbose url resolved https://registry.npmjs.org/policyfile/0.0.4
+309 info trying registry request attempt 1 at 22:53:53
+310 verbose etag "3G5JE6KEJPXIW1QGIC1YOI4IK"
+311 http GET https://registry.npmjs.org/policyfile/0.0.4
+312 verbose url raw redis/0.7.2
+313 verbose url resolving [ 'https://registry.npmjs.org/', './redis/0.7.2' ]
+314 verbose url resolved https://registry.npmjs.org/redis/0.7.2
+315 info trying registry request attempt 1 at 22:53:53
+316 verbose etag "8RDGSWIBIHSFU8YOWHHX2YC9W"
+317 http GET https://registry.npmjs.org/redis/0.7.2
+318 http 304 https://registry.npmjs.org/socket.io-client/0.9.10
+319 silly registry.get cb [ 304,
+319 silly registry.get   { server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+319 silly registry.get     etag: '"DT1FIZVLJNN64WY9GPUQGYRJA"',
+319 silly registry.get     date: 'Mon, 01 Oct 2012 22:53:56 GMT',
+319 silly registry.get     'content-length': '0' } ]
+320 verbose etag socket.io-client/0.9.10 from cache
+321 verbose read json /home/ubuntu/.npm/socket.io-client/0.9.10/package/package.json
+322 silly lockFile 147e2402-socket-io-client-0-9-10 socket.io-client@0.9.10
+323 http 304 https://registry.npmjs.org/policyfile/0.0.4
+324 silly registry.get cb [ 304,
+324 silly registry.get   { server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+324 silly registry.get     etag: '"3G5JE6KEJPXIW1QGIC1YOI4IK"',
+324 silly registry.get     date: 'Mon, 01 Oct 2012 22:53:56 GMT',
+324 silly registry.get     'content-length': '0' } ]
+325 verbose etag policyfile/0.0.4 from cache
+326 verbose read json /home/ubuntu/.npm/policyfile/0.0.4/package/package.json
+327 silly lockFile 8b99131a-policyfile-0-0-4 policyfile@0.0.4
+328 http 304 https://registry.npmjs.org/redis/0.7.2
+329 silly registry.get cb [ 304,
+329 silly registry.get   { server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+329 silly registry.get     etag: '"8RDGSWIBIHSFU8YOWHHX2YC9W"',
+329 silly registry.get     date: 'Mon, 01 Oct 2012 22:53:56 GMT',
+329 silly registry.get     'content-length': '0' } ]
+330 verbose etag redis/0.7.2 from cache
+331 verbose read json /home/ubuntu/.npm/redis/0.7.2/package/package.json
+332 silly lockFile b62421fe-redis-0-7-2 redis@0.7.2
+333 silly resolved [ { name: 'socket.io-client',
+333 silly resolved     description: 'Socket.IO client for the browser and node.js',
+333 silly resolved     version: '0.9.10',
+333 silly resolved     main: './lib/io.js',
+333 silly resolved     browserify: './dist/socket.io.js',
+333 silly resolved     homepage: 'http://socket.io',
+333 silly resolved     keywords: [ 'websocket', 'socket', 'realtime', 'socket.io', 'comet', 'ajax' ],
+333 silly resolved     author: { name: 'Guillermo Rauch', email: 'guillermo@learnboost.com' },
+333 silly resolved     contributors: [ [Object], [Object], [Object], [Object] ],
+333 silly resolved     repository:
+333 silly resolved      { type: 'git',
+333 silly resolved        url: 'https://github.com/LearnBoost/socket.io-client.git' },
+333 silly resolved     dependencies:
+333 silly resolved      { 'uglify-js': '1.2.5',
+333 silly resolved        ws: '0.4.x',
+333 silly resolved        xmlhttprequest: '1.4.2',
+333 silly resolved        'active-x-obfuscator': '0.0.1' },
+333 silly resolved     devDependencies:
+333 silly resolved      { expresso: '*',
+333 silly resolved        express: '2.5.x',
+333 silly resolved        jade: '*',
+333 silly resolved        stylus: '*',
+333 silly resolved        'socket.io': '0.9.10',
+333 silly resolved        'socket.io-client': '0.9.10' },
+333 silly resolved     engines: { node: '>= 0.4.0' },
+333 silly resolved     readme: 'socket.io\n=========\n\n#### Sockets for the rest of us\n\nThe `socket.io` client is basically a simple HTTP Socket interface implementation.\nIt looks similar to WebSocket while providing additional features and\nleveraging other transports when WebSocket is not supported by the user\'s\nbrowser.\n\n```js\nvar socket = io.connect(\'http://domain.com\');\nsocket.on(\'connect\', function () {\n  // socket connected\n});\nsocket.on(\'custom event\', function () {\n  // server emitted a custom event\n});\nsocket.on(\'disconnect\', function () {\n  // socket disconnected\n});\nsocket.send(\'hi there\');\n```\n\n### Recipes\n\n#### Utilizing namespaces (ie: multiple sockets)\n\nIf you want to namespace all the messages and events emitted to a particular\nendpoint, simply specify it as part of the `connect` uri:\n\n```js\nvar chat = io.connect(\'http://localhost/chat\');\nchat.on(\'connect\', function () {\n  // chat socket connected\n});\n\nvar news = io.connect(\'/news\'); // io.connect auto-detects host\nnews.on(\'connect\', function () {\n  // news socket connected\n});\n```\n\n#### Emitting custom events\n\nTo ease with the creation of applications, you can emit custom events outside\nof the global `message` event.\n\n```js\nvar socket = io.connect();\nsocket.emit(\'server custom event\', { my: \'data\' });\n```\n\n#### Forcing disconnection\n\n```js\nvar socket = io.connect();\nsocket.on(\'connect\', function () {\n  socket.disconnect();\n});\n```\n\n### Documentation \n\n#### io#connect\n\n```js\nio.connect(uri, [options]);\n```\n\n##### Options:\n\n- *resource*\n\n    socket.io\n\n  The resource is what allows the `socket.io` server to identify incoming connections by `socket.io` clients. In other words, any HTTP server can implement socket.io and still serve other normal, non-realtime HTTP requests.\n\n- *transports*\n\n```js\n[\'websocket\', \'flashsocket\', \'htmlfile\', \'xhr-multipart\', \'xhr-polling\', \'jsonp-polling\']\n```\n\n  A list of the transports to attempt to utilize (in order of preference).\n\n- *\'connect timeout\'*\n\n```js\n5000\n```\n\n  The amount of milliseconds a transport has to create a connection before we consider it timed out.\n  \n- *\'try multiple transports\'*\n\n```js\ntrue\n```\n\n  A boolean indicating if we should try other transports when the  connectTimeout occurs.\n  \n- *reconnect*\n\n```js\ntrue\n```\n\n  A boolean indicating if we should automatically reconnect if a connection is disconnected. \n  \n- *\'reconnection delay\'*\n\n```js\n500\n```\n\n  The amount of milliseconds before we try to connect to the server again. We are using a exponential back off algorithm for the following reconnections, on each reconnect attempt this value will get multiplied (500 > 1000 > 2000 > 4000 > 8000).\n  \n\n- *\'max reconnection attempts\'*\n\n```js\n10\n```\n\n  The amount of attempts should we make using the current transport to connect to the server? After this we will do one final attempt, and re-try with all enabled transport methods before we give up.\n\n##### Properties:\n\n- *options*\n\n  The passed in options combined with the defaults.\n\n- *connected*\n\n  Whether the socket is connected or not.\n  \n- *connecting*\n\n  Whether the socket is connecting or not.\n\n- *reconnecting*\n\n  Whether we are reconnecting or not.\n  \n- *transport*  \n\n  The transport instance.\n\n##### Methods:\n  \n- *connect(λ)*\n\n  Establishes a connection. If λ is supplied as argument, it will be called once the connection is established.\n  \n- *send(message)*\n  \n  A string of data to send.\n  \n- *disconnect*\n\n  Closes the connection.\n  \n- *on(event, λ)*\n\n  Adds a listener for the event *event*.\n\n- *once(event, λ)*\n\n  Adds a one time listener for the event *event*. The listener is removed after the first time the event is fired.\n  \n- *removeListener(event, λ)*\n\n  Removes the listener λ for the event *event*.\n  \n##### Events:\n\n- *connect*\n\n  Fired when the connection is established and the handshake successful.\n  \n- *connecting(transport_type)*\n\n    Fired when a connection is attempted, passing the transport name.\n  \n- *connect_failed*\n\n    Fired when the connection timeout occurs after the last connection attempt.\n  This only fires if the `connectTimeout` option is set.\n  If the `tryTransportsOnConnectTimeout` option is set, this only fires once all\n  possible transports have been tried.\n  \n- *message(message)*\n  \n  Fired when a message arrives from the server\n\n- *close*\n\n  Fired when the connection is closed. Be careful with using this event, as some transports will fire it even under temporary, expected disconnections (such as XHR-Polling).\n  \n- *disconnect*\n\n  Fired when the connection is considered disconnected.\n  \n- *reconnect(transport_type,reconnectionAttempts)*\n\n  Fired when the connection has been re-established. This only fires if the `reconnect` option is set.\n\n- *reconnecting(reconnectionDelay,reconnectionAttempts)*\n\n  Fired when a reconnection is attempted, passing the next delay for the next reconnection.\n\n- *reconnect_failed*\n\n  Fired when all reconnection attempts have failed and we where unsuccessful in reconnecting to the server.  \n\n### Contributors\n\nGuillermo Rauch &lt;guillermo@learnboost.com&gt;\n\nArnout Kazemier &lt;info@3rd-eden.com&gt;\n\n### License \n\n(The MIT License)\n\nCopyright (c) 2010 LearnBoost &lt;dev@learnboost.com&gt;\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n\'Software\'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \'AS IS\', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n',
+333 silly resolved     _id: 'socket.io-client@0.9.10',
+333 silly resolved     _from: 'socket.io-client@0.9.10' },
+333 silly resolved   { name: 'policyfile',
+333 silly resolved     version: '0.0.4',
+333 silly resolved     author: { name: 'Arnout Kazemier' },
+333 silly resolved     description: 'Flash Socket Policy File Server. A server to respond to Flash Socket Policy requests, both inline and through a dedicated server instance.',
+333 silly resolved     main: 'index',
+333 silly resolved     keywords:
+333 silly resolved      [ 'flash',
+333 silly resolved        'socket',
+333 silly resolved        'policy',
+333 silly resolved        'file',
+333 silly resolved        'server',
+333 silly resolved        'Flash Socket Policy File Server',
+333 silly resolved        'cross domain' ],
+333 silly resolved     directories: { lib: './lib' },
+333 silly resolved     maintainers: [ [Object] ],
+333 silly resolved     licenses: [ [Object] ],
+333 silly resolved     repositories: [ [Object] ],
+333 silly resolved     readme: '## LOL, WUT?\nIt basically allows you to allow or disallow Flash Player sockets from accessing your site.\n\n## Installation\n\n```bash\nnpm install policyfile\n```\n## Usage\n\nThe server is based on the regular and know `net` and `http` server patterns. So it you can just listen\nfor all the events that a `net` based server emits etc. But there is one extra event, the `connect_failed`\nevent. This event is triggered when we are unable to listen on the supplied port number.\n\n### createServer\nCreates a new server instance and accepts 2 optional arguments:\n\n-  `options` **Object** Options to configure the server instance\n    -  `log` **Boolean** Enable logging to STDOUT and STDERR (defaults to true)\n-  `origins` **Array** An Array of origins that are allowed by the server (defaults to *:*)\n\n```js\nvar pf = require(\'policyfile\');\npf.createServer();\npf.listen();\n```\n\n#### server.listen\nStart listening on the server and it takes 3 optional arguments\n\n-  `port` **Number** On which port number should we listen? (defaults to 843, which is the first port number the FlashPlayer checks)\n-  `server` **Server** A http server, if we are unable to accept requests or run the server we can also answer the policy requests inline over the supplied HTTP server.\n-  `callback` **Function** A callback function that is called when listening to the server was successful.\n\n```js\nvar pf = require(\'policyfile\');\npf.createServer();\npf.listen(1337, function(){\n  console.log(\':3 yay\')\n});\n```\n\nChanging port numbers can be handy if you do not want to run your server as root and have port 843 forward to a non root port number (aka a number above 1024).\n\n```js\nvar pf = require(\'policyfile\')\n  , http = require(\'http\');\n\nserver = http.createServer(function(q,r){r.writeHead(200);r.end(\'hello world\')});\nserver.listen(80);\n\npf.createServer();\npf.listen(1337, server, function(){\n  console.log(\':3 yay\')\n});\n```\n\nSupport for serving inline requests over a existing HTTP connection as the FlashPlayer will first check port 843, but if it\'s unable to get a response there it will send a policy file request over port 80, which is usually your http server.\n\n#### server.add\nAdds more origins to the policy file you can add as many arguments as you like.\n\n```js\nvar pf = require(\'policyfile\');\npf.createServer([\'google.com:80\']);\npf.listen();\npf.add(\'blog.3rd-Eden.com:80\', \'blog.3rd-Eden.com:8080\'); // now has 3 origins\n```\n\n#### server.add\nAdds more origins to the policy file you can add as many arguments as you like.\n\n```js\nvar pf = require(\'policyfile\');\npf.createServer([\'blog.3rd-Eden.com:80\', \'blog.3rd-Eden.com:8080\']);\npf.listen();\npf.remove(\'blog.3rd-Eden.com:8080\'); // only contains the :80 version now\n```\n\n#### server.close\nShuts down the server\n\n```js\nvar pf = require(\'policyfile\');\npf.createServer();\npf.listen();\npf.close(); // OH NVM.\n```\n\n## API\nhttp://3rd-eden.com/FlashPolicyFileServer/\n\n## Examples\nSee https://github.com/3rd-Eden/FlashPolicyFileServer/tree/master/examples for examples\n\n## Licence\n\nMIT see LICENSE file in the repository',
+333 silly resolved     _id: 'policyfile@0.0.4',
+333 silly resolved     _from: 'policyfile@0.0.4' },
+333 silly resolved   { name: 'redis',
+333 silly resolved     version: '0.7.2',
+333 silly resolved     description: 'Redis client library',
+333 silly resolved     author: { name: 'Matt Ranney', email: 'mjr@ranney.com' },
+333 silly resolved     maintainers: [ [Object] ],
+333 silly resolved     main: './index.js',
+333 silly resolved     scripts: { test: 'node ./test.js' },
+333 silly resolved     devDependencies: { metrics: '>=0.1.5' },
+333 silly resolved     optionalDependencies: { hiredis: '*' },
+333 silly resolved     repository: { type: 'git', url: 'git://github.com/mranney/node_redis.git' },
+333 silly resolved     readme: 'redis - a node.js redis client\n===========================\n\nThis is a complete Redis client for node.js.  It supports all Redis commands, including many recently added commands like EVAL from\nexperimental Redis server branches.\n\n\nInstall with:\n\n    npm install redis\n    \nPieter Noordhuis has provided a binding to the official `hiredis` C library, which is non-blocking and fast.  To use `hiredis`, do:\n\n    npm install hiredis redis\n\nIf `hiredis` is installed, `node_redis` will use it by default.  Otherwise, a pure JavaScript parser will be used.\n\nIf you use `hiredis`, be sure to rebuild it whenever you upgrade your version of node.  There are mysterious failures that can\nhappen between node and native code modules after a node upgrade.\n\n\n## Usage\n\nSimple example, included as `examples/simple.js`:\n\n```js\n    var redis = require("redis"),\n        client = redis.createClient();\n\n    // if you\'d like to select database 3, instead of 0 (default), call\n    // client.select(3, function() { /* ... */ });\n\n    client.on("error", function (err) {\n        console.log("Error " + err);\n    });\n\n    client.set("string key", "string val", redis.print);\n    client.hset("hash key", "hashtest 1", "some value", redis.print);\n    client.hset(["hash key", "hashtest 2", "some other value"], redis.print);\n    client.hkeys("hash key", function (err, replies) {\n        console.log(replies.length + " replies:");\n        replies.forEach(function (reply, i) {\n            console.log("    " + i + ": " + reply);\n        });\n        client.quit();\n    });\n```\n\nThis will display:\n\n    mjr:~/work/node_redis (master)$ node example.js\n    Reply: OK\n    Reply: 0\n    Reply: 0\n    2 replies:\n        0: hashtest 1\n        1: hashtest 2\n    mjr:~/work/node_redis (master)$ \n\n\n## Performance\n\nHere are typical results of `multi_bench.js` which is similar to `redis-benchmark` from the Redis distribution.\nIt uses 50 concurrent connections with no pipelining.\n\nJavaScript parser:\n\n    PING: 20000 ops 42283.30 ops/sec 0/5/1.182\n    SET: 20000 ops 32948.93 ops/sec 1/7/1.515\n    GET: 20000 ops 28694.40 ops/sec 0/9/1.740\n    INCR: 20000 ops 39370.08 ops/sec 0/8/1.269\n    LPUSH: 20000 ops 36429.87 ops/sec 0/8/1.370\n    LRANGE (10 elements): 20000 ops 9891.20 ops/sec 1/9/5.048\n    LRANGE (100 elements): 20000 ops 1384.56 ops/sec 10/91/36.072\n\nhiredis parser:\n\n    PING: 20000 ops 46189.38 ops/sec 1/4/1.082\n    SET: 20000 ops 41237.11 ops/sec 0/6/1.210\n    GET: 20000 ops 39682.54 ops/sec 1/7/1.257\n    INCR: 20000 ops 40080.16 ops/sec 0/8/1.242\n    LPUSH: 20000 ops 41152.26 ops/sec 0/3/1.212\n    LRANGE (10 elements): 20000 ops 36563.07 ops/sec 1/8/1.363\n    LRANGE (100 elements): 20000 ops 21834.06 ops/sec 0/9/2.287\n\nThe performance of `node_redis` improves dramatically with pipelining, which happens automatically in most normal programs.\n\n\n### Sending Commands\n\nEach Redis command is exposed as a function on the `client` object.\nAll functions take either an `args` Array plus optional `callback` Function or\na variable number of individual arguments followed by an optional callback.\nHere is an example of passing an array of arguments and a callback:\n\n    client.mset(["test keys 1", "test val 1", "test keys 2", "test val 2"], function (err, res) {});\n\nHere is that same call in the second style:\n\n    client.mset("test keys 1", "test val 1", "test keys 2", "test val 2", function (err, res) {});\n    \nNote that in either form the `callback` is optional:\n\n    client.set("some key", "some val");\n    client.set(["some other key", "some val"]);\n\nFor a list of Redis commands, see [Redis Command Reference](http://redis.io/commands)\n\nThe commands can be specified in uppercase or lowercase for convenience.  `client.get()` is the same as `client.GET()`.\n\nMinimal parsing is done on the replies.  Commands that return a single line reply return JavaScript Strings, \ninteger replies return JavaScript Numbers, "bulk" replies return node Buffers, and "multi bulk" replies return a \nJavaScript Array of node Buffers.  `HGETALL` returns an Object with Buffers keyed by the hash keys.\n\n# API\n\n## Connection Events\n\n`client` will emit some events about the state of the connection to the Redis server.\n\n### "ready"\n\n`client` will emit `ready` a connection is established to the Redis server and the server reports \nthat it is ready to receive commands.  Commands issued before the `ready` event are queued, \nthen replayed just before this event is emitted.\n\n### "connect"\n\n`client` will emit `connect` at the same time as it emits `ready` unless `client.options.no_ready_check`\nis set.  If this options is set, `connect` will be emitted when the stream is connected, and then\nyou are free to try to send commands.\n\n### "error"\n\n`client` will emit `error` when encountering an error connecting to the Redis server.\n\nNote that "error" is a special event type in node.  If there are no listeners for an \n"error" event, node will exit.  This is usually what you want, but it can lead to some \ncryptic error messages like this:\n\n    mjr:~/work/node_redis (master)$ node example.js \n\n    node.js:50\n        throw e;\n        ^\n    Error: ECONNREFUSED, Connection refused\n        at IOWatcher.callback (net:870:22)\n        at node.js:607:9\n\nNot very useful in diagnosing the problem, but if your program isn\'t ready to handle this,\nit is probably the right thing to just exit.\n\n`client` will also emit `error` if an exception is thrown inside of `node_redis` for whatever reason.\nIt would be nice to distinguish these two cases.\n\n### "end"\n\n`client` will emit `end` when an established Redis server connection has closed.\n\n### "drain"\n\n`client` will emit `drain` when the TCP connection to the Redis server has been buffering, but is now\nwritable.  This event can be used to stream commands in to Redis and adapt to backpressure.  Right now,\nyou need to check `client.command_queue.length` to decide when to reduce your send rate.  Then you can \nresume sending when you get `drain`.\n\n### "idle"\n\n`client` will emit `idle` when there are no outstanding commands that are awaiting a response.\n\n## redis.createClient(port, host, options)\n\nCreate a new client connection.  `port` defaults to `6379` and `host` defaults\nto `127.0.0.1`.  If you have `redis-server` running on the same computer as node, then the defaults for\nport and host are probably fine.  `options` in an object with the following possible properties:\n\n* `parser`: which Redis protocol reply parser to use.  Defaults to `hiredis` if that module is installed.\nThis may also be set to `javascript`.\n* `return_buffers`: defaults to `false`.  If set to `true`, then all replies will be sent to callbacks as node Buffer\nobjects instead of JavaScript Strings.\n* `detect_buffers`: default to `false`. If set to `true`, then replies will be sent to callbacks as node Buffer objects\nif any of the input arguments to the original command were Buffer objects.\nThis option lets you switch between Buffers and Strings on a per-command basis, whereas `return_buffers` applies to\nevery command on a client.\n* `socket_nodelay`: defaults to `true`. Whether to call setNoDelay() on the TCP stream, which disables the\nNagle algorithm on the underlying socket.  Setting this option to `false` can result in additional throughput at the \ncost of more latency.  Most applications will want this set to `true`.\n* `no_ready_check`: defaults to `false`. When a connection is established to the Redis server, the server might still\nbe loading the database from disk.  While loading, the server not respond to any commands.  To work around this, \n`node_redis` has a "ready check" which sends the `INFO` command to the server.  The response from the `INFO` command\nindicates whether the server is ready for more commands.  When ready, `node_redis` emits a `ready` event.\nSetting `no_ready_check` to `true` will inhibit this check.\n\n```js\n    var redis = require("redis"),\n        client = redis.createClient(null, null, {detect_buffers: true});\n\n    client.set("foo_rand000000000000", "OK");\n\n    // This will return a JavaScript String\n    client.get("foo_rand000000000000", function (err, reply) {\n        console.log(reply.toString()); // Will print `OK`\n    });\n\n    // This will return a Buffer since original key is specified as a Buffer\n    client.get(new Buffer("foo_rand000000000000"), function (err, reply) {\n        console.log(reply.toString()); // Will print `<Buffer 4f 4b>`\n    });\n    client.end();\n```\n\n`createClient()` returns a `RedisClient` object that is named `client` in all of the examples here.\n\n## client.auth(password, callback)\n\nWhen connecting to Redis servers that require authentication, the `AUTH` command must be sent as the\nfirst command after connecting.  This can be tricky to coordinate with reconnections, the ready check,\netc.  To make this easier, `client.auth()` stashes `password` and will send it after each connection,\nincluding reconnections.  `callback` is invoked only once, after the response to the very first\n`AUTH` command sent.\nNOTE: Your call to `client.auth()` should not be inside the ready handler. If\nyou are doing this wrong, `client` will emit an error that looks\nsomething like this `Error: Ready check failed: ERR operation not permitted`.\n\n## client.end()\n\nForcibly close the connection to the Redis server.  Note that this does not wait until all replies have been parsed.\nIf you want to exit cleanly, call `client.quit()` to send the `QUIT` command after you have handled all replies.\n\nThis example closes the connection to the Redis server before the replies have been read.  You probably don\'t \nwant to do this:\n\n```js\n    var redis = require("redis"),\n        client = redis.createClient();\n\n    client.set("foo_rand000000000000", "some fantastic value");\n    client.get("foo_rand000000000000", function (err, reply) {\n        console.log(reply.toString());\n    });\n    client.end();\n```\n\n`client.end()` is useful for timeout cases where something is stuck or taking too long and you want \nto start over.\n\n## Friendlier hash commands\n\nMost Redis commands take a single String or an Array of Strings as arguments, and replies are sent back as a single String or an Array of Strings.\nWhen dealing with hash values, there are a couple of useful exceptions to this.\n\n### client.hgetall(hash)\n\nThe reply from an HGETALL command will be converted into a JavaScript Object by `node_redis`.  That way you can interact \nwith the responses using JavaScript syntax.\n\nExample:\n\n    client.hmset("hosts", "mjr", "1", "another", "23", "home", "1234");\n    client.hgetall("hosts", function (err, obj) {\n        console.dir(obj);\n    });\n\nOutput:\n\n    { mjr: \'1\', another: \'23\', home: \'1234\' }\n\n### client.hmset(hash, obj, [callback])\n\nMultiple values in a hash can be set by supplying an object:\n\n    client.HMSET(key2, {\n        "0123456789": "abcdefghij",\n        "some manner of key": "a type of value"\n    });\n\nThe properties and values of this Object will be set as keys and values in the Redis hash.\n\n### client.hmset(hash, key1, val1, ... keyn, valn, [callback])\n\nMultiple values may also be set by supplying a list:\n\n    client.HMSET(key1, "0123456789", "abcdefghij", "some manner of key", "a type of value");\n\n\n## Publish / Subscribe\n\nHere is a simple example of the API for publish / subscribe.  This program opens two\nclient connections, subscribes to a channel on one of them, and publishes to that \nchannel on the other:\n\n```js\n    var redis = require("redis"),\n        client1 = redis.createClient(), client2 = redis.createClient(),\n        msg_count = 0;\n\n    client1.on("subscribe", function (channel, count) {\n        client2.publish("a nice channel", "I am sending a message.");\n        client2.publish("a nice channel", "I am sending a second message.");\n        client2.publish("a nice channel", "I am sending my last message.");\n    });\n\n    client1.on("message", function (channel, message) {\n        console.log("client1 channel " + channel + ": " + message);\n        msg_count += 1;\n        if (msg_count === 3) {\n            client1.unsubscribe();\n            client1.end();\n            client2.end();\n        }\n    });\n\n    client1.incr("did a thing");\n    client1.subscribe("a nice channel");\n```\n\nWhen a client issues a `SUBSCRIBE` or `PSUBSCRIBE`, that connection is put into "pub/sub" mode.\nAt that point, only commands that modify the subscription set are valid.  When the subscription \nset is empty, the connection is put back into regular mode.\n\nIf you need to send regular commands to Redis while in pub/sub mode, just open another connection.\n\n## Pub / Sub Events\n\nIf a client has subscriptions active, it may emit these events:\n\n### "message" (channel, message)\n\nClient will emit `message` for every message received that matches an active subscription.\nListeners are passed the channel name as `channel` and the message Buffer as `message`.\n\n### "pmessage" (pattern, channel, message)\n\nClient will emit `pmessage` for every message received that matches an active subscription pattern.\nListeners are passed the original pattern used with `PSUBSCRIBE` as `pattern`, the sending channel\nname as `channel`, and the message Buffer as `message`.\n\n### "subscribe" (channel, count)\n\nClient will emit `subscribe` in response to a `SUBSCRIBE` command.  Listeners are passed the \nchannel name as `channel` and the new count of subscriptions for this client as `count`.\n\n### "psubscribe" (pattern, count) \n\nClient will emit `psubscribe` in response to a `PSUBSCRIBE` command.  Listeners are passed the\noriginal pattern as `pattern`, and the new count of subscriptions for this client as `count`.\n\n### "unsubscribe" (channel, count)\n\nClient will emit `unsubscribe` in response to a `UNSUBSCRIBE` command.  Listeners are passed the \nchannel name as `channel` and the new count of subscriptions for this client as `count`.  When\n`count` is 0, this client has left pub/sub mode and no more pub/sub events will be emitted.\n\n### "punsubscribe" (pattern, count)\n\nClient will emit `punsubscribe` in response to a `PUNSUBSCRIBE` command.  Listeners are passed the \nchannel name as `channel` and the new count of subscriptions for this client as `count`.  When\n`count` is 0, this client has left pub/sub mode and no more pub/sub events will be emitted.\n\n## client.multi([commands])\n\n`MULTI` commands are queued up until an `EXEC` is issued, and then all commands are run atomically by\nRedis.  The interface in `node_redis` is to return an individual `Multi` object by calling `client.multi()`.\n\n```js\n    var redis  = require("./index"),\n        client = redis.createClient(), set_size = 20;\n\n    client.sadd("bigset", "a member");\n    client.sadd("bigset", "another member");\n\n    while (set_size > 0) {\n        client.sadd("bigset", "member " + set_size);\n        set_size -= 1;\n    }\n\n    // multi chain with an individual callback\n    client.multi()\n        .scard("bigset")\n        .smembers("bigset")\n        .keys("*", function (err, replies) {\n            // NOTE: code in this callback is NOT atomic\n            // this only happens after the the .exec call finishes.\n            client.mget(replies, redis.print);\n        })\n        .dbsize()\n        .exec(function (err, replies) {\n            console.log("MULTI got " + replies.length + " replies");\n            replies.forEach(function (reply, index) {\n                console.log("Reply " + index + ": " + reply.toString());\n            });\n        });\n```\n\n`client.multi()` is a constructor that returns a `Multi` object.  `Multi` objects share all of the\nsame command methods as `client` objects do.  Commands are queued up inside the `Multi` object\nuntil `Multi.exec()` is invoked.\n\nYou can either chain together `MULTI` commands as in the above example, or you can queue individual\ncommands while still sending regular client command as in this example:\n\n```js\n    var redis  = require("redis"),\n        client = redis.createClient(), multi;\n\n    // start a separate multi command queue \n    multi = client.multi();\n    multi.incr("incr thing", redis.print);\n    multi.incr("incr other thing", redis.print);\n\n    // runs immediately\n    client.mset("incr thing", 100, "incr other thing", 1, redis.print);\n\n    // drains multi queue and runs atomically\n    multi.exec(function (err, replies) {\n        console.log(replies); // 101, 2\n    });\n\n    // you can re-run the same transaction if you like\n    multi.exec(function (err, replies) {\n        console.log(replies); // 102, 3\n        client.quit();\n    });\n```\n\nIn addition to adding commands to the `MULTI` queue individually, you can also pass an array \nof commands and arguments to the constructor:\n\n```js\n    var redis  = require("redis"),\n        client = redis.createClient(), multi;\n\n    client.multi([\n        ["mget", "multifoo", "multibar", redis.print],\n        ["incr", "multifoo"],\n        ["incr", "multibar"]\n    ]).exec(function (err, replies) {\n        console.log(replies);\n    });\n```\n\n\n## Monitor mode\n\nRedis supports the `MONITOR` command, which lets you see all commands received by the Redis server\nacross all client connections, including from other client libraries and other computers.\n\nAfter you send the `MONITOR` command, no other commands are valid on that connection.  `node_redis`\nwill emit a `monitor` event for every new monitor message that comes across.  The callback for the \n`monitor` event takes a timestamp from the Redis server and an array of command arguments.\n\nHere is a simple example:\n\n```js\n    var client  = require("redis").createClient(),\n        util = require("util");\n\n    client.monitor(function (err, res) {\n        console.log("Entering monitoring mode.");\n    });\n\n    client.on("monitor", function (time, args) {\n        console.log(time + ": " + util.inspect(args));\n    });\n```\n\n# Extras\n\nSome other things you might like to know about.\n\n## client.server_info\n\nAfter the ready probe completes, the results from the INFO command are saved in the `client.server_info` \nobject.\n\nThe `versions` key contains an array of the elements of the version string for easy comparison.\n\n    > client.server_info.redis_version\n    \'2.3.0\'\n    > client.server_info.versions\n    [ 2, 3, 0 ]\n\n## redis.print()\n\nA handy callback function for displaying return values when testing.  Example:\n\n```js\n    var redis = require("redis"),\n        client = redis.createClient();\n\n    client.on("connect", function () {\n        client.set("foo_rand000000000000", "some fantastic value", redis.print);\n        client.get("foo_rand000000000000", redis.print);\n    });\n```\n\nThis will print:\n\n    Reply: OK\n    Reply: some fantastic value\n\nNote that this program will not exit cleanly because the client is still connected.\n\n## redis.debug_mode\n\nBoolean to enable debug mode and protocol tracing.\n\n```js\n    var redis = require("redis"),\n        client = redis.createClient();\n\n    redis.debug_mode = true;\n\n    client.on("connect", function () {\n        client.set("foo_rand000000000000", "some fantastic value");\n    });\n```\n\nThis will display:\n\n    mjr:~/work/node_redis (master)$ node ~/example.js \n    send command: *3\n    $3\n    SET\n    $20\n    foo_rand000000000000\n    $20\n    some fantastic value\n\n    on_data: +OK\n\n`send command` is data sent into Redis and `on_data` is data received from Redis.\n\n## client.send_command(command_name, args, callback)\n\nUsed internally to send commands to Redis.  For convenience, nearly all commands that are published on the Redis \nWiki have been added to the `client` object.  However, if I missed any, or if new commands are introduced before\nthis library is updated, you can use `send_command()` to send arbitrary commands to Redis.\n\nAll commands are sent as multi-bulk commands.  `args` can either be an Array of arguments, or omitted.\n\n## client.connected\n\nBoolean tracking the state of the connection to the Redis server.\n\n## client.command_queue.length\n\nThe number of commands that have been sent to the Redis server but not yet replied to.  You can use this to \nenforce some kind of maximum queue depth for commands while connected.\n\nDon\'t mess with `client.command_queue` though unless you really know what you are doing.\n\n## client.offline_queue.length\n\nThe number of commands that have been queued up for a future connection.  You can use this to enforce\nsome kind of maximum queue depth for pre-connection commands.\n\n## client.retry_delay\n\nCurrent delay in milliseconds before a connection retry will be attempted.  This starts at `250`.\n\n## client.retry_backoff\n\nMultiplier for future retry timeouts.  This should be larger than 1 to add more time between retries.\nDefaults to 1.7.  The default initial connection retry is 250, so the second retry will be 425, followed by 723.5, etc.\n\n\n## TODO\n\nBetter tests for auth, disconnect/reconnect, and all combinations thereof.\n\nStream large set/get values into and out of Redis.  Otherwise the entire value must be in node\'s memory.\n\nPerformance can be better for very large values.\n\nI think there are more performance improvements left in there for smaller values, especially for large lists of small values.\n\n## Contributors\n\nSome people have have added features and fixed bugs in `node_redis` other than me.\n\nIn alphabetical order, they are:\n\n* [Aivo Paas](https://github.com/aivopaas)\n* [Andy Ray](https://github.com/DelvarWorld)\n* Daniele\n* [Dave Hoover](https://github.com/redsquirrel)\n* [David Trejo](https://github.com/DTrejo)\n* Dayananda Nanjundappa\n* [Felix Geisendörfer](https://github.com/felixge)\n* [Hank Sims](https://github.com/hanksims)\n* [Ian Babrou](https://github.com/bobrik)\n* [Isaac Z. Schlueter](https://github.com/isaacs)\n* [Louis-Philippe Perron](https://github.com/lp)\n* [Maksim Lin](https://github.com/maks)\n* [Marcus Westin](https://github.com/marcuswestin)\n* [Mark Dawson](https://github.com/markdaws)\n* [Nithesh Chandra Gupta Mittapally](https://github.com/nithesh)\n* [Orion Henry](https://github.com/orionz)\n* [Owen Smith](https://github.com/orls)\n* [Paul Carey](https://github.com/paulcarey)\n* [Philip Tellis](https://github.com/bluesmoon)\n* [Pieter Noordhuis](https://github.com/pietern)\n* [Rick Olson](https://github.com/technoweenie)\n* [Tim Smart](https://github.com/Tim-Smart)\n* [TJ Holowaychuk](https://github.com/visionmedia)\n* [Umair Siddique](https://github.com/umairsiddique)\n* [Vladimir Dronnikov](https://github.com/dvv)\n* [Zachary Scott](https://github.com/zzak)\n\nThanks.\n\n## LICENSE - "MIT License"\n\nCopyright (c) 2010 Matthew Ranney, http://ranney.com/\n\nPermission is hereby granted, free of charge, to any person\nobtaining a copy of this software and associated documentation\nfiles (the "Software"), to deal in the Software without\nrestriction, including without limitation the rights to use,\ncopy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the\nSoftware is furnished to do so, subject to the following\nconditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES\nOF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\nNONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT\nHOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,\nWHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\nFROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR\nOTHER DEALINGS IN THE SOFTWARE.\n\n![spacer](http://ranney.com/1px.gif)\n',
+333 silly resolved     _id: 'redis@0.7.2',
+333 silly resolved     dependencies: { hiredis: '*' },
+333 silly resolved     _from: 'redis@0.7.2' } ]
+334 info install socket.io-client@0.9.10 into /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io
+335 info install policyfile@0.0.4 into /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io
+336 info install redis@0.7.2 into /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io
+337 info installOne socket.io-client@0.9.10
+338 info installOne policyfile@0.0.4
+339 info installOne redis@0.7.2
+340 verbose from cache /home/ubuntu/.npm/socket.io-client/0.9.10/package/package.json
+341 info /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules/socket.io-client unbuild
+342 verbose read json /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules/socket.io-client/package.json
+343 verbose from cache /home/ubuntu/.npm/policyfile/0.0.4/package/package.json
+344 info /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules/policyfile unbuild
+345 verbose read json /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules/policyfile/package.json
+346 verbose from cache /home/ubuntu/.npm/redis/0.7.2/package/package.json
+347 info /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules/redis unbuild
+348 verbose read json /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules/redis/package.json
+349 verbose tar unpack /home/ubuntu/.npm/socket.io-client/0.9.10/package.tgz
+350 silly lockFile 3c36906a-io-node-modules-socket-io-client /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules/socket.io-client
+351 verbose lock /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules/socket.io-client /home/ubuntu/.npm/3c36906a-io-node-modules-socket-io-client.lock
+352 verbose tar unpack /home/ubuntu/.npm/policyfile/0.0.4/package.tgz
+353 silly lockFile 0081de6b-ocket-io-node-modules-policyfile /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules/policyfile
+354 verbose lock /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules/policyfile /home/ubuntu/.npm/0081de6b-ocket-io-node-modules-policyfile.lock
+355 verbose tar unpack /home/ubuntu/.npm/redis/0.7.2/package.tgz
+356 silly lockFile 4b80b5e5-les-socket-io-node-modules-redis /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules/redis
+357 verbose lock /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules/redis /home/ubuntu/.npm/4b80b5e5-les-socket-io-node-modules-redis.lock
+358 silly gunzTarPerm modes [ '755', '644' ]
+359 silly gunzTarPerm modes [ '755', '644' ]
+360 silly gunzTarPerm modes [ '755', '644' ]
+361 silly gunzTarPerm extractEntry package.json
+362 silly gunzTarPerm extractEntry package.json
+363 silly gunzTarPerm extractEntry package.json
+364 silly gunzTarPerm extractEntry .npmignore
+365 silly gunzTarPerm extractEntry README.md
+366 silly gunzTarPerm extractEntry .npmignore
+367 silly gunzTarPerm extractEntry README.md
+368 silly gunzTarPerm extractEntry .npmignore
+369 silly gunzTarPerm extractEntry README.md
+370 silly gunzTarPerm extractEntry dist/socket.io.js
+371 silly gunzTarPerm extractEntry dist/socket.io.min.js
+372 silly gunzTarPerm extractEntry LICENSE
+373 silly gunzTarPerm extractEntry index.js
+374 silly gunzTarPerm extractEntry multi_bench.js
+375 silly gunzTarPerm extractEntry generate_commands.js
+376 silly gunzTarPerm extractEntry dist/WebSocketMainInsecure.swf
+377 silly gunzTarPerm extractEntry Makefile
+378 silly gunzTarPerm extractEntry tests/unit.test.js
+379 silly gunzTarPerm extractEntry index.js
+380 silly gunzTarPerm extractEntry test.js
+381 silly gunzTarPerm extractEntry tests/ssl/ssl.private.key
+382 silly gunzTarPerm extractEntry tests/ssl/ssl.crt
+383 silly gunzTarPerm extractEntry examples/basic.fallback.js
+384 silly gunzTarPerm extractEntry examples/basic.js
+385 silly gunzTarPerm extractEntry doc/index.html
+386 silly gunzTarPerm extractEntry lib/server.js
+387 silly gunzTarPerm extractEntry dist/WebSocketMain.swf
+388 silly gunzTarPerm extractEntry lib/commands.js
+389 silly gunzTarPerm extractEntry lib/queue.js
+390 silly gunzTarPerm extractEntry lib/util.js
+391 silly gunzTarPerm extractEntry lib/to_array.js
+392 silly gunzTarPerm extractEntry lib/parser/hiredis.js
+393 silly gunzTarPerm extractEntry lib/parser/javascript.js
+394 silly gunzTarPerm extractEntry tests/buffer_bench.js
+395 silly gunzTarPerm extractEntry tests/hiredis_parser.js
+396 silly gunzTarPerm extractEntry tests/reconnect_test.js
+397 silly gunzTarPerm extractEntry tests/sub_quit_test.js
+398 silly gunzTarPerm extractEntry tests/re_sub_test.js
+399 silly gunzTarPerm extractEntry tests/stress/codec.js
+400 silly gunzTarPerm extractEntry tests/stress/speed/speed.js
+401 silly gunzTarPerm extractEntry Makefile
+402 silly gunzTarPerm extractEntry History.md
+403 silly gunzTarPerm extractEntry tests/stress/speed/plot
+404 silly gunzTarPerm extractEntry test/parser.test.js
+405 silly gunzTarPerm extractEntry tests/stress/speed/00
+406 silly gunzTarPerm extractEntry test/worker.js
+407 silly gunzTarPerm extractEntry tests/stress/speed/size-rate.png
+408 silly gunzTarPerm extractEntry test/io.test.js
+409 silly gunzTarPerm extractEntry tests/stress/rpushblpop/pub.js
+410 silly gunzTarPerm extractEntry test/socket.test.js
+411 silly gunzTarPerm extractEntry tests/stress/rpushblpop/server.js
+412 silly gunzTarPerm extractEntry test/events.test.js
+413 silly gunzTarPerm extractEntry tests/stress/rpushblpop/run
+414 silly gunzTarPerm extractEntry test/util.test.js
+415 silly gunzTarPerm extractEntry test/node/builder.test.js
+416 silly gunzTarPerm extractEntry tests/stress/pubsub/pub.js
+417 silly gunzTarPerm extractEntry tests/stress/pubsub/server.js
+418 silly gunzTarPerm extractEntry test/node/builder.common.js
+419 silly gunzTarPerm extractEntry tests/stress/pubsub/run
+420 silly gunzTarPerm extractEntry bin/builder.js
+421 silly gunzTarPerm extractEntry changelog.md
+422 silly gunzTarPerm extractEntry lib/namespace.js
+423 silly gunzTarPerm extractEntry examples/eval.js
+424 silly gunzTarPerm extractEntry lib/io.js
+425 silly gunzTarPerm extractEntry examples/mget.js
+426 silly gunzTarPerm extractEntry lib/json.js
+427 silly gunzTarPerm extractEntry examples/subqueries.js
+428 silly gunzTarPerm extractEntry lib/util.js
+429 silly gunzTarPerm extractEntry lib/events.js
+430 silly gunzTarPerm extractEntry lib/parser.js
+431 silly gunzTarPerm extractEntry lib/socket.js
+432 silly gunzTarPerm extractEntry lib/transport.js
+433 silly gunzTarPerm extractEntry lib/transports/xhr.js
+434 silly gunzTarPerm extractEntry lib/transports/flashsocket.js
+435 silly gunzTarPerm extractEntry examples/simple.js
+436 silly gunzTarPerm extractEntry examples/psubscribe.js
+437 silly gunzTarPerm extractEntry lib/transports/xhr-polling.js
+438 silly gunzTarPerm extractEntry lib/transports/websocket.js
+439 silly gunzTarPerm extractEntry examples/web_server.js
+440 silly gunzTarPerm extractEntry lib/transports/htmlfile.js
+441 silly gunzTarPerm extractEntry examples/backpressure_drain.js
+442 silly gunzTarPerm extractEntry lib/transports/jsonp-polling.js
+443 silly gunzTarPerm extractEntry examples/pub_sub.js
+444 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/.npmignore
+445 silly gunzTarPerm extractEntry examples/multi.js
+446 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/README.md
+447 silly gunzTarPerm extractEntry examples/sort.js
+448 silly gunzTarPerm extractEntry examples/multi2.js
+449 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/swfobject.js
+450 silly gunzTarPerm extractEntry examples/auth.js
+451 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/web_socket.js
+452 silly gunzTarPerm extractEntry examples/file.js
+453 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/sample.html
+454 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/WebSocketMainInsecure.zip
+455 silly gunzTarPerm extractEntry examples/extend.js
+456 silly gunzTarPerm extractEntry examples/unix_socket.js
+457 silly gunzTarPerm extractEntry examples/monitor.js
+458 silly gunzTarPerm extractEntry examples/subquery.js
+459 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/WebSocketMain.swf
+460 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/WebSocket.as
+461 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/WebSocketEvent.as
+462 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/adobe/net/proxies/RFC2817Socket.as
+463 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/gsolo/encryption/MD5.as
+464 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/math/BarrettReduction.as
+465 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/math/BigInteger.as
+466 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/math/MontgomeryReduction.as
+467 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/math/ClassicReduction.as
+468 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/math/NullReduction.as
+469 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/math/bi_internal.as
+470 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/math/IReduction.as
+471 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/util/Memory.as
+472 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/util/ArrayUtil.as
+473 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/util/der/Integer.as
+474 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/util/der/ObjectIdentifier.as
+475 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/util/der/DER.as
+476 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/util/der/PEM.as
+477 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/util/der/Set.as
+478 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/util/der/OID.as
+479 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/util/der/IAsn1Type.as
+480 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/util/der/Type.as
+481 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/util/der/UTCTime.as
+482 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/util/der/ByteString.as
+483 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/util/der/PrintableString.as
+484 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/util/der/Sequence.as
+485 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/util/Hex.as
+486 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/util/Base64.as
+487 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/rsa/RSAKey.as
+488 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/cert/MozillaRootCertificates.as
+489 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/cert/X509CertificateCollection.as
+490 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/cert/X509Certificate.as
+491 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tests/RSAKeyTest.as
+492 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tests/SHA256Test.as
+493 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tests/TripleDESKeyTest.as
+494 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tests/BlowFishKeyTest.as
+495 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tests/ITestHarness.as
+496 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tests/MD5Test.as
+497 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tests/CTRModeTest.as
+498 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tests/HMACTest.as
+499 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tests/CFB8ModeTest.as
+500 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tests/SHA224Test.as
+501 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tests/TestCase.as
+502 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tests/ARC4Test.as
+503 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tests/DESKeyTest.as
+504 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tests/CFBModeTest.as
+505 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tests/SHA1Test.as
+506 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tests/TLSPRFTest.as
+507 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tests/MD2Test.as
+508 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tests/CBCModeTest.as
+509 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tests/AESKeyTest.as
+510 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tests/XTeaKeyTest.as
+511 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tests/ECBModeTest.as
+512 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tests/BigIntegerTest.as
+513 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tests/OFBModeTest.as
+514 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/symmetric/TLSPad.as
+515 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/symmetric/CFB8Mode.as
+516 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/symmetric/aeskey.pl
+517 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/symmetric/NullPad.as
+518 verbose read json /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules/policyfile/package.json
+519 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/symmetric/dump.txt
+520 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/symmetric/IStreamCipher.as
+521 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/symmetric/IVMode.as
+522 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/symmetric/CFBMode.as
+523 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/symmetric/XTeaKey.as
+524 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/symmetric/TripleDESKey.as
+525 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/symmetric/PKCS5.as
+526 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/symmetric/IMode.as
+527 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/symmetric/ICipher.as
+528 silly lockFile 0081de6b-ocket-io-node-modules-policyfile /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules/policyfile
+529 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/symmetric/SSLPad.as
+530 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/symmetric/OFBMode.as
+531 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/symmetric/AESKey.as
+532 info preinstall policyfile@0.0.4
+533 verbose from cache /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules/policyfile/package.json
+534 verbose readDependencies using package.json deps
+535 verbose from cache /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules/policyfile/package.json
+536 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/symmetric/ECBMode.as
+537 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/symmetric/CTRMode.as
+538 verbose readDependencies using package.json deps
+539 silly resolved []
+540 verbose about to build /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules/policyfile
+541 info build /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules/policyfile
+542 verbose from cache /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules/policyfile/package.json
+543 verbose linkStuff [ false,
+543 verbose linkStuff   false,
+543 verbose linkStuff   false,
+543 verbose linkStuff   '/home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules' ]
+544 info linkStuff policyfile@0.0.4
+545 verbose linkBins policyfile@0.0.4
+546 verbose linkMans policyfile@0.0.4
+547 verbose rebuildBundles policyfile@0.0.4
+548 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/symmetric/IPad.as
+549 info install policyfile@0.0.4
+550 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/symmetric/DESKey.as
+551 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/symmetric/CBCMode.as
+552 info postinstall policyfile@0.0.4
+553 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/symmetric/BlowFishKey.as
+554 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/symmetric/SimpleIVMode.as
+555 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/symmetric/ISymmetricKey.as
+556 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/prng/IPRNG.as
+557 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/prng/ARC4.as
+558 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/prng/TLSPRF.as
+559 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/prng/Random.as
+560 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tls/TLSSecurityParameters.as
+561 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tls/BulkCiphers.as
+562 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tls/TLSTest.as
+563 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tls/TLSConfig.as
+564 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tls/SSLSecurityParameters.as
+565 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tls/TLSEngine.as
+566 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tls/TLSConnectionState.as
+567 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tls/MACs.as
+568 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tls/TLSError.as
+569 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tls/TLSEvent.as
+570 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tls/SSLConnectionState.as
+571 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tls/TLSSocketEvent.as
+572 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tls/IConnectionState.as
+573 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tls/SSLEvent.as
+574 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tls/CipherSuites.as
+575 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tls/ISecurityParameters.as
+576 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tls/KeyExchanges.as
+577 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/tls/TLSSocket.as
+578 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/hash/SHA256.as
+579 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/hash/MAC.as
+580 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/hash/SHA224.as
+581 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/hash/MD5.as
+582 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/hash/IHMAC.as
+583 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/hash/IHash.as
+584 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/hash/MD2.as
+585 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/hash/HMAC.as
+586 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/hash/SHA1.as
+587 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/hash/SHABase.as
+588 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/com/hurlant/crypto/Crypto.as
+589 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/WebSocketMainInsecure.as
+590 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/IWebSocketLogger.as
+591 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/WebSocketMain.as
+592 silly gunzTarPerm extractEntry lib/vendor/web-socket-js/flash-src/build.sh
+593 verbose read json /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules/redis/package.json
+594 silly lockFile 4b80b5e5-les-socket-io-node-modules-redis /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules/redis
+595 info preinstall redis@0.7.2
+596 verbose from cache /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules/redis/package.json
+597 verbose readDependencies using package.json deps
+598 verbose from cache /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules/redis/package.json
+599 verbose readDependencies using package.json deps
+600 verbose cache add [ 'hiredis@*', null ]
+601 silly cache add name=undefined spec="hiredis@*" args=["hiredis@*",null]
+602 verbose parsed url { pathname: 'hiredis@*', path: 'hiredis@*', href: 'hiredis@*' }
+603 silly cache add name="hiredis" spec="*" args=["hiredis","*"]
+604 verbose parsed url { pathname: '*', path: '*', href: '*' }
+605 verbose addNamed [ 'hiredis', '*' ]
+606 verbose addNamed [ null, '' ]
+607 silly lockFile 0a034785-hiredis hiredis@*
+608 verbose lock hiredis@* /home/ubuntu/.npm/0a034785-hiredis.lock
+609 info node-proxy@0.6.0 Failed to exec install script
+610 info /home/ubuntu/cater2me/node_modules/now/node_modules/node-proxy unbuild
+611 verbose from cache /home/ubuntu/cater2me/node_modules/now/node_modules/node-proxy/package.json
+612 info preuninstall node-proxy@0.6.0
+613 silly addNameRange { name: 'hiredis', range: '', hasData: false }
+614 info uninstall node-proxy@0.6.0
+615 verbose false,/home/ubuntu/cater2me/node_modules,/home/ubuntu/cater2me/node_modules/now/node_modules unbuild node-proxy@0.6.0
+616 info postuninstall node-proxy@0.6.0
+617 verbose url raw hiredis
+618 verbose url resolving [ 'https://registry.npmjs.org/', './hiredis' ]
+619 verbose url resolved https://registry.npmjs.org/hiredis
+620 info trying registry request attempt 1 at 22:53:57
+621 verbose etag "6TQHOCBIQRW1THNBJ7RYZF6L5"
+622 http GET https://registry.npmjs.org/hiredis
+623 verbose about to build /home/ubuntu/cater2me/node_modules/now
+624 info /home/ubuntu/cater2me/node_modules/now unbuild
+625 verbose from cache /home/ubuntu/cater2me/node_modules/now/package.json
+626 info preuninstall now@0.8.1
+627 info uninstall now@0.8.1
+628 verbose true,/home/ubuntu/cater2me/node_modules,/home/ubuntu/cater2me/node_modules unbuild now@0.8.1
+629 info postuninstall now@0.8.1
+630 error Error: ENOENT, lstat '/home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules/socket.io-client/test/parser.test.js'
+631 error If you need help, you may report this log at:
+631 error     <http://github.com/isaacs/npm/issues>
+631 error or email it to:
+631 error     <npm-@googlegroups.com>
+632 error System Linux 3.0.0-23-virtual
+633 error command "/usr/local/bin/node" "/usr/local/bin/npm" "install" "now"
+634 error cwd /home/ubuntu/cater2me
+635 error node -v v0.9.2-pre
+636 error npm -v 1.1.61
+637 error path /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules/socket.io-client/test/parser.test.js
+638 error fstream_path /home/ubuntu/cater2me/node_modules/now/node_modules/socket.io/node_modules/socket.io-client/test/parser.test.js
+639 error fstream_type File
+640 error fstream_class FileWriter
+641 error code ENOENT
+642 error errno 34
+643 error fstream_stack Writer._finish.er.fstream_finish_call (/usr/local/lib/node_modules/npm/node_modules/fstream/lib/writer.js:284:26)
+643 error fstream_stack Object.oncomplete (fs.js:308:15)
+643 error fstream_stack process.startup.processMakeCallback.process._makeCallback (node.js:248:20)
+644 verbose exit [ 34, true ]
