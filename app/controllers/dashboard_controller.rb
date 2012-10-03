@@ -10,6 +10,8 @@ class DashboardController < Devise::SessionsController
       else
         redirect_to :action => "staff_dashboard"
       end
+    else
+      redirect_to :controller => "static_pages", :action => "home"
     end
   end
 
