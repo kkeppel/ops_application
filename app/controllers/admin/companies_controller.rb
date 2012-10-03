@@ -43,6 +43,8 @@ class Admin::CompaniesController < ApplicationController
 
     respond_to do |format|
       if @company.save
+        #update key value table
+        @company.update_profile(params)
         format.html { redirect_to admin_company_path(@company), notice: 'Company was successfully created.' }
         format.json { render json: @company, status: :created, location: @company }
       else
@@ -59,6 +61,8 @@ class Admin::CompaniesController < ApplicationController
 
     respond_to do |format|
       if @company.update_attributes(params[:company])
+        #update key value table
+        @company.update_profile(params)
         format.html { redirect_to admin_company_path(@company), notice: 'Company was successfully updated.' }
         format.json { head :no_content }
       else
@@ -79,4 +83,6 @@ class Admin::CompaniesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
 end
