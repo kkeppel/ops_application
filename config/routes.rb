@@ -9,7 +9,7 @@ OpsApplication::Application.routes.draw do
 
 
 
-  devise_for :users do
+  devise_for :users, :controllers => {:registrations => "registrations"} do
     get "/" => "dashboard#index"
     get "/staff_dashboard" => "dashboard#staff_dashboard"
     get "/vendor_dashboard" => "dashboard#vendor_dashboard"
@@ -33,6 +33,8 @@ OpsApplication::Application.routes.draw do
       end
     end
   end
+
+  get "home" => "static_pages#home"
 
   root :to => "dashboard#index"
 
