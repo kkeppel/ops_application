@@ -7,8 +7,6 @@ OpsApplication::Application.routes.draw do
 
   resources :roles
 
-
-
   devise_for :users, :controllers => {:registrations => "registrations"} do
     get "/" => "dashboard#index"
     get "/staff_dashboard" => "dashboard#staff_dashboard"
