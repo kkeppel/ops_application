@@ -1,6 +1,8 @@
 OpsApplication::Application.routes.draw do
 
 
+  resources :items
+
   resources :vendor_profiles
 
   resources :locations
