@@ -29,15 +29,15 @@
   </div>
   <div class="field">
     <%= f.label :city_id %><br />
-    <%= f.number_field :city_id %>
+    <%= f.collection_select :city_id, City.all, :id, :name %>
   </div>
   <div class="field">
-    <%= f.label :vendor_profile_id %><br />
-    <%= f.number_field :vendor_profile_id %>
+    <%= f.label :vendor_id %><br />
+    <%= f.collection_select :vendor_id, Vendor.all, :id, :name %>
   </div>
   <div class="field">
-    <%= f.label :client_profile_id %><br />
-    <%= f.number_field :client_profile_id %>
+    <%= f.label :company_id%><br />
+    <%= f.collection_select :company_id, Company.all, :id, :company_name %>
   </div>
   <div class="actions">
     <%= f.submit %>

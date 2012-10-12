@@ -5,6 +5,8 @@
   <tr>
     <th>Name</th>
     <th>Description</th>
+    <th>Allergen Free?</th>
+    <th>Hot?</th>
     <th>Price</th>
     <th>Vendor</th>
   </tr>
@@ -13,6 +15,8 @@
       <tr>
         <td><%= @item.name %></td>
         <td><%= @item.description %></td>
+        <td><%= @item.allergen_free ? "yes" : "no" %></td>
+        <td><%= @item.hot ? "yes" : "no" %></td>
         <td><%= @item.price %></td>
         <td><%= @item.vendor.name %></td>
       </tr>

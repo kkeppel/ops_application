@@ -1,6 +1,12 @@
 OpsApplication::Application.routes.draw do
 
 
+  resources :ingredients
+
+  resources :allergens
+
+  resources :meals
+
   resources :items
 
   resources :vendor_profiles

@@ -12,44 +12,44 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
 
     <div class="field">
-      <%= f.label :description %><br />
+      <%= f.label :description %>
       <%= f.text_area :description %>
     </div>
 
     <div class="field">
-      <%= f.label :price %><br />
+      <%= f.label :price %>
       <%= f.text_field :price %>
     </div>
 
     <div class="field">
-      <%= f.label :hot %><br />
-      <%= f.radio_button :hot, "yes" %>
-      <%= f.radio_button :hot, "no" %>
+      <%= f.label :hot %>
+      <%= f.radio_button(:hot, true) %>
+      <%= f.radio_button(:hot, false) %>
     </div>
 
     <div class="field">
-      <%= f.label :allergen_free %><br />
-      <%= f.radio_button :allergen_free, "yes" %>
-      <%= f.radio_button :allergen_free, "no" %>
+      <%= f.label :allergen_free %>
+      <%= f.radio_button(:allergen_free, true) %>
+      <%= f.radio_button(:allergen_free, false) %>
     </div>
 
     <div class="field">
-      <%= f.label :headcount %><br />
+      <%= f.label :headcount %>
       <%= f.number_field :headcount %>
     </div>
 
     <div class="field">
-      <%= f.label :nb_time_used %><br />
+      <%= f.label :nb_time_used %>
       <%= f.number_field :nb_time_used %>
     </div>
 
     <div class="field">
-      <%= f.label :vendor_id %><br />
+      <%= f.label :vendor_id %>
       <%= f.select :vendor_id, Vendor.all.collect {|v| [v.name, v.id]}  %>
     </div>
 

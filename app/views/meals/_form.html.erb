@@ -1,0 +1,69 @@
+<%= form_for(@meal) do |f| %>
+  <% if @meal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@meal.errors.count, "error") %> prohibited this meal from being saved:</h2>
+
+      <ul>
+      <% @meal.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :headcount %><br />
+      <%= f.number_field :headcount %>
+    </div>
+
+    <div class="field">
+      <%= f.label :max_price %><br />
+      <%= f.text_field :max_price %>
+    </div>
+
+    <div class="field">
+      <%= f.label :serving_time %><br />
+      <%= f.number_field :serving_time %>
+    </div>
+
+    <div class="field">
+      <%= f.label :active %><br />
+      <%= f.radio_button :active, "yes" %>
+      <%= f.radio_button :active, "no" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :private %><br />
+      <%= f.radio_button :private, "yes" %>
+      <%= f.radio_button :private, "no" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :default %><br />
+      <%= f.radio_button :default, "yes" %>
+      <%= f.radio_button :default, "no" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :location_id %><br />
+      <%= f.collection_select :location_id, Location.all, :id, :name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :company_id %><br />
+      <%= f.collection_select :company_id, Company.all, :id, :company_name %>
+    </div>
+
+    <%= f.hidden_field :company_profile_id, :value => 2 %>
+    <%= f.hidden_field :meal_type_id, :value => 2 %>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
