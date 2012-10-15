@@ -1,6 +1,10 @@
 OpsApplication::Application.routes.draw do
 
 
+  resources :orders
+
+  resources :menus
+
   resources :ingredients
 
   resources :allergens

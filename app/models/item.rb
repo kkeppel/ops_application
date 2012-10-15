@@ -1,8 +1,9 @@
 class Item < ActiveRecord::Base
 
   belongs_to :vendor
-  belongs_to :meal
-  has_many :allergens
+  belongs_to :menu
+  has_many :ingredients
+  has_many :allergens, :through => :ingredients
 
   attr_accessible :name, :description, :price, :hot, :allergen_free, :headcount,
                   :nb_time_used, :serving_instructions_id, :vendor_id, :vendor_profiles_id

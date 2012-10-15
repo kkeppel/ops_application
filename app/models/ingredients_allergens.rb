@@ -1,3 +1,6 @@
 class IngredientsAllergens < ActiveRecord::Base
-  # attr_accessible :title, :body
+  belongs_to :ingredient
+  belongs_to :allergen
+
+  attr_accessible :ingredients_id, :allergens_id
 end

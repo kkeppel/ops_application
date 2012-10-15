@@ -1,3 +1,6 @@
 class Ingredient < ActiveRecord::Base
-  # attr_accessible :title, :body
+  has_many :items
+  has_many :ingredients, :through => :items
+
+  attr_accessible :name, :description
 end
