@@ -1,6 +1,8 @@
 OpsApplication::Application.routes.draw do
 
 
+  resources :meal_types
+
   resources :orders
 
   resources :menus

@@ -14,6 +14,7 @@
         <li><%= link_to "Manage Clients", admin_companies_path %></li>
         <li><%= link_to "Manage Vendors", admin_vendors_path %></li>
         <li><%= link_to "Manage Locations", locations_path %></li>
+        <li><%= link_to "Manage Meal Types", meal_types_path %></li>
     <% end %>
     <li><%= link_to "Manage Items", items_path %></li>
     <li><%= link_to "Manage Meals", meals_path %></li>
@@ -24,9 +25,19 @@
 
 You're <%= current_user.role?(:admin) ? "an admin" : "ops" %>!! Good for you!!
 
+<br/>
+<div style="<%= 'display:none;' if current_user.role?(:admin) %>">
+  <%= text_field_tag "auto_complete", "", :style => "width:150px" %>
 
-<div>
-  <%= link_to "Select Client" %>
+  <%= javascript_tag "var autocomplete_items = #{ @autocomplete_items.collect {|a| a.company_name} };" %>
+  <%= button_tag "x", :id => "remove_company" %>
 
+  <%= text_field_tag "datepicker", "", :style => "display:none;width:150px" %>
+  <%= button_tag "x", :id => "remove_datepicker", :style => "display:none" %>
 
+  <%= select_tag "meal_type", options_from_collection_for_select(@meal_types, "id", "meal_type"), :style => "display:none;width:150px"%>
+  <%= button_tag "x", :id => "remove_meal_type", :style => "display:none" %>
+
+  <%= select_tag "vendor", options_from_collection_for_select(@vendors, "id", "name"), :style => "display:none;width:150px"%>
+  <%= button_tag "x", :id => "remove_vendor", :style => "display:none" %>
 </div>

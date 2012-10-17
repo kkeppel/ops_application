@@ -13,7 +13,8 @@ class Company < ActiveRecord::Base
 
 
 
-  attr_accessible :company_name, :nb_employee, :website, :phone, :locations_attributes, :example1, :example2
+  attr_accessible :company_name, :nb_employee, :website, :phone, :locations_attributes,
+                  :allergies, :favorite_foods # add attributes here for the key-value pairs in CompanyProfile
 
   CompanyProfile::KEYS.each{|k|
     define_method("#{k}_obj") {

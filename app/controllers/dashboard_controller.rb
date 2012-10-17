@@ -25,7 +25,9 @@ class DashboardController < Devise::SessionsController
   end
 
   def staff_dashboard
-
+    @autocomplete_items = Company.all
+    @meal_types = MealType.all
+    @vendors = Vendor.all
   end
 
 

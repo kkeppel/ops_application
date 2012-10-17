@@ -1,3 +1,5 @@
 class MealType < ActiveRecord::Base
-  # attr_accessible :title, :body
+  belongs_to :meal
+
+  attr_accessible :meal_type, :description
 end

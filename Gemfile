@@ -11,6 +11,10 @@ gem 'pry'
 
 gem 'mysql2'
 
+gem 'linecache19', '0.5.13'
+gem 'ruby-debug-base19x'
+gem 'ruby-debug19', :require => 'ruby-debug'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -39,4 +43,4 @@ end
 # gem 'capistrano'
 
 # To use debugger
-# gem 'debugger'
+ gem 'debugger'

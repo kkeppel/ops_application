@@ -30,7 +30,9 @@
     <%= f.text_field :phone %>
   </div>
   <h2>Add a primary location</h2>
+  <% i = 1  %>
   <%= f.fields_for :locations do |loc| %>
+    <h3>Location <%= i %></h3>
     <div class="field">
       <%= loc.label :location_name %>
       <%= loc.text_field :name %>
@@ -51,16 +53,17 @@
       <%=	loc.label :city %>
       <%= collection_select :city, :city_id, City.all, :id, :name  %>
     </div>
+    <% i += 1 %>
   <% end %>
   <h2>Company profile info</h2>
-  <div class="field">
-    <%= f.label :example1 %>
-    <%= f.text_field :example1 %>
-  </div>
-  <div class="field">
-    <%= f.label :example2 %>
-    <%= f.text_field :example2 %>
-  </div>
+    <div class="field">
+      <%= f.label :allergies %>
+      <%= f.text_field :allergies %>
+    </div>
+    <div class="field">
+      <%= f.label :favorite_foods %>
+      <%= f.text_field :favorite_foods %>
+    </div>
   <div class="actions">
     <%= f.submit "Save Company", class: "btn btn-primary"%>
   </div>

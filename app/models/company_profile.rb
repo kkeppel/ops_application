@@ -9,7 +9,7 @@ class CompanyProfile < ActiveRecord::Base
   attr_accessible :key, :value, :value2
 
   SINGLEVALUE_KEYS = [
-        :preference, :example1, :example2
+        :preference, :allergies, :favorite_foods
   ]
 
   MULTIVALUE_KEYS = [
