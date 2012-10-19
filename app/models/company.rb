@@ -2,7 +2,7 @@ class Company < ActiveRecord::Base
 
   has_many :clients
   has_many :locations
-  has_many :company_profiles, :foreign_key => :user_id
+  has_many :company_profiles, :foreign_key => :company_id
 
   validates :company_name, :presence => true
   validates :nb_employee, :presence => true
@@ -13,13 +13,14 @@ class Company < ActiveRecord::Base
 
 
 
-  attr_accessible :company_name, :nb_employee, :website, :phone, :locations_attributes,
+  attr_accessible :company_name, :nb_employee, :website, :phone, :locations_attributes, :company_id,
                   :allergies, :favorite_foods # add attributes here for the key-value pairs in CompanyProfile
+
 
   CompanyProfile::KEYS.each{|k|
     define_method("#{k}_obj") {
       values = company_profiles.where(:key => k)
-      if ExpertApplicationProfile::MULTIVALUE_KEYS.include?(k)
+      if CompanyProfile::MULTIVALUE_KEYS.include?(k)
         values
       else
         instance_variable_get("@#{k}_obj").blank? ? values.first : instance_variable_get("@#{k}_obj")
@@ -37,37 +38,42 @@ class Company < ActiveRecord::Base
       company_profiles.delete(company_profiles.where(:key => k))
       instance_variable_set("@#{k}", parameter)
       unless parameter.blank?
-        profile_record = company_profiles.build(:key => k, :value => parameter.try(:to_s).try(:strip))
+        profile_record = company_profiles.build(:key => k, :value => parameter.try(:to_s).try(:strip), :company_id => id)
         profile_record.save unless new_record?
       end
     }
   }
-  CompanyProfile::MULTIVALUE_KEYS.each{|k|
-    define_method("add_#{k}") {|parameter, value_2 = nil|
-      profile_record = company_profiles.build(:key => k, :value => parameter.try(:to_s).try(:strip), :value2 => value_2.try(:to_s).try(:strip))
+  CompanyProfile::KEYS.each{|k|
+    define_method("add_#{k}") {|parameter, value_2 = nil, id|
+      puts "\n\n\n\nparameter = #{parameter}, value_2 = #{value_2}\n\n\n\n"
+      profile_record = company_profiles.build(:key => k, :value => parameter.try(:to_s).try(:strip), :value2 => value_2.try(:to_s).try(:strip), :company_id => id)
       profile_record.save unless new_record?
     }
   }
 
 
-  def update_profile(params)
+  def update_profile(params, company_id = nil)
     params['company'].try(:each){|key, value|
+      key = key.to_sym
       if CompanyProfile::KEYS.include?(key)
         if value.is_a?(Array)
           company_profiles.delete(company_profiles.where(:key => key))
           value.each{|v|
-            send("add_#{key}", v) unless v.blank?
+            send("add_#{key}", v, company_id) unless v.blank?
+            send("add_#{key}", v, company_id) unless v.blank?
           }
         elsif value.is_a?(Hash)
+          puts "\n\n\n\nhash value = #{value}\n\n\n\n"
           company_profiles.delete(company_profiles.where(:key => key))
-          value[:value].each_with_index{|v,i|
-            send("add_#{key}", v, value[:additional_values].try(:[],i), value[:value_2].try(:[], i)) unless v.blank?
+          value.each_with_index{|v,i|
+            send("add_#{key}", v[1], value.try(:[],i), company_id) unless v.blank?
           }
         else
-          send("#{key}=", value)
+          send("#{key}=", value, params[:id])
         end
       end
     }
   end
+
 
 end

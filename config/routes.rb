@@ -1,6 +1,8 @@
 OpsApplication::Application.routes.draw do
 
 
+  namespace :admin do resources :company_profiles end
+
   resources :meal_types
 
   resources :orders

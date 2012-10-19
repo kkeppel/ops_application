@@ -56,14 +56,19 @@
     <% i += 1 %>
   <% end %>
   <h2>Company profile info</h2>
-    <div class="field">
-      <%= f.label :allergies %>
-      <%= f.text_field :allergies %>
-    </div>
-    <div class="field">
-      <%= f.label :favorite_foods %>
-      <%= f.text_field :favorite_foods %>
-    </div>
+        <% @company_profile_keys.each do |key| %>
+            <div class="field" id="company_<%= key.key %>">
+              <% values = @company_profile.where(key: key.key) %>
+              <% i = 0 %>
+              <% values.each do |value| %>
+                <input type="text" id="company_<%= key.key %>_<%= i %>" name="company[<%= key.key %>][<%= i %>]" size="30" value="<%= value.value && value.key == key.key ? value.value : '' %>"/>
+                <input type="button" value="Remove <%= key.key.humanize.singularize %>" id="remove_<%= key.key %>_<%= i %>" onclick="$('#company_<%= key.key %>_<%= i %>').hide().val('');$('#remove_<%= key.key %>_<%= i %>').hide();" />
+                <% i += 1 %>
+              <% end %>
+              <input type="button" value="Add Another <%= key.key.humanize.singularize %>" class="add_<%= key.key %>_field"/>
+            </div>
+        <% end %>
+<br/>
   <div class="actions">
     <%= f.submit "Save Company", class: "btn btn-primary"%>
   </div>
@@ -72,3 +77,4 @@
 
 <%= link_to 'Show', admin_company_path(@company), :class => 'btn' %> |
 <%= link_to 'Back', admin_companies_path, :class => 'btn' %>
+

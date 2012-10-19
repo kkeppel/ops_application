@@ -11,7 +11,7 @@
   <ul class="dropdown-menu">
     <% if current_user.role?(:admin) %>
         <li><%= link_to "Manage Users", admin_users_path %> </li>
-        <li><%= link_to "Manage Clients", admin_companies_path %></li>
+        <li><%= link_to "Manage Companies", admin_companies_path %></li>
         <li><%= link_to "Manage Vendors", admin_vendors_path %></li>
         <li><%= link_to "Manage Locations", locations_path %></li>
         <li><%= link_to "Manage Meal Types", meal_types_path %></li>
