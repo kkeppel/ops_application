@@ -1,6 +1,6 @@
 class CreateMenusItems < ActiveRecord::Migration
   def change
-    create_table :menus_items do |t|
+    create_table :items_menus do |t|
 
       t.integer :menu_id
       t.integer :item_id

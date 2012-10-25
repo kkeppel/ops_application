@@ -28,14 +28,8 @@
 
     <div class="field">
       <%= f.label :hot %>
-      <%= f.radio_button(:hot, true) %>
-      <%= f.radio_button(:hot, false) %>
-    </div>
-
-    <div class="field">
-      <%= f.label :allergen_free %>
-      <%= f.radio_button(:allergen_free, true) %>
-      <%= f.radio_button(:allergen_free, false) %>
+      <%= radio_button(f, :hot, true) %>
+      <%= radio_button(f, :hot, false) %>
     </div>
 
     <div class="field">

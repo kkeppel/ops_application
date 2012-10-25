@@ -18,6 +18,7 @@
     <td><%= item.hot ? "yes" : "no" %></td>
     <td><%= item.price %></td>
     <td><%= item.vendor.name %></td>
+    <td><%= link_to 'Add Ingredients', item_ingredients_path(item) %></td>
     <td><%= link_to 'Show', item %></td>
     <td><%= link_to 'Edit', edit_item_path(item) %></td>
     <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -1,3 +1,5 @@
+<h2>for <%= @item.name %></h2>
+
 <%= form_for(@ingredient) do |f| %>
   <% if @ingredient.errors.any? %>
     <div id="error_explanation">
@@ -18,9 +20,20 @@
 
     <div class="field">
       <%= f.label :description %><br />
-      <%= f.text_area :description %>
+      <%= f.text_field :description %>
     </div>
 
+    <div class="field">
+      <%= f.label :allergens_bool %>
+      <%= f.check_box :allergens_bool %>
+    </div>
+
+    <div class="field" id="allergen_dropdown" style="display:none">
+      <%= f.label :allergens %>
+      <%= f.collection_select :allergens %>
+    </div>
+
+  <%= hidden_field_tag :item_id, params[:item_id] %>
   <div class="actions">
     <%= f.submit %>
   </div>

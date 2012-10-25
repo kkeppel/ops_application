@@ -2,7 +2,7 @@ class Item < ActiveRecord::Base
 
   belongs_to :vendor
   belongs_to :menu
-  has_many :ingredients
+  has_and_belongs_to_many :ingredients
   has_many :allergens, :through => :ingredients
 
   attr_accessible :name, :description, :price, :hot, :allergen_free, :headcount,
@@ -11,8 +11,6 @@ class Item < ActiveRecord::Base
   validates :name, :presence => true
   validates :description, :presence => true
   validates :price, :presence => true
-  validates :hot, :presence => true
-  validates :allergen_free, :presence => true
   validates :headcount, :presence => true
   validates :nb_time_used, :presence => true
   validates :vendor_id, :presence => true

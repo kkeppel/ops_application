@@ -1,6 +1,5 @@
 OpsApplication::Application.routes.draw do
 
-
   namespace :admin do resources :company_profiles end
 
   resources :meal_types
@@ -9,13 +8,16 @@ OpsApplication::Application.routes.draw do
 
   resources :menus
 
-  resources :ingredients
-
-  resources :allergens
-
   resources :meals
 
-  resources :items
+  resources :items do
+    match '/ingredients/:id(.:format)' => 'ingredients#destroy', :via => :delete, :as => :remove_ingredient
+    resources :ingredients
+  end
+
+  resources :ingredients do
+    resources :allergens
+  end
 
   resources :vendor_profiles
 

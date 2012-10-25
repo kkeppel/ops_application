@@ -1,9 +1,9 @@
 class CreateIngredientsAllergens < ActiveRecord::Migration
   def change
-    create_table :ingredients_allergens do |t|
+    create_table :allergens_ingredients do |t|
 
-      t.integer :ingredients_id
-      t.integer :allergens_id
+      t.integer :ingredient_id
+      t.integer :allergen_id
     end
   end
 end

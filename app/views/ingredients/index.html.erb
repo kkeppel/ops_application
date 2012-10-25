@@ -1,8 +1,10 @@
-<h1>Listing ingredients</h1>
+<h1>Listing Ingredients</h1>
+<h2>for <%= @item.name %></h2>
 
+<% unless @ingredients.nil? %>
 <table>
   <tr>
-    <th>Name</th>
+    <th>Ingredient</th>
     <th>Description</th>
   </tr>
 
@@ -10,13 +12,13 @@
   <tr>
     <td><%= ingredient.name %></td>
     <td><%= ingredient.description %></td>
-    <td><%= link_to 'Show', ingredient %></td>
-    <td><%= link_to 'Edit', edit_ingredient_path(ingredient) %></td>
-    <td><%= link_to 'Destroy', ingredient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', item_ingredient_path(@item, ingredient) %></td>
+    <td><%= link_to 'Edit', edit_item_ingredient_path(@item, ingredient) %></td>
+    <td><%= link_to 'Destroy', item_remove_ingredient_path(@item.id, ingredient), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
-
+<% end %>
 <br />
 
-<%= link_to 'New Ingredient', new_ingredient_path %>
+<%= link_to 'New Ingredient', new_item_ingredient_path %>

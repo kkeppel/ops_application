@@ -3,6 +3,7 @@ class IngredientsController < ApplicationController
   # GET /ingredients.json
   def index
     @ingredients = Ingredient.all
+    @item = Item.find(params[:item_id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +15,7 @@ class IngredientsController < ApplicationController
   # GET /ingredients/1.json
   def show
     @ingredient = Ingredient.find(params[:id])
+    @item = Item.find(params[:item_id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +27,7 @@ class IngredientsController < ApplicationController
   # GET /ingredients/new.json
   def new
     @ingredient = Ingredient.new
+    @item = Item.find(params[:item_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,16 +38,18 @@ class IngredientsController < ApplicationController
   # GET /ingredients/1/edit
   def edit
     @ingredient = Ingredient.find(params[:id])
+    @item = Item.find(params[:item_id])
   end
 
   # POST /ingredients
   # POST /ingredients.json
   def create
     @ingredient = Ingredient.new(params[:ingredient])
+    @item = Item.find(params[:item_id])
 
     respond_to do |format|
       if @ingredient.save
-        format.html { redirect_to @ingredient, notice: 'Ingredient was successfully created.' }
+        format.html { redirect_to item_ingredient_path(@item, @ingredient), notice: 'Ingredient was successfully created.' }
         format.json { render json: @ingredient, status: :created, location: @ingredient }
       else
         format.html { render action: "new" }
@@ -57,6 +62,7 @@ class IngredientsController < ApplicationController
   # PUT /ingredients/1.json
   def update
     @ingredient = Ingredient.find(params[:id])
+    @item = Item.find(params[:item_id])
 
     respond_to do |format|
       if @ingredient.update_attributes(params[:ingredient])
@@ -73,10 +79,11 @@ class IngredientsController < ApplicationController
   # DELETE /ingredients/1.json
   def destroy
     @ingredient = Ingredient.find(params[:id])
+    @item = Item.find(params[:item_id])
     @ingredient.destroy
 
     respond_to do |format|
-      format.html { redirect_to ingredients_url }
+      format.html { render action: "index" }
       format.json { head :no_content }
     end
   end

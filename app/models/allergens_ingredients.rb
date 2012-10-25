@@ -1,4 +1,4 @@
-class IngredientsAllergens < ActiveRecord::Base
+class AllergensIngredients < ActiveRecord::Base
   belongs_to :ingredient
   belongs_to :allergen
 

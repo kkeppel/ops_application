@@ -6,5 +6,5 @@
     <br/>
     Description: <%= @ingredient.description %>
 
-<%= link_to 'Edit', edit_ingredient_path(@ingredient) %> |
-<%= link_to 'Back', ingredients_path %>
+<%= link_to 'Edit', edit_item_ingredient_path(@item, @ingredient) %> |
+<%= link_to 'Back', item_ingredients_path(@item) %>
