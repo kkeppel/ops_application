@@ -12,11 +12,9 @@ OpsApplication::Application.routes.draw do
 
   resources :items do
     match '/ingredients/:id(.:format)' => 'ingredients#destroy', :via => :delete, :as => :remove_ingredient
-    resources :ingredients
-  end
-
-  resources :ingredients do
-    resources :allergens
+    resources :ingredients do
+      resources :allergens
+    end
   end
 
   resources :vendor_profiles

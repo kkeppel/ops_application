@@ -25,6 +25,7 @@ class ItemsController < ApplicationController
   # GET /items/new.json
   def new
     @item = Item.new
+    @ingredients = Ingredient.all
     @vendors = Vendor.all
 
     respond_to do |format|

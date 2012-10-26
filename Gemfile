@@ -11,9 +11,7 @@ gem 'pry'
 
 gem 'mysql2'
 
-gem 'linecache19', '0.5.13'
-gem 'ruby-debug-base19x'
-gem 'ruby-debug19', :require => 'ruby-debug'
+gem 'backbone-on-rails'
 
 
 # Gems used only for assets and not required

@@ -1,8 +1,8 @@
 class Location < ActiveRecord::Base
 
-  has_one :company
-  has_one :vendor
-  has_one :city
+  belongs_to :company
+  belongs_to :vendor
+  belongs_to :city
 
   accepts_nested_attributes_for :city, :reject_if => proc { |attributes| attributes['name'].blank? }
 

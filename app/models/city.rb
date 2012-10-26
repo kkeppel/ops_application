@@ -1,6 +1,6 @@
 class City < ActiveRecord::Base
 
-  has_many :locations
+  belongs_to :location
 
   attr_accessible :lat, :long, :name, :state_id, :tax_rate, :zipcode
 

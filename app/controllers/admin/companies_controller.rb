@@ -30,6 +30,7 @@ class Admin::CompaniesController < ApplicationController
   def new
     @company = Company.new
     @company.locations.build
+    @company_profile_keys = @company_profile.group('company_profiles.key')
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @company }
