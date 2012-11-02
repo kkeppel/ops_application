@@ -15,7 +15,6 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require bootstrap
-
 //= require underscore
 //= require backbone
 //= require ops_application

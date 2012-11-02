@@ -22,17 +22,17 @@
 
 <p>
   <b>City:</b>
-  <%= @location.city_id %>
+  <%= @location.city.name %>
 </p>
 
 <p>
   <b>Vendor:</b>
-  <%= @location.vendor_id %>
+  <%= @location.vendor.name unless @location.vendor.nil? %>
 </p>
 
 <p>
   <b>Company:</b>
-  <%= @location.company_id %>
+  <%= @location.company.company_name unless @location.company.nil? %>
 </p>
 
 

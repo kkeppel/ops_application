@@ -2,7 +2,7 @@ class IngredientsController < ApplicationController
   # GET /ingredients
   # GET /ingredients.json
   def index
-    @ingredients = Ingredient.all
+    @ingredients = IngredientsItems.all
     @item = Item.find(params[:item_id])
 
     respond_to do |format|
@@ -27,7 +27,8 @@ class IngredientsController < ApplicationController
   # GET /ingredients/new.json
   def new
     @ingredient = Ingredient.new
-    @item = Item.find(params[:item_id])
+    @items = Item.all
+    @allergens = Allergen.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,6 +40,7 @@ class IngredientsController < ApplicationController
   def edit
     @ingredient = Ingredient.find(params[:id])
     @item = Item.find(params[:item_id])
+    @allergens = Allergen.all
   end
 
   # POST /ingredients

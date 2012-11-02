@@ -20,9 +20,9 @@
     <td><%= location.address1 %></td>
     <td><%= location.address2 %></td>
     <td><%= location.floor %></td>
-    <td><%= location.city_id %></td>
-    <td><%= Vendor.find(location.vendor_id).name %></td>
-    <td><%= Company.find(location.company_id).company_name %></td>
+    <td><%= location.city.name unless location.city.nil? %></td>
+    <td><%= Vendor.find(location.vendor_id).name unless location.vendor_id.nil? %></td>
+    <td><%= Company.find(location.company_id).company_name unless location.company_id.nil? %></td>
     <td><%= link_to 'Show', location %></td>
     <td><%= link_to 'Edit', edit_location_path(location) %></td>
     <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
