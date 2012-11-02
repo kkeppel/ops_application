@@ -6,14 +6,11 @@ gem 'devise'
 gem 'cancan'
 gem 'jquery-rails'
 gem 'pry'
+gem 'backbone-on-rails'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
-
-gem 'linecache19', '0.5.13'
-gem 'ruby-debug-base19x'
-gem 'ruby-debug19', :require => 'ruby-debug'
 
 
 # Gems used only for assets and not required
@@ -43,4 +40,4 @@ end
 # gem 'capistrano'
 
 # To use debugger
- gem 'debugger'
+# gem 'debugger'

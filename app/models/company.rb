@@ -45,7 +45,6 @@ class Company < ActiveRecord::Base
   }
   CompanyProfile::KEYS.each{|k|
     define_method("add_#{k}") {|parameter, value_2 = nil, id|
-      puts "\n\n\n\nparameter = #{parameter}, value_2 = #{value_2}\n\n\n\n"
       profile_record = company_profiles.build(:key => k, :value => parameter.try(:to_s).try(:strip), :value2 => value_2.try(:to_s).try(:strip), :company_id => id)
       profile_record.save unless new_record?
     }
@@ -63,7 +62,6 @@ class Company < ActiveRecord::Base
             send("add_#{key}", v, company_id) unless v.blank?
           }
         elsif value.is_a?(Hash)
-          puts "\n\n\n\nhash value = #{value}\n\n\n\n"
           company_profiles.delete(company_profiles.where(:key => key))
           value.each_with_index{|v,i|
             send("add_#{key}", v[1], value.try(:[],i), company_id) unless v.blank?

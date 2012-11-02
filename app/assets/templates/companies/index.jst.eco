@@ -1,0 +1,7 @@
+<select id="company_select">
+  <% for company in @companies.models: %>
+    <option id="company_option" value="<%= company.get('id') %>"><%= company.get('company_name') %></option>
+  <% end %>
+</select>
+
+<input type="text" id="datepicker" style="display:none;">
