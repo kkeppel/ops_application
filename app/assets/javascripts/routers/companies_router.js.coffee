@@ -7,5 +7,7 @@ class OpsApplication.Routers.Companies extends Backbone.Router
     @collection.fetch()
 
   index: ->
-    view = new OpsApplication.Views.CompaniesIndex(collection: @collection)
+    view = new OpsApplication.Views.CompaniesIndex({
+      collection: @collection
+    })
     $('#companies_container').html(view.render().el)

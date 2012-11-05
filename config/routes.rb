@@ -15,7 +15,11 @@ OpsApplication::Application.routes.draw do
     resources :ingredients do
       resources :allergens
     end
+    collection do
+      get '/items/find_allergens?company_id=:id' => 'items#find_allergens'
+    end
   end
+
 
   resources :vendor_profiles
 

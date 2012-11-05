@@ -82,4 +82,12 @@ class ItemsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def find_allergens
+    company = Company.find(params[:company_id])
+
+  end
+
+
+
 end

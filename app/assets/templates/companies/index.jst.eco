@@ -3,5 +3,7 @@
     <option id="company_option" value="<%= company.get('id') %>"><%= company.get('company_name') %></option>
   <% end %>
 </select>
-
+<br/>
 <input type="text" id="datepicker" style="display:none;">
+
+

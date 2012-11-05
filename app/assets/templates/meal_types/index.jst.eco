@@ -1,0 +1,7 @@
+<select id="meal_type_select">
+  <% for meal_type in @meal_types.models: %>
+    <option id='meal_type_option' value="<%= meal_type.get('id') %>">
+      <%= meal_type.get('meal_type') %>
+    </option>
+  <% end %>
+</select>
