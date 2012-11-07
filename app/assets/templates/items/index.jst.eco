@@ -1,0 +1,58 @@
+<h1>Listing items</h1>
+<div id="row1" style="height:150px">
+	<form id="new_item">
+		<div style="display:inline-block;float:left;width: 33%;">
+		  <label for="new_item_name">Name</label>
+		  <input type="text" name="name" id="new_item_name">
+
+		  <label for="new_item_description">Description</label>
+		  <textarea name="description" id="new_item_description" style="height:50px"></textarea>
+		</div>
+
+	  <div style="display:inline-block;float: left;width: 33%;">
+		  <label for="new_item_hot_yes" style="display:inline-block;">Hot</label>
+		  <input type="radio" name="hot" id="new_item_hot_yes" class="new_item_hot" value="true" style="display:inline-block;">
+
+		  <label for="new_item_hot_no" style="display:inline-block;">Cold</label>
+		  <input type="radio" name="hot" id="new_item_hot_no" class="new_item_hot" value="false" style="display:inline-block;">
+
+		  <label for="new_item_price">Price</label>
+		  <input type="text" name="price" id="new_item_price">
+
+		  <label for="new_item_headcount">Headcount</label>
+		  <input type="text" name="headcount" id="new_item_headcount">
+		</div>
+
+		<div style="display: inline-block;float: left;width: 33%;">
+		  <label for="new_item_vendor_id">Vendor</label>
+		  <select id="vendor_select">
+		    <% for vendor in @vendors.models: %>
+		      <option id="new_item_vendor_id" value="<%= vendor.get('id') %>">
+		        <%= vendor.get('name') %>
+		      </option>
+		    <% end %>
+		  </select>
+
+		  <!--<label for="new_ingredient_ids">Ingredients</label>-->
+		  <!--<input type="text" name="ingredient_ids" id="new_ingredient_ids"/>-->
+
+		  <br/>
+
+		  <input type="submit" value="Add Item">
+		</div>
+	</form>
+</div>
+
+<br/>
+
+<div id="row2">
+	<table id="items_container">
+	  <tr>
+	    <th>Name</th>
+	    <th>Description</th>
+	    <th>Hot?</th>
+	    <th>Price</th>
+	    <th>Vendor</th>
+	  </tr>
+	</table>
+</div>

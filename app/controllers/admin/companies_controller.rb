@@ -1,15 +1,11 @@
 class Admin::CompaniesController < ApplicationController
+  respond_to :html, :json
   # GET /companies
   # GET /companies.json
 
 
   def index
-    @companies = Company.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @companies }
-    end
+    respond_with(@companies = Company.all)
   end
 
   # GET /companies/1

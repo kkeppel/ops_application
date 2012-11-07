@@ -1,0 +1,14 @@
+<td><%= @item.get('name') %></td>
+<td><%= @item.get('description')%></td>
+<td>
+  <% if @item.get('hot') is true: %>
+    yes
+    <% else: %>
+    no
+  <% end %>
+</td>
+<td><%= @item.get('price') %></td>
+<td>
+	<a href="/items/<%= @item.get('id') %>/ingredients">Add Ingredients</a>
+	<!--<input type="button" value="Add Ingredients" id="<%#= @item.get('id') %>" class="add_ingredients">-->
+</td>

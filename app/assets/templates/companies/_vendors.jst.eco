@@ -1,0 +1,6 @@
+<%= console.log(@vendors) %>
+<% for vendor in @vendors.models || @vendors: %>
+  <option id="vendor_option" value="<%= vendor.get('id') %>">
+    <%= vendor.get('name') %>
+  </option>
+<% end %>
