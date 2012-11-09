@@ -3,7 +3,7 @@ class OpsApplication.Routers.Ingredients extends Backbone.Router
     'items/:id/ingredients': 'index'
 
   initialize: (id) ->
-    @collection = new OpsApplication.Collections.Ingredients()
+    @collection = new OpsApplication.Collections.Ingredients(id: id)
     @collection.fetch()
 
   index: ->
