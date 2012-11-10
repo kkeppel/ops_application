@@ -5,6 +5,8 @@ class Item < ActiveRecord::Base
   has_and_belongs_to_many :ingredients
   has_many :allergens, :through => :ingredients
 
+  accepts_nested_attributes_for :ingredients
+
   attr_accessible :name, :description, :price, :hot, :allergen_free, :headcount,
                   :nb_time_used, :serving_instructions_id, :vendor_id, :vendor_profiles_id, :ingredient_ids
 

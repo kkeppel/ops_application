@@ -4,7 +4,6 @@ class OpsApplication.Views.ItemsIndex extends Backbone.View
 
   events:
     'submit #new_item': 'createItem'
-    'click .add_ingredients': 'loadIngredientsTemplate'
 
   initialize: ->
     @vendors = new OpsApplication.Collections.Vendors()
@@ -45,9 +44,3 @@ class OpsApplication.Views.ItemsIndex extends Backbone.View
       errors = $.parseJSON(response.responseText).errors
       for attribute, messages of errors
         alert "#{attribute} #{message}" for message in messages
-
-  loadIngredientsTemplate: (event) ->
-    console.log(event.target.id)
-    router = new OpsApplication.Routers.Ingredients()
-    router.navigate("items/#{event.target.id}/ingredients")
-

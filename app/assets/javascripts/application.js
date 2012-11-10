@@ -18,7 +18,7 @@
 //= require underscore
 //= require backbone
 //= require ops_application
-//= require backbone-relational
+//= require backbone-forms-bootstrap
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections

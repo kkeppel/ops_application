@@ -19,7 +19,12 @@ class IngredientsController < ApplicationController
     @item = Item.find([params[:item_id]])
     @ingredient = Ingredient.create(params[:ingredient])
 
-    respond_with(@item, @ingredient)
+    respond_to do |format|
+      format.json { render :json => [@ingredient, @item] }
+    end
+
+
+
   end
 
   def update
