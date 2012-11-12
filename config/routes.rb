@@ -12,12 +12,11 @@ OpsApplication::Application.routes.draw do
 
   resources :items do
     match '/ingredients/:id(.:format)' => 'ingredients#destroy', :via => :delete, :as => :remove_ingredient
-    resources :ingredients do
-      resources :allergens
-    end
-    collection do
-      get '/items/find_allergens?company_id=:id' => 'items#find_allergens'
-    end
+    resources :ingredients
+  end
+
+  resources :ingredients do
+    resources :allergens
   end
 
 

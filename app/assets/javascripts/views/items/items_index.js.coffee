@@ -17,7 +17,12 @@ class OpsApplication.Views.ItemsIndex extends Backbone.View
     this
 
   appendItem: (item) =>
-    view = new OpsApplication.Views.Item(model: item)
+    @filteredVendors = @vendors.filter (vendor) ->
+      v_id = parseInt(vendor.id)
+      i_id = parseInt(item.get('vendor_id'))
+      v_id == i_id
+    @vendors.reset(@filteredVendors)
+    view = new OpsApplication.Views.Item(model: item, vendor: @vendors)
     @$('#items_container').append(view.render().el)
 
   createItem: (event) ->

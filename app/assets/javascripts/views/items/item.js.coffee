@@ -6,5 +6,5 @@ class OpsApplication.Views.Item extends Backbone.View
     @model.on('change', @render)
 
   render: =>
-    $(@el).html(@template(item: @model))
+    $(@el).html(@template(item: @model, vendor: @vendor))
     this

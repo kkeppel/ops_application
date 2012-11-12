@@ -3,5 +3,5 @@
     Name: <%= @allergen.name %>
 <br/>
 
-<%= link_to 'Edit', edit_allergen_path(@allergen) %> |
-<%= link_to 'Back', allergens_path %>
+<%= link_to 'Edit', edit_ingredient_allergen_path(@ingredient, @allergen) %> |
+<%= link_to 'Back', ingredient_allergens_path(@ingredient) %>
