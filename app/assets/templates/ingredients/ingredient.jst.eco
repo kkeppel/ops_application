@@ -1,0 +1,2 @@
+<td><%= @ingredient.get('name') %></td>
+<td><%= @ingredient.get('description')%></td>

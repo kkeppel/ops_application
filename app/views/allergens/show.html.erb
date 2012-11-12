@@ -1,0 +1,7 @@
+<p id="notice"><%= notice %></p>
+
+    Name: <%= @allergen.name %>
+<br/>
+
+<%= link_to 'Edit', edit_ingredient_allergen_path(@ingredient, @allergen) %> |
+<%= link_to 'Back', ingredient_allergens_path(@ingredient) %>

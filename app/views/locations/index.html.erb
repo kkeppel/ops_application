@@ -7,8 +7,8 @@
     <th>Address2</th>
     <th>Floor</th>
     <th>City</th>
-    <th>Vendor profile</th>
-    <th>Client profile</th>
+    <th>Vendor</th>
+    <th>Company</th>
     <th></th>
     <th></th>
     <th></th>
@@ -20,9 +20,9 @@
     <td><%= location.address1 %></td>
     <td><%= location.address2 %></td>
     <td><%= location.floor %></td>
-    <td><%= location.city_id %></td>
-    <td><%= location.vendor_profile_id %></td>
-    <td><%= location.client_profile_id %></td>
+    <td><%= location.city.name unless location.city.nil? %></td>
+    <td><%= Vendor.find(location.vendor_id).name unless location.vendor_id.nil? %></td>
+    <td><%= Company.find(location.company_id).company_name unless location.company_id.nil? %></td>
     <td><%= link_to 'Show', location %></td>
     <td><%= link_to 'Edit', edit_location_path(location) %></td>
     <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -33,3 +33,5 @@
 <br />
 
 <%= link_to 'New Location', new_location_path %>
+<%= link_to 'Back', root_path %>
+

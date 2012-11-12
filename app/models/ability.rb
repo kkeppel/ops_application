@@ -7,6 +7,12 @@ class Ability
            can :manage, User
            can :manage, ClientProfile
            can :manage, VendorProfile
+           can :manage, Meal
+           can :manage, Item
+           can :manage, MealType
+         elsif user.role? :ops
+           can :manage, Meal
+           can :manage, Item
          end
 
     end

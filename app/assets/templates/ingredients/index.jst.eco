@@ -1,0 +1,25 @@
+<h1>Listing Ingredients</h1>
+<div id="col1" style="display:inline-block;float:left;width:50%;">
+  <form id="new_ingredient">
+    <label for="new_ingredient_name">Name</label>
+    <input type="text" name="name" id="new_ingredient_name">
+
+    <label for="new_ingredient_description">Description</label>
+    <textarea name="description" id="new_ingredient_description" style="height:50px"></textarea>
+
+		<br/>
+
+    <input type="submit" value="Add Ingredient">
+  </form>
+</div>
+
+<br/>
+
+<div id="col2" style="display:inline-block;float:left;width:50%">
+  <table id="ingredients">
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </table>
+</div>

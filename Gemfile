@@ -6,11 +6,13 @@ gem 'devise'
 gem 'cancan'
 gem 'jquery-rails'
 gem 'pry'
+gem 'backbone-on-rails'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'jquery-ui-rails'
 gem 'mysql2'
-
+gem 'backbone-on-rails'
+gem 'rails-backbone-forms'
 
 # Gems used only for assets and not required
 # in production environments by default.

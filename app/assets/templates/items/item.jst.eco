@@ -1,0 +1,15 @@
+<td><%= @item.get('name') %></td>
+<td><%= @item.get('description')%></td>
+<td>
+  <% if @item.get('hot') is true: %>
+    yes
+    <% else: %>
+    no
+  <% end %>
+</td>
+<td><%= @item.get('price') %></td>
+<%= console.log(@vendor) %>
+<td><%#= @vendor.models.get('vendor_name') %></td>
+<td>
+	<a href="/items/<%= @item.get('id') %>/ingredients">Add Ingredients</a>
+</td>

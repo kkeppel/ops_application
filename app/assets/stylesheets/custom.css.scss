@@ -38,6 +38,7 @@ section {
 
 textarea {
   resize: vertical;
+  height: 100px;
 }
 
 .center {
@@ -100,4 +101,8 @@ table#edit tr:hover td i.icon-pencil {
   margin-right:-15px;
   margin-top: 5px;
   padding-right: 5px;
+}
+
+.radio-button label input{
+  display:inline-block;
 }

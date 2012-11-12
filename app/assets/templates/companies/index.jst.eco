@@ -1,0 +1,26 @@
+Company:
+<select id="company_select">
+	<% for company in @companies.models: %>
+		<option id="company_option" value="<%= company.get('id') %>">
+		  <%= company.get('company_name') %>
+		</option>
+	<% end %>
+</select>
+
+<br/>
+Date:
+<input type="text" id="datepicker">
+<br/>
+
+<br/>
+Vendor:
+<select id="vendor_select">
+  <% for vendor in @vendors.models || @vendors: %>
+    <option id="vendor_option" value="<%= vendor.get('id') %>">
+      <%= vendor.get('name') %>
+    </option>
+  <% end %>
+</select>
+
+
+

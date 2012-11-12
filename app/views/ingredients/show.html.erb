@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+
+    <br/>
+    Name: <%= @ingredient.name %>
+    <br/>
+    Description: <%= @ingredient.description %>
+
+<%= link_to 'Edit', edit_item_ingredient_path(@item, @ingredient) %> |
+<%= link_to 'Back', item_ingredients_path(@item) %>

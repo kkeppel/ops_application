@@ -1,0 +1,66 @@
+<%= form_for(@item) do |f| %>
+  <% if @item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+      <% @item.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+    <div class="field">
+      <%= f.label :description %>
+      <%= f.text_area :description %>
+    </div>
+
+    <div class="field">
+      <%= f.label :price %>
+      <%= f.text_field :price %>
+    </div>
+
+		    <div class="control-group radio_buttons optional">
+			    <label class="radio_buttons control-label inline">Hot</label>
+			    <div class="controls">
+				      <%= f.label :hot, "Yes", :class=>"radio inline" %>
+				      <%= f.radio_button :hot, true, :class=>"radio_buttons" %>
+				      <%= f.label :hot, "No", :class=> "radio inline" %>
+				      <%= f.radio_button :hot, false, :class=>"radio_buttons" %>
+			    </div>
+
+	    </div>
+
+    <div class="field">
+      <%= f.label :headcount %>
+      <%= f.number_field :headcount %>
+    </div>
+
+    <div class="field">
+      <%= f.label :nb_time_used %>
+      <%= f.number_field :nb_time_used %>
+    </div>
+
+    <div class="field">
+      <%= f.label :vendor_id %>
+      <%= f.select :vendor_id, Vendor.all.collect {|v| [v.name, v.id]}  %>
+    </div>
+
+	<div class="field">
+		<%= f.label :ingredient_ids %>
+		<%= f.collection_select :ingredient_ids, @ingredients, :id, :name, {}, :multiple => true %>
+	</div>
+
+    <%= f.hidden_field :serving_instructions_id, :value => 2 %>
+    <%= f.hidden_field :vendor_profiles_id, :value => 2 %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

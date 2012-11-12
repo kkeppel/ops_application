@@ -22,17 +22,17 @@
 
 <p>
   <b>City:</b>
-  <%= @location.city_id %>
+  <%= @location.city.name %>
 </p>
 
 <p>
-  <b>Vendor profile:</b>
-  <%= @location.vendor_profile_id %>
+  <b>Vendor:</b>
+  <%= @location.vendor.name unless @location.vendor.nil? %>
 </p>
 
 <p>
-  <b>Client profile:</b>
-  <%= @location.client_profile_id %>
+  <b>Company:</b>
+  <%= @location.company.company_name unless @location.company.nil? %>
 </p>
 
 

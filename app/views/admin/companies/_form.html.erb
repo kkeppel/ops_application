@@ -50,6 +50,33 @@
       <%= collection_select :city, :city_id, City.all, :id, :name  %>
     </div>
   <% end %>
+    <h2>Company profile info</h2>
+    <% if @company_profile_keys %>
+        <% @company_profile_keys.each do |key| %>
+            <div class="field" id="company_<%= key.key %>">
+              <% values = @company_profile.where(key: key.key) %>
+              <% i = 0 %>
+              <% values.each do |value| %>
+                  <input type="text" id="company_<%= key.key %>_<%= i %>" name="company[<%= key.key %>][<%= i %>]" size="30" value="<%= value.value && value.key == key.key ? value.value : '' %>"/>
+                  <input type="button" value="Remove <%= key.key.humanize.singularize %>" id="remove_<%= key.key %>_<%= i %>" />
+                  <% i += 1 %>
+              <% end %>
+              <input type="button" value="Add Another <%= key.key.humanize.singularize %>" class="add_<%= key.key %>_field"/>
+            </div>
+        <% end %>
+    <% else %>
+        <% CompanyProfile::KEYS.each do |key| %>
+            <div class="field" id="company_<%= key.to_s %>">
+              <% i = 0 %>
+              <%= key.to_s.humanize.singularize %>
+              <input type="text" id="company_<%= key.to_s %>_<%= i %>" name="company[<%= key.to_s %>][<%= i %>]" size="30" value=""/>
+              <input type="button" value="Remove" id="remove_<%= key.to_s %>_<%= i %>" />
+              <% i += 1 %>
+              <input type="button" value="Add Another <%= key.to_s.humanize.singularize %>" class="add_<%= key %>_field"/>
+            </div>
+        <% end %>
+    <% end %>
+    <br/>
   <div class="actions">
     <%= f.submit "Create Company", class: "btn btn-primary"%>
   </div>

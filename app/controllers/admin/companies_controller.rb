@@ -1,20 +1,21 @@
 class Admin::CompaniesController < ApplicationController
+  respond_to :html, :json
   # GET /companies
   # GET /companies.json
-  def index
-    @companies = Company.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @companies }
-    end
+
+  def index
+    respond_with(@companies = Company.all)
   end
 
   # GET /companies/1
   # GET /companies/1.json
   def show
     @company = Company.find(params[:id])
-        respond_to do |format|
+    @company_profile = CompanyProfile.where(company_id: params[:id])
+    @company_profile_keys = @company_profile.group('company_profiles.key')
+
+    respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @company }
     end
@@ -25,6 +26,7 @@ class Admin::CompaniesController < ApplicationController
   def new
     @company = Company.new
     @company.locations.build
+    @company_profile_keys = @company_profile.group('company_profiles.key')
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @company }
@@ -34,6 +36,9 @@ class Admin::CompaniesController < ApplicationController
   # GET /companies/1/edit
   def edit
     @company = Company.find(params[:id])
+    @company_profile = CompanyProfile.where(company_id: params[:id])
+    @company_profile_keys = @company_profile.group('company_profiles.key')
+
   end
 
   # POST /companies
@@ -41,8 +46,12 @@ class Admin::CompaniesController < ApplicationController
   def create
     @company = Company.new(params[:company])
 
+
     respond_to do |format|
       if @company.save
+        #update key value table
+        @company.update_profile(params)
+        CompanyProfile.delete_all(:value => :value.is_a?(Hash))
         format.html { redirect_to admin_company_path(@company), notice: 'Company was successfully created.' }
         format.json { render json: @company, status: :created, location: @company }
       else
@@ -58,7 +67,9 @@ class Admin::CompaniesController < ApplicationController
     @company = Company.find(params[:id])
 
     respond_to do |format|
-      if @company.update_attributes(params[:company])
+      if @company.update_attributes(params[:company].except(:allergies, :favorite_foods))
+        #update key value table
+        @company.update_profile(params)
         format.html { redirect_to admin_company_path(@company), notice: 'Company was successfully updated.' }
         format.json { head :no_content }
       else
@@ -79,4 +90,6 @@ class Admin::CompaniesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
 end

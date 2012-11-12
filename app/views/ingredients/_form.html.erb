@@ -1,0 +1,42 @@
+<h2>for <%= @item.name %></h2>
+
+<%= form_for(@ingredient, :url => item_ingredients_path(@item.id), :method => "POST") do |f| %>
+  <% if @ingredient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ingredient.errors.count, "error") %> prohibited this ingredient from being saved:</h2>
+
+      <ul>
+      <% @ingredient.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :description %><br />
+      <%= f.text_field :description %>
+    </div>
+
+    <div class="field">
+	    <label for="allergens_bool">Allergens?</label>
+      <input type="checkbox" id="allergens_bool" />
+    </div>
+
+    <div class="field" id="allergen_dropdown" style="display:none">
+      <%= f.label :allergen_ids %>
+      <%= f.collection_select :allergen_ids, Allergen.all, :id, :name, {}, :multiple => true %>
+    </div>
+
+	<br/>
+  <%= hidden_field_tag :item_id, params[:item_id] %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+

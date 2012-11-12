@@ -1,0 +1,1 @@
+class OpsApplication.Routers.IngredientsItems extends Backbone.Router

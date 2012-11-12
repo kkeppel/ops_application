@@ -10,6 +10,8 @@ class DashboardController < Devise::SessionsController
       else
         redirect_to :action => "staff_dashboard"
       end
+    else
+      redirect_to :controller => "static_pages", :action => "home"
     end
   end
 
@@ -23,7 +25,9 @@ class DashboardController < Devise::SessionsController
   end
 
   def staff_dashboard
-
+    @autocomplete_items = Company.all
+    @meal_types = MealType.all
+    @vendors = Vendor.all
   end
 
 

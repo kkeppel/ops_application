@@ -25,5 +25,15 @@
   <%= collection_select @company, :location , @company.locations, :id, :name %>
 </p>
 
+<p>
+<% @company_profile_keys.each do |k| %>
+    <b><%= k.key %></b>
+    <% @company_profile.each do |profile| %>
+        <%= profile.value if profile.key == k.key  %>
+    <% end %>
+
+<% end %>
+</p>
+
 <%= link_to 'Edit', edit_admin_company_path(@company), :class => "btn"  %> |
 <%= link_to 'Back', admin_companies_path, :class => "btn" %>

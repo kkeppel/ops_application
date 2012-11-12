@@ -1,7 +1,24 @@
 OpsApplication::Application.routes.draw do
 
+  namespace :admin do resources :company_profiles end
 
-  resources :client_profiles
+  resources :meal_types
+
+  resources :orders
+
+  resources :menus
+
+  resources :meals
+
+  resources :items do
+    match '/ingredients/:id(.:format)' => 'ingredients#destroy', :via => :delete, :as => :remove_ingredient
+    resources :ingredients
+  end
+
+  resources :ingredients do
+    resources :allergens
+  end
+
 
   resources :vendor_profiles
 
@@ -9,9 +26,7 @@ OpsApplication::Application.routes.draw do
 
   resources :roles
 
-
-
-  devise_for :users do
+  devise_for :users, :controllers => {:registrations => "registrations"} do
     get "/" => "dashboard#index"
     get "/staff_dashboard" => "dashboard#staff_dashboard"
     get "/vendor_dashboard" => "dashboard#vendor_dashboard"
@@ -35,6 +50,8 @@ OpsApplication::Application.routes.draw do
       end
     end
   end
+
+  get "home" => "static_pages#home"
 
   root :to => "dashboard#index"
 

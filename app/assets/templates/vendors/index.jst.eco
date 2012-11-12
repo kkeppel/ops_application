@@ -1,0 +1,7 @@
+<select id="vendors_select">
+  <% for vendor in @vendors.models: %>
+    <option id='vendor_option' value="<%= vendor.get('id') %>">
+      <%= vendor.get('name') %>
+    </option>
+  <% end %>
+</select>
