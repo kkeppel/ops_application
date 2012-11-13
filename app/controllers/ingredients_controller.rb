@@ -2,7 +2,7 @@ class IngredientsController < ApplicationController
 
   def index
     @item = Item.find(params[:item_id])
-    @ingredients = Ingredient.all
+    @ingredients = @item.ingredients
 
     respond_to do |format|
       format.html # index.html.erb
@@ -48,6 +48,7 @@ class IngredientsController < ApplicationController
 
     respond_to do |format|
       if @ingredient.save
+        IngredientsItems.create({item_id: params[:item_id], ingredient_id: @ingredient.id})
         format.html { redirect_to item_ingredient_url(@item, @ingredient), notice: 'Ingredient was successfully created.' }
         format.json { render json: @ingredient, status: :created, ingredient: @ingredient }
       else
