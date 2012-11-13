@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121003214946) do
+ActiveRecord::Schema.define(:version => 20121017183512) do
+
+  create_table "allergens", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "cities", :force => true do |t|
     t.string  "name"
@@ -42,10 +48,46 @@ ActiveRecord::Schema.define(:version => 20121003214946) do
     t.text     "value2"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "user_id",    :null => false
+    t.integer  "company_id", :null => false
   end
 
-  add_index "company_profiles", ["user_id"], :name => "index_client_profiles_on_user_id"
+  add_index "company_profiles", ["company_id"], :name => "index_client_profiles_on_user_id"
+
+  create_table "ingredients", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "ingredients_allergens", :force => true do |t|
+    t.integer "ingredients_id"
+    t.integer "allergens_id"
+  end
+
+  create_table "items", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.float    "price"
+    t.boolean  "hot"
+    t.boolean  "allergen_free"
+    t.integer  "headcount"
+    t.integer  "nb_time_used"
+    t.integer  "serving_instructions_id", :null => false
+    t.integer  "vendor_profiles_id",      :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.integer  "vendor_id",               :null => false
+  end
+
+  add_index "items", ["serving_instructions_id"], :name => "index_items_on_serving_instructions_id"
+  add_index "items", ["vendor_id"], :name => "index_items_on_vendor_id"
+  add_index "items", ["vendor_profiles_id"], :name => "index_items_on_vendor_profiles_id"
+
+  create_table "items_ingredients", :force => true do |t|
+    t.integer "item_id"
+    t.integer "ingredient_id"
+  end
 
   create_table "locations", :force => true do |t|
     t.string   "name"
@@ -62,6 +104,63 @@ ActiveRecord::Schema.define(:version => 20121003214946) do
   add_index "locations", ["city_id"], :name => "index_locations_on_city_id"
   add_index "locations", ["company_id"], :name => "index_locations_on_client_profile_id"
   add_index "locations", ["vendor_id"], :name => "index_locations_on_vendor_profile_id"
+
+  create_table "meal_types", :force => true do |t|
+    t.string   "meal_type"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "meals", :force => true do |t|
+    t.string   "name"
+    t.integer  "headcount"
+    t.float    "max_price"
+    t.string   "serving_time"
+    t.boolean  "active",             :default => true,  :null => false
+    t.boolean  "private"
+    t.boolean  "default",            :default => false, :null => false
+    t.integer  "location_id",                           :null => false
+    t.integer  "company_profile_id",                    :null => false
+    t.integer  "meal_type_id",                          :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.integer  "company_id"
+  end
+
+  add_index "meals", ["company_profile_id"], :name => "index_meals_on_client_profile_id"
+  add_index "meals", ["location_id"], :name => "index_meals_on_location_id"
+  add_index "meals", ["meal_type_id"], :name => "index_meals_on_meal_type_id"
+
+  create_table "menus", :force => true do |t|
+    t.integer  "headcount"
+    t.float    "total"
+    t.float    "total_per_head"
+    t.integer  "food_category_id"
+    t.integer  "vendor_profile_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "menus_items", :force => true do |t|
+    t.integer "menu_id"
+    t.integer "item_id"
+    t.integer "quantity"
+  end
+
+  create_table "orders", :force => true do |t|
+    t.string   "name"
+    t.string   "tip"
+    t.integer  "meal_id"
+    t.integer  "company_id"
+    t.integer  "location_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "orders", ["company_id"], :name => "index_orders_on_company_id"
+  add_index "orders", ["location_id"], :name => "index_orders_on_location_id"
+  add_index "orders", ["meal_id"], :name => "index_orders_on_meal_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
