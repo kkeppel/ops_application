@@ -14,6 +14,8 @@ class Admin::VendorsController < ApplicationController
   # GET /vendors/1.json
   def show
     @vendor = Vendor.find(params[:id])
+    @vendor_profile = VendorProfile.where(vendor_id: params[:id])
+    @vendor_profile_keys = @vendor_profile.group('vendor_profiles.key')
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +27,8 @@ class Admin::VendorsController < ApplicationController
   # GET /vendors/new.json
   def new
     @vendor = Vendor.new
+    @vendor_profile = VendorProfile.where(vendor_id: params[:id])
+    @vendor_profile_keys = @vendor_profile.group('vendor_profiles.key')
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +39,8 @@ class Admin::VendorsController < ApplicationController
   # GET /vendors/1/edit
   def edit
     @vendor = Vendor.find(params[:id])
+    @vendor_profile = VendorProfile.where(vendor_id: params[:id])
+    @vendor_profile_keys = @vendor_profile.group('vendor_profiles.key')
   end
 
   # POST /vendors
@@ -44,6 +50,8 @@ class Admin::VendorsController < ApplicationController
 
     respond_to do |format|
       if @vendor.save
+        @vendor.update_profile(params)
+        VendorProfile.delete_all("value LIKE '%=>%' or vendor_id = 0")
         format.html { redirect_to admin_vendors_path, notice: 'Vendor was successfully created.' }
         format.json { render json: @vendor, status: :created, location: @vendor }
       else
@@ -60,6 +68,10 @@ class Admin::VendorsController < ApplicationController
 
     respond_to do |format|
       if @vendor.update_attributes(params[:vendor])
+        VendorProfile.delete_all(vendor_id: @vendor.id)
+        #update key value table
+        @vendor.update_profile(params)
+        VendorProfile.delete_all("value LIKE '%=>%' or vendor_id = 0")
         format.html { redirect_to admin_vendor_path(@vendor), notice: 'Vendor was successfully updated.' }
         format.json { head :no_content }
       else

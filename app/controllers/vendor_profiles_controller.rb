@@ -1,3 +1,0 @@
-class VendorProfilesController < ApplicationController
-
-end

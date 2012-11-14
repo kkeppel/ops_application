@@ -63,7 +63,7 @@
               <% i = 0 %>
               <% values.each do |value| %>
                   <input type="text" id="company_<%= key.key %>_<%= i %>" name="company[<%= key.key %>][<%= i %>]" size="30" value="<%= value.value && value.key == key.key ? value.value : '' %>"/>
-                  <input type="button" value="Remove <%= key.key.humanize.singularize %>" id="remove_<%= key.key %>_<%= i %>" />
+                  <input type="button" value="Remove <%= key.key.humanize.singularize %>" id="remove_<%= key.key %>_<%= i %>" onclick="$('#company_<%= key.key %>_<%= i %>').remove();$('#remove_<%= key.key %>_<%= i %>').remove();"/>
                   <% i += 1 %>
               <% end %>
               <input type="button" value="Add Another <%= key.key.humanize.singularize %>" class="add_<%= key.key %>_field"/>
