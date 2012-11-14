@@ -1,10 +1,66 @@
 class Vendor < ActiveRecord::Base
 
-  belongs_to :vendor_profile
+  has_many :vendor_profiles, :foreign_key => :vendor_id
   has_many :items
 
-  attr_accessible :bio, :name, :public_name, :tagline, :vendor_type, :website
+  attr_accessible :bio, :name, :public_name, :tagline, :vendor_type, :website, :vendor_id,
+                  :preferences
 
-  #default_scope where(:is_client => 0, :is_vendor => 1)
+
+  VendorProfile::KEYS.each{|k|
+    define_method("#{k}_obj") {
+      values = vendor_profiles.where(:key => k)
+      if VendorProfile::MULTIVALUE_KEYS.include?(k)
+        values
+      else
+        instance_variable_get("@#{k}_obj").blank? ? values.first : instance_variable_get("@#{k}_obj")
+      end
+    }
+    define_method(k) {
+      values = vendor_profiles.where(:key => k)
+      if VendorProfile::MULTIVALUE_KEYS.include?(k)
+        values.map(&:value)
+      else
+        instance_variable_get("@#{k}").nil? ? (values.first.try(:value) || '') : instance_variable_get("@#{k}")
+      end
+    }
+    define_method("#{k}=") {|parameter|
+      #vendor_profiles.delete(vendor_profiles.where(:key => k))
+      instance_variable_set("@#{k}", parameter)
+      unless parameter.blank?
+        profile_record = vendor_profiles.build(:key => k, :value => parameter.try(:to_s).try(:strip), :vendor_id => id)
+        profile_record.save unless new_record?
+      end
+    }
+  }
+  VendorProfile::KEYS.each{|k|
+    define_method("add_#{k}") {|parameter, value_2 = nil, id|
+      profile_record = vendor_profiles.build(:key => k, :value => parameter.try(:to_s).try(:strip), :value2 => value_2.try(:to_s).try(:strip), :vendor_id => id)
+      profile_record.save unless new_record?
+    }
+  }
+
+
+  def update_profile(params, vendor_id = nil)
+    params['vendor'].try(:each){|key, value|
+      key = key.to_sym
+      if VendorProfile::KEYS.include?(key)
+        if value.is_a?(Array)
+          #vendor_profiles.delete(vendor_profiles.where(:key => key))
+          value.each{|v|
+            send("add_#{key}", v, vendor_id) unless v.blank?
+            send("add_#{key}", v, vendor_id) unless v.blank?
+          }
+        elsif value.is_a?(Hash)
+          #vendor_profiles.delete(vendor_profiles.where(:key => key))
+          value.each_with_index{|v,i|
+            send("add_#{key}", v[1], value.try(:[],i), vendor_id) unless v.blank?
+          }
+        else
+          send("#{key}=", value, params[:id])
+        end
+      end
+    }
+  end
 
 end

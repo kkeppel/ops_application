@@ -8,8 +8,8 @@
   <% end %>
 </td>
 <td><%= @item.get('price') %></td>
-<%= console.log(@vendor) %>
-<td><%#= @vendor.models.get('vendor_name') %></td>
+<%= console.log(@vendor.attributes[0].get('name')) %>
+<td><%= @vendor.attributes[0].get('name') %></td>
 <td>
 	<a href="/items/<%= @item.get('id') %>/ingredients">Add Ingredients</a>
 </td>

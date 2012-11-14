@@ -30,6 +30,15 @@
   <%= @vendor.vendor_type %>
 </p>
 
+<p>
+  <% @vendor_profile_keys.each do |k| %>
+    <b><%= k.key %></b>
+    <% @vendor_profile.each do |profile| %>
+      <%= profile.value if profile.key == k.key  %>
+    <% end %>
+  <% end %>
+</p>
+
 
 <%= link_to 'Edit', edit_admin_vendor_path(@vendor) %> |
 <%= link_to 'Back', admin_vendors_path %>

@@ -17,4 +17,4 @@
 
 <br />
 
-<%= link_to 'New Allergen', new_ingredient_allergen_path(@ingredient) %> | <%= link_to 'Back', root_path %>
+<%= link_to 'New Allergen', new_ingredient_allergen_path(@ingredient) %> | <%= link_to 'Back', item_ingredient_path(@item.item_id, @ingredient) %>

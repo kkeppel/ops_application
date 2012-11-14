@@ -26,6 +26,7 @@ class Admin::CompaniesController < ApplicationController
   def new
     @company = Company.new
     @company.locations.build
+    @company_profile = CompanyProfile.where(company_id: params[:id])
     @company_profile_keys = @company_profile.group('company_profiles.key')
     respond_to do |format|
       format.html # new.html.erb
@@ -46,12 +47,11 @@ class Admin::CompaniesController < ApplicationController
   def create
     @company = Company.new(params[:company])
 
-
     respond_to do |format|
       if @company.save
         #update key value table
         @company.update_profile(params)
-        CompanyProfile.delete_all(:value => :value.is_a?(Hash))
+        CompanyProfile.delete_all("value LIKE '%=>%' or company_id = 0")
         format.html { redirect_to admin_company_path(@company), notice: 'Company was successfully created.' }
         format.json { render json: @company, status: :created, location: @company }
       else
@@ -68,8 +68,10 @@ class Admin::CompaniesController < ApplicationController
 
     respond_to do |format|
       if @company.update_attributes(params[:company].except(:allergies, :favorite_foods))
+        CompanyProfile.delete_all(company_id: @company.id)
         #update key value table
         @company.update_profile(params)
+        CompanyProfile.delete_all("value LIKE '%=>%' or company_id = 0")
         format.html { redirect_to admin_company_path(@company), notice: 'Company was successfully updated.' }
         format.json { head :no_content }
       else

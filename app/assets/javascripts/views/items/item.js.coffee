@@ -6,5 +6,12 @@ class OpsApplication.Views.Item extends Backbone.View
     @model.on('change', @render)
 
   render: =>
-    $(@el).html(@template(item: @model, vendor: @vendor))
+    item = @model
+    vendors = @options.vendors
+    @filter = vendors.filter (vendor) ->
+      v_id = parseInt(vendor.id)
+      i_id = item.get('vendor_id')
+      v_id == i_id
+    vendor = new OpsApplication.Models.Vendor(@filter)
+    $(@el).html(@template(item: @model, vendor: vendor))
     this

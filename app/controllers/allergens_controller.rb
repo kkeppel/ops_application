@@ -3,6 +3,8 @@ class AllergensController < ApplicationController
   # GET /allergens.json
   def index
     @ingredient = Ingredient.find(params[:ingredient_id])
+    @item = IngredientsItems.where(ingredient_id: @ingredient.id).group(:item_id).first
+    #@item = @ingredient.item
     @allergens = Allergen.all
 
     respond_to do |format|
