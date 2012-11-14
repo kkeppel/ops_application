@@ -6,23 +6,16 @@ class OpsApplication.Views.ItemsIndex extends Backbone.View
     'submit #new_item': 'createItem'
 
   initialize: ->
-    @vendors = new OpsApplication.Collections.Vendors()
-    @vendors.fetch()
     @collection.on('reset', @render)
     @collection.on('add', @appendItem)
 
   render: =>
-    $(@el).html(@template(vendors: @vendors))
+    $(@el).html(@template(vendors: @options.vendors))
     @collection.each(@appendItem)
     this
 
   appendItem: (item) =>
-    @filteredVendors = @vendors.filter (vendor) ->
-      v_id = parseInt(vendor.id)
-      i_id = parseInt(item.get('vendor_id'))
-      v_id == i_id
-    @vendors.reset(@filteredVendors)
-    view = new OpsApplication.Views.Item(model: item, vendor: @vendors)
+    view = new OpsApplication.Views.Item(model: item, vendors: @options.vendors)
     @$('#items_container').append(view.render().el)
 
   createItem: (event) ->
