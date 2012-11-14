@@ -39,12 +39,13 @@
   </div>
 
   <h2>Vendor profile info</h2>
-  <% if !@vendor_profile_keys.empty? %>
+  <% unless @vendor_profile_keys.empty? %>
     <% @vendor_profile_keys.each do |key| %>
       <div class="field" id="vendor_<%= key.key %>">
         <% values = @vendor_profile.where(key: key.key) %>
         <% i = 0 %>
         <% values.each do |value| %>
+	  <%= puts "\n\n\n\n value='#{value}'" %>
           <input type="text" id="vendor_<%= key.key %>_<%= i %>" name="vendor[<%= key.key %>][<%= i %>]" size="30" value="<%= value.value && value.key == key.key ? value.value : '' %>"/>
           <input type="button" value="Remove <%= key.key.humanize.singularize %>" id="remove_<%= key.key %>_<%= i %>" onclick="$('#vendor_<%= key.key %>_<%= i %>').remove();$('#remove_<%= key.key %>_<%= i %>').remove();"/>
           <% i += 1 %>

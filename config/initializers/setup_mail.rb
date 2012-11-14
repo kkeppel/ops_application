@@ -3,9 +3,9 @@ ActionMailer::Base.smtp_settings = {
     :port                 => 587,
     :domain               => "gmail.com",
     :user_name            => "kathy@cater2.me",
-    :password             => "c0dy-k1N5",
+    :password             => "bailey-k1N5",
     :authentication       => "plain",
     :enable_starttls_auto => true
 }
 
-ActionMailer::Base.default_url_options[:host] = "localhost:3000"
+# ActionMailer::Base.default_url_options[:host] = "localhost:3000"

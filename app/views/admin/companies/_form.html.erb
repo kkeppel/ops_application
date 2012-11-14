@@ -51,7 +51,7 @@
     </div>
   <% end %>
     <h2>Company profile info</h2>
-    <% unless @company_profile_keys.empty? %>
+    <% if @company_profile_keys %>
         <% @company_profile_keys.each do |key| %>
             <div class="field" id="company_<%= key.key %>">
               <% values = @company_profile.where(key: key.key) %>
