@@ -1,0 +1,2 @@
+module MealProfilesHelper
+end

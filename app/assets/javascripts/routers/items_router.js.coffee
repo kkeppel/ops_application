@@ -4,8 +4,7 @@ class OpsApplication.Routers.Items extends Backbone.Router
 
   initialize: ->
     @vendors = new OpsApplication.Collections.Vendors()
-    @vendors.fetch success: ->
-      console.log(@vendors)
+    @vendors.fetch()
     @collection = new OpsApplication.Collections.Items()
     @collection.fetch()
 

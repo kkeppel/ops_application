@@ -33,9 +33,6 @@
 		    <% end %>
 		  </select>
 
-		  <!--<label for="new_ingredient_ids">Ingredients</label>-->
-		  <!--<input type="text" name="ingredient_ids" id="new_ingredient_ids"/>-->
-
 		  <br/>
 
 		  <input type="submit" value="Add Item">

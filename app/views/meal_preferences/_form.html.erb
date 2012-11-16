@@ -1,0 +1,32 @@
+<%= form_for(@meal_preference) do |f| %>
+  <% if @meal_preference.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@meal_preference.errors.count, "error") %> prohibited this meal_preference from being saved:</h2>
+
+      <ul>
+      <% @meal_preference.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<div class="field">
+		<%= f.label :percentage %>
+		<%= f.text_field :percentage %>
+	</div>
+
+	<div class="field">
+		<%= f.label :meal_id, "Meal" %>
+		<%= f.collection_select :meal_id, Meal.all, :id, :name %>
+	</div>
+
+	<div class="field">
+		<%= f.label :ingredient_id, "Ingredient" %>
+		<%= f.collection_select :ingredient_id, Ingredient.all, :id, :name %>
+	</div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

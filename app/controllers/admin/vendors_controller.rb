@@ -1,6 +1,5 @@
 class Admin::VendorsController < ApplicationController
-  # GET /vendors
-  # GET /vendors.json
+
   def index
     @vendors = Vendor.all
 
@@ -10,8 +9,6 @@ class Admin::VendorsController < ApplicationController
     end
   end
 
-  # GET /vendors/1
-  # GET /vendors/1.json
   def show
     @vendor = Vendor.find(params[:id])
     @vendor_profile = VendorProfile.where(vendor_id: params[:id])
@@ -23,8 +20,6 @@ class Admin::VendorsController < ApplicationController
     end
   end
 
-  # GET /vendors/new
-  # GET /vendors/new.json
   def new
     @vendor = Vendor.new
     @vendor_profile = VendorProfile.where(vendor_id: params[:id])
@@ -36,15 +31,12 @@ class Admin::VendorsController < ApplicationController
     end
   end
 
-  # GET /vendors/1/edit
   def edit
     @vendor = Vendor.find(params[:id])
     @vendor_profile = VendorProfile.where(vendor_id: params[:id])
     @vendor_profile_keys = @vendor_profile.group('vendor_profiles.key')
   end
 
-  # POST /vendors
-  # POST /vendors.json
   def create
     @vendor = Vendor.new(params[:vendor])
 
@@ -61,15 +53,12 @@ class Admin::VendorsController < ApplicationController
     end
   end
 
-  # PUT /vendors/1
-  # PUT /vendors/1.json
   def update
     @vendor = Vendor.find(params[:id])
 
     respond_to do |format|
       if @vendor.update_attributes(params[:vendor])
         VendorProfile.delete_all(vendor_id: @vendor.id)
-        #update key value table
         @vendor.update_profile(params)
         VendorProfile.delete_all("value LIKE '%=>%' or vendor_id = 0")
         format.html { redirect_to admin_vendor_path(@vendor), notice: 'Vendor was successfully updated.' }
@@ -81,8 +70,6 @@ class Admin::VendorsController < ApplicationController
     end
   end
 
-  # DELETE /vendors/1
-  # DELETE /vendors/1.json
   def destroy
     @vendor = Vendor.find(params[:id])
     @vendor.destroy

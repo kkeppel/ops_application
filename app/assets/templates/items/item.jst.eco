@@ -1,15 +1,29 @@
-<td><%= @item.get('name') %></td>
-<td><%= @item.get('description')%></td>
-<td>
+<td contenteditable="true" id="edit_name"><%= @item.get('name') %></td>
+<td contenteditable="true" id="edit_description"><%= @item.get('description')%></td>
+<td contenteditable="true" id="edit_temp">
   <% if @item.get('hot') is true: %>
     yes
     <% else: %>
     no
   <% end %>
 </td>
-<td><%= @item.get('price') %></td>
-<%= console.log(@vendor.attributes[0].get('name')) %>
-<td><%= @vendor.attributes[0].get('name') %></td>
+<td contenteditable="true" id="edit_price"><%= @item.get('price') %></td>
+<td id="edit_vendor" >
+	<select id="edit_vendor_select" style="width:100px">
+	  <% for vendor in @vendors.models: %>
+			<%= console.log("rendered!!!") %>
+	    <option name="vendor_option" id="edit_vendor_option" value="<%= vendor.get('id') %>" <%= 'selected=selected' if vendor.get('id') == @item.get('vendor_id') %>>
+	      <%= vendor.get('name') %>
+	    </option>
+	  <% end %>
+	</select>
+</td>
 <td>
 	<a href="/items/<%= @item.get('id') %>/ingredients">Add Ingredients</a>
+</td>
+<td>
+	<a id="destroy_item" href="#">Delete Item</a>
+</td>
+<td>
+	<a id="save_changes" href="#">Save Changes</a>
 </td>

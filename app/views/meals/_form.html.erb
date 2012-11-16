@@ -11,57 +11,88 @@
     </div>
   <% end %>
 
-    <div class="field">
-      <%= f.label :name %><br />
-      <%= f.text_field :name %>
-    </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
 
-    <div class="field">
-      <%= f.label :headcount %><br />
-      <%= f.number_field :headcount %>
-    </div>
+  <div class="field">
+    <%= f.label :headcount %><br />
+    <%= f.number_field :headcount %>
+  </div>
 
-    <div class="field">
-      <%= f.label :max_price %><br />
-      <%= f.text_field :max_price %>
-    </div>
+  <div class="field">
+    <%= f.label :max_price %><br />
+    <%= f.text_field :max_price %>
+  </div>
 
-    <div class="field">
-      <%= f.label :serving_time %><br />
-      <%= f.number_field :serving_time %>
-    </div>
+  <div class="field">
+    <%= f.label :serving_time %><br />
+    <%= f.number_field :serving_time %>
+  </div>
 
-    <div class="field">
-      <%= f.label :active %><br />
-      <%= f.radio_button :active, "yes" %>
-      <%= f.radio_button :active, "no" %>
-    </div>
+  <div class="field">
+    <%= f.label :active %><br />
+    <%= f.radio_button :active, "yes" %>
+    <%= f.radio_button :active, "no" %>
+  </div>
 
-    <div class="field">
-      <%= f.label :private %><br />
-      <%= f.radio_button :private, "yes" %>
-      <%= f.radio_button :private, "no" %>
-    </div>
+  <div class="field">
+    <%= f.label :private %><br />
+    <%= f.radio_button :private, "yes" %>
+    <%= f.radio_button :private, "no" %>
+  </div>
 
-    <div class="field">
-      <%= f.label :default %><br />
-      <%= f.radio_button :default, "yes" %>
-      <%= f.radio_button :default, "no" %>
-    </div>
+  <div class="field">
+    <%= f.label :default %><br />
+    <%= f.radio_button :default, "yes" %>
+    <%= f.radio_button :default, "no" %>
+  </div>
 
-    <div class="field">
-      <%= f.label :location_id %><br />
-      <%= f.collection_select :location_id, Location.all, :id, :name %>
-    </div>
+  <div class="field">
+    <%= f.label :location_id %><br />
+    <%= f.collection_select :location_id, Location.all, :id, :name %>
+  </div>
 
-    <div class="field">
-      <%= f.label :company_id %><br />
-      <%= f.collection_select :company_id, Company.all, :id, :company_name %>
-    </div>
+  <div class="field">
+    <%= f.label :meal_type_id %><br />
+    <%= f.collection_select :meal_type_id, MealType.all, :id, :meal_type %>
+  </div>
 
-    <%= f.hidden_field :company_profile_id, :value => 2 %>
-    <%= f.hidden_field :meal_type_id, :value => 2 %>
+  <div class="field">
+    <%= f.label :company_id %><br />
+    <%= f.collection_select :company_id, Company.all, :id, :company_name %>
+  </div>
 
+  <%= f.hidden_field :company_profile_id, :value => 2 %>
+
+  <h2>Meal profile info</h2>
+  <% unless @meal_profile_keys.empty? %>
+    <% @meal_profile_keys.each do |key| %>
+      <div class="field" id="meal_<%= key.key %>">
+        <% values = @meal_profile.where(key: key.key) %>
+        <% i = 0 %>
+        <% values.each do |value| %>
+          <input type="text" id="meal_<%= key.key %>_<%= i %>" name="meal[<%= key.key %>][<%= i %>]" size="30" value="<%= value.value && value.key == key.key ? value.value : '' %>"/>
+          <input type="button" value="Remove <%= key.key.humanize.singularize %>" id="remove_<%= key.key %>_<%= i %>" />
+          <% i += 1 %>
+        <% end %>
+        <input type="button" value="Add Another <%= key.key.humanize.singularize %>" class="add_<%= key.key %>_field"/>
+      </div>
+    <% end %>
+  <% else %>
+    <% MealProfile::KEYS.each do |key| %>
+      <div class="field" id="meal_<%= key.to_s %>">
+        <% i = 0 %>
+        <%= key.to_s.humanize.singularize %>
+        <input type="text" id="meal_<%= key.to_s %>_<%= i %>" name="meal[<%= key.to_s %>][<%= i %>]" size="30" value=""/>
+        <input type="button" value="Remove" id="remove_<%= key.to_s %>_<%= i %>" />
+        <% i += 1 %>
+        <input type="button" value="Add Another <%= key.to_s.humanize.singularize %>" class="add_<%= key %>_field"/>
+      </div>
+    <% end %>
+  <% end %>
+  <br/>
 
   <div class="actions">
     <%= f.submit %>

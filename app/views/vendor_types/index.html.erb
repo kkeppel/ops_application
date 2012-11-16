@@ -1,0 +1,22 @@
+<h1>Listing vendor_types</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+
+<% @vendor_types.each do |vendor_type| %>
+  <tr>
+	  <td><%= vendor_type.name %></td>
+	  <td><%= vendor_type.description %></td>
+    <td><%= link_to 'Show', vendor_type %></td>
+    <td><%= link_to 'Edit', edit_vendor_type_path(vendor_type) %></td>
+    <td><%= link_to 'Destroy', vendor_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Vendor type', new_vendor_type_path %>

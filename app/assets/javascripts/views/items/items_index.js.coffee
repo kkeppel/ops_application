@@ -8,6 +8,7 @@ class OpsApplication.Views.ItemsIndex extends Backbone.View
   initialize: ->
     @collection.on('reset', @render)
     @collection.on('add', @appendItem)
+    @collection.on('remove', @render)
 
   render: =>
     $(@el).html(@template(vendors: @options.vendors))
