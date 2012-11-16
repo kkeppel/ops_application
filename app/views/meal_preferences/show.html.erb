@@ -1,5 +1,18 @@
 <p id="notice"><%= notice %></p>
 
+<table>
+  <tr>
+    <th>Percentage</th>
+    <th>Meal</th>
+    <th>Ingredient</th>
+  </tr>
+
+  <tr>
+    <td><%= @meal_preference.percentage %></td>
+    <td><%= @meal_preference.meal.name %></td>
+    <td><%= @meal_preference.ingredient.name %></td>
+  </tr>
+</table>
 
 <%= link_to 'Edit', edit_meal_preference_path(@meal_preference) %> |
 <%= link_to 'Back', meal_preferences_path %>
