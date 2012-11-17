@@ -1,6 +1,4 @@
 class OpsApplication.Routers.Companies extends Backbone.Router
-  routes:
-    'staff_dashboard': 'index'
 
   initialize: ->
     @collection = new OpsApplication.Collections.Companies()

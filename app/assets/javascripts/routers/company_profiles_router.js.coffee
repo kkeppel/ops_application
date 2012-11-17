@@ -1,0 +1,1 @@
+class OpsApplication.Routers.CompanyProfiles extends Backbone.Router

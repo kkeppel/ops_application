@@ -2,10 +2,6 @@ OpsApplication::Application.routes.draw do
 
   resources :meal_preferences
 
-  resources :vendor_types
-
-  namespace :admin do resources :company_profiles end
-
   resources :meal_types
 
   resources :vendor_types
@@ -26,6 +22,8 @@ OpsApplication::Application.routes.draw do
   end
 
   resources :meal_profiles
+
+  resources :company_profiles
 
   resources :vendor_profiles
 
