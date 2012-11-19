@@ -1,4 +1,5 @@
 class DashboardController < Devise::SessionsController
+  before_filter :authenticate_user!
 
 
   def index

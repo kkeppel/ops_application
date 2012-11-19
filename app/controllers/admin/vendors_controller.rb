@@ -1,5 +1,6 @@
 class Admin::VendorsController < ApplicationController
 
+
   def index
     @vendors = Vendor.all
 

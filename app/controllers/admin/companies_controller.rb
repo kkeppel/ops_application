@@ -1,4 +1,5 @@
 class Admin::CompaniesController < ApplicationController
+
   respond_to :html, :json
   # GET /companies
   # GET /companies.json
