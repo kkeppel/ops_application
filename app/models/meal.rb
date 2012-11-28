@@ -1,9 +1,15 @@
 class Meal < ActiveRecord::Base
   has_many :meal_profiles, :foreign_key => :meal_id
-  has_one :meal_type
   has_one :meal_preference # I guess? Gotta read up on this.. doesn't really make sense...
+  has_and_belongs_to_many :allergens
+  belongs_to :location
+  belongs_to :meal_type
+  belongs_to :company
   attr_accessible :name, :headcount, :max_price, :serving_time, :active, :private, :default, :location_id,
-                  :company_profile_id, :meal_type_id, :company_id, :preferences
+                  :company_profile_id, :meal_type_id, :company_id, :allergen_ids,
+                  #meal_profile fields
+                  :meal_id, :contact_id, :default, :active, :scheduled, :day, :time, :vegetarians, :vegans, :kosher,
+                  :beverages, :utensils, :serving_trays, :paperware, :folding_tables, :tablecloths, :title
 
   MealProfile::KEYS.each{|k|
     define_method("#{k}_obj") {
@@ -45,14 +51,14 @@ class Meal < ActiveRecord::Base
         if value.is_a?(Array)
           value.each{|v|
             send("add_#{key}", v, meal_id) unless v.blank?
-            send("add_#{key}", v, meal_id) unless v.blank?
           }
         elsif value.is_a?(Hash)
           value.each_with_index{|v,i|
             send("add_#{key}", v[1], value.try(:[],i), meal_id) unless v.blank?
           }
         else
-          send("#{key}=", value, params[:id])
+          meal_profiles.where(:key => key).delete_all
+          send("#{key}=", value)
         end
       end
     }

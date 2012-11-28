@@ -48,7 +48,6 @@ class Vendor < ActiveRecord::Base
         if value.is_a?(Array)
           value.each{|v|
             send("add_#{key}", v, vendor_id) unless v.blank?
-            send("add_#{key}", v, vendor_id) unless v.blank?
           }
         elsif value.is_a?(Hash)
           value.each_with_index{|v,i|

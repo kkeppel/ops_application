@@ -1,3 +1,5 @@
 class Order < ActiveRecord::Base
-  # attr_accessible :title, :body
+  has_and_belongs_to_many :tags
+
+  attr_accessible :company_id, :vendor_id
 end

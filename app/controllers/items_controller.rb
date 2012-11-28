@@ -5,6 +5,13 @@ class ItemsController < ApplicationController
     respond_with(@items = Item.all)
   end
 
+  def get_items
+    @items = IngredientsItems.all
+    if request.xhr?
+      render :json => @items
+    end
+  end
+
   def show
     respond_with(@item = Item.find(params[:id]))
   end

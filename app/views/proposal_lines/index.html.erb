@@ -1,0 +1,21 @@
+<h1>Listing proposal_lines</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @proposal_lines.each do |proposal_line| %>
+  <tr>
+    <td><%= link_to 'Show', proposal_line %></td>
+    <td><%= link_to 'Edit', edit_proposal_line_path(proposal_line) %></td>
+    <td><%= link_to 'Destroy', proposal_line, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Proposal line', new_proposal_line_path %>

@@ -2,6 +2,8 @@ class Company < ActiveRecord::Base
 
   has_many :clients
   has_many :locations
+  has_many :meals
+  has_many :meal_profiles, :through => :meals
   has_many :company_profiles, :foreign_key => :company_id
 
   validates :company_name, :presence => true
@@ -67,6 +69,7 @@ class Company < ActiveRecord::Base
             send("add_#{key}", v[1], value.try(:[],i), company_id) unless v.blank?
           }
         else
+          company_profiles.delete(company_profiles.where(:key => key))
           send("#{key}=", value, params[:id])
         end
       end

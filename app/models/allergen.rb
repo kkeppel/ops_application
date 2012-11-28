@@ -1,8 +1,8 @@
 class Allergen < ActiveRecord::Base
 
   has_and_belongs_to_many :ingredients
-  belongs_to :meal
+  has_and_belongs_to_many :meals
 
-  attr_accessible :name
+  attr_accessible :name, :meal_ids
 
 end

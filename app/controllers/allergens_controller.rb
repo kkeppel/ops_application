@@ -1,15 +1,24 @@
 class AllergensController < ApplicationController
-  # GET /allergens
-  # GET /allergens.json
+  respond_to :html, :json
   def index
-    @ingredient = Ingredient.find(params[:ingredient_id])
-    @item = IngredientsItems.where(ingredient_id: @ingredient.id).group(:item_id).first
-    #@item = @ingredient.item
-    @allergens = Allergen.all
+    respond_with(
+      @ingredient ||= Ingredient.find(params[:ingredient_id]),
+      @allergens = @ingredient.allergens,
+      @item ||= IngredientsItems.where(ingredient_id: @ingredient.id).group(:item_id).first
+    )
+  end
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @allergens }
+  def get_allergens
+    @allergens = Allergen.all
+    if request.xhr?
+      render :json => @allergens
+    end
+  end
+
+  def get_ingredients
+    @ingredients = AllergensIngredients.all
+    if request.xhr?
+      render :json => @ingredients
     end
   end
 

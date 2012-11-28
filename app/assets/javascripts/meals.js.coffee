@@ -1,4 +1,19 @@
 $(document).ready ->
+  $("#meal_company_id").change ->
+    company_id = this.value
+    $.ajax
+      dataType: "json"
+      url: "/locations/for_company_id/" + company_id
+      timeout: 2000
+      success: (data) ->
+        $('select#meal_location_id option').remove()
+        row = "<option value=\"" + "" + "\">" + "" + "</option>"
+        $(row).appendTo("select#meal_location_id")
+        $.each data, (i, j) ->
+          row = "<option value=\"" + j.id + "\">" + j.name + "</option>"
+          $(row).appendTo "select#meal_location_id"
+
+
   $(".add_preferences_field").click ->
     divName = $(".add_preferences_field").parent().attr 'id'
     addTextField(divName)

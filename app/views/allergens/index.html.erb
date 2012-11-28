@@ -5,7 +5,7 @@
     <th>Name</th>
   </tr>
 
-<% @allergens.each do |allergen| %>
+<% @ingredients_allergens.each do |allergen| %>
   <tr>
     <td><%= allergen.name %></td>
     <td><%= link_to 'Show', ingredient_allergen_path(@ingredient, allergen) %></td>

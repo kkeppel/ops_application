@@ -1,23 +1,33 @@
-Company:
-<select id="company_select">
-  <% for company in @companies.models: %>
-    <option id="company_option" value="<%= company.get('id') %>">
-      <%= company.get('company_name') %>
-    </option>
-  <% end %>
-</select>
+<form id="new_order">
+	<label for="company_select" class="span2">Company: </label>
+	<select id="company_select">
+	  <% for company in @companies.models: %>
+	    <option id="company_option" value="<%= company.get('id') %>" class="new_company_id">
+	      <%= company.get('company_name') %>
+	    </option>
+	  <% end %>
+	</select>
 
-<br/>
-Date:
-<input type="text" id="datepicker">
+	<br/>
+
+	<!--Date:-->
+	<!--<input type="text" id="datepicker">-->
+
+	<!--<br/>-->
+
+	<label for="vendor_select" class="span2">Vendor: </label>
+	<select id="vendor_select">
+	  <% for vendor in @vendors.models || @vendors: %>
+	    <option id="vendor_option" value="<%= vendor.get('id') %>" class="new_vendor_id">
+	      <%= vendor.get('name') %>
+	    </option>
+	  <% end %>
+	</select>
+
+	<br/>
+
+	<input type="submit" value="Start New Order" id="create_order"/>
+</form>
 <br/>
 
-<br/>
-Vendor:
-<select id="vendor_select">
-  <% for vendor in @vendors.models || @vendors: %>
-    <option id="vendor_option" value="<%= vendor.get('id') %>">
-      <%= vendor.get('name') %>
-    </option>
-  <% end %>
-</select>
+<div id="orders_container"></div>

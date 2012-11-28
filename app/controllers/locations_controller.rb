@@ -1,6 +1,14 @@
 class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
+
+  def for_company_id
+    @locations = Location.where(company_id: params[:id])
+    respond_to do |format|
+      format.json { render json: @locations}
+    end
+  end
+
   def index
     @locations = Location.all
 

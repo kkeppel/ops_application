@@ -23,9 +23,9 @@
 	  <td><%= meal.active %></td>
 	  <td><%= meal.private %></td>
 	  <td><%= meal.default %></td>
-	  <td><%= meal.location_id %></td>
-	  <td><%= meal.meal_type_id %></td>
-	  <td><%= meal.company_id %></td>
+	  <td><%= meal.location.name %></td>
+	  <td><%= meal.meal_type.meal_type %></td>
+	  <td><%= meal.company.company_name %></td>
     <td><%= link_to 'Show', meal %></td>
     <td><%= link_to 'Edit', edit_meal_path(meal) %></td>
     <td><%= link_to 'Destroy', meal, method: :delete, data: { confirm: 'Are you sure?' } %></td>

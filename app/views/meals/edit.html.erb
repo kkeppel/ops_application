@@ -12,87 +12,112 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+  <div class="row">
+    <%= f.label :name, class: "span2" %>
+    <%= f.text_field :name, class: "span2" %>
   </div>
 
-  <div class="field">
-    <%= f.label :headcount %><br />
-    <%= f.number_field :headcount %>
+  <div class="row">
+    <%= f.label :headcount, class: "span2" %>
+    <%= f.text_field :headcount, class: "span1" %>
   </div>
 
-  <div class="field">
-    <%= f.label :max_price %><br />
-    <%= f.text_field :max_price %>
+  <div class="row">
+    <%= f.label :max_price, class: "span2" %>
+	  <div class="input-prepend">
+	    <span class="add-on">$</span>
+	    <%= f.text_field :max_price, class: "span1" %>
+	  </div>
   </div>
 
-  <div class="field">
-    <%= f.label :serving_time %><br />
-    <%= f.number_field :serving_time %>
+  <div class="row">
+    <%= f.label :serving_time, class: "span2" %>
+    <%= f.text_field :serving_time, class: "span1" %>
   </div>
 
-  <div class="field">
-    <%= f.label :active %><br />
-    <%= f.radio_button :active, "yes" %>
-    <%= f.radio_button :active, "no" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :private %><br />
-    <%= f.radio_button :private, "yes" %>
-    <%= f.radio_button :private, "no" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :default %><br />
-    <%= f.radio_button :default, "yes" %>
-    <%= f.radio_button :default, "no" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :location_id %><br />
-    <%= f.collection_select :location_id, Location.all, :id, :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :meal_type_id %><br />
-    <%= f.collection_select :meal_type_id, MealType.all, :id, :meal_type %>
-  </div>
-
-  <div class="field">
-    <%= f.label :company_id %><br />
+  <div class="row">
+    <%= f.label :company_id, class: "span2" %>
     <%= f.collection_select :company_id, Company.all, :id, :company_name %>
   </div>
 
+  <div class="row">
+    <%= f.label :location_id, class: "span2" %>
+    <%= f.collection_select :location_id, Location.all, :id, :name %>
+  </div>
+
+  <div class="row">
+    <%= f.label :meal_type_id, class: "span2" %>
+    <%= f.collection_select :meal_type_id, MealType.all, :id, :meal_type %>
+  </div>
+
+	<div class="row">
+		<label for="meal_allergen_ids" class="span2">Allergens</label>
+		<select id="meal_allergen_ids" name="meal[allergen_ids][]" multiple="multiple">
+			<% @allergens.each do |a| %>
+				<option value="<%= a.id %>" <%= "selected" if @allergens_for_meal.include?(a.id) %>><%= a.name %></option>
+			<% end %>
+		</select>
+	</div>
+
   <%= f.hidden_field :company_profile_id, :value => 2 %>
 
-	<h2>Meal profile info</h2>
-	<% unless @meal_profile_keys.empty? %>
-	  <% @meal_profile_keys.each do |key| %>
-	    <div class="field" id="meal_<%= key.key %>">
-	      <% values = @meal_profile.where(key: key.key) %>
-	      <% i = 0 %>
-	      <% values.each do |value| %>
-	        <input type="text" id="meal_<%= key.key %>_<%= i %>" name="meal[<%= key.key %>][<%= i %>]" size="30" value="<%= value.value && value.key == key.key ? value.value : '' %>"/>
-	        <input type="button" value="Remove <%= key.key.humanize.singularize %>" id="remove_<%= key.key %>_<%= i %>" onclick="$('#meal_<%= key.key %>_<%= i %>').remove();$('#remove_<%= key.key %>_<%= i %>').remove();"/>
-	        <% i += 1 %>
-	      <% end %>
-	      <input type="button" value="Add Another <%= key.key.humanize.singularize %>" class="add_<%= key.key %>_field"/>
-	    </div>
-	  <% end %>
-	<% else %>
-	  <% MealProfileP::KEYS.each do |key| %>
-	    <div class="field" id="meal_<%= key.to_s %>">
-	      <% i = 0 %>
-	      <%= key.to_s.humanize.singularize %>
-	      <input type="text" id="meal_<%= key.to_s %>_<%= i %>" name="meal[<%= key.to_s %>][<%= i %>]" size="30" value=""/>
-	      <input type="button" value="Remove" id="remove_<%= key.to_s %>_<%= i %>" />
-	      <% i += 1 %>
-	      <input type="button" value="Add Another <%= key.to_s.humanize.singularize %>" class="add_<%= key %>_field"/>
-	    </div>
-	  <% end %>
-	<% end %>
+	<br />
+	<br />
+
+	<h2>Meal Profile Info</h2>
+  <% if @meal_profile_keys %>
+    <% @meal_profile_keys.each do |key| %>
+			<% unless key == "name" %>
+	      <div class="row" id="meal_<%= key.key %>">
+	        <% if MealProfile::TEXT_TYPE.include?(key.key.to_sym) %>
+	          <label for="meal_[<%= key.key %>]" class="span2"><%= key.key.humanize.singularize %></label>
+	          <input type="text" name="meal[<%= key.key %>]" value="<%= key.value if key.value %>" class="span2">
+	        <% elsif MealProfile::BOOL_TYPE.include?(key.key.to_sym) %>
+	          <label for="meal_[<%= key.key %>]" class="span2"><%= key.key.humanize %></label>
+	          <input type="radio" name="meal[<%= key.key %>]" value="true" <%= key.value == "true" ? "checked" : "" %> />
+	          <input type="radio" name="meal[<%= key.key %>]" value="false" <%= key.value == "false" ? "checked" : "" %> />
+	        <% elsif MealProfile::INTEGER_TYPE.include?(key.key.to_sym) %>
+	          <label for="meal_[<%= key.key %>]" class="span2"><%= key.key.humanize %></label>
+	          <input type="text" name="meal[<%= key.key %>]" value="<%= key.value if key.value %>"  class="span1">
+	        <% elsif MealProfile::SELECT_TYPE.include?(key.key.to_sym) %>
+	          <label for="meal_[<%= key.key %>]" class="span2"><%= key.key.humanize %></label>
+	          <% table = key.key.split('_')[0].to_s.capitalize %>
+	          <% table_array = table.all %>
+	          <select>
+	            <% table_array.each do |t| %>
+	              <option name="meal[<%= key.key %>]" value="<%= t.id %>"><%= t.name %></option>
+	            <% end %>
+	          </select>
+	        <% end %>
+	      </div>
+			<% end %>
+    <% end %>
+  <% else %>
+    <% MealProfile::KEYS.each do |key| %>
+      <div class="field" id="meal_<%= key.to_s %>">
+        <% if MealProfile::TEXT_TYPE.include?(key) %>
+          <%= key.to_s.humanize.singularize %>
+          <input type="text" name="meal[<%= key %>]" value="">
+        <% elsif MealProfile::BOOL_TYPE.include?(key) %>
+          <%= key.to_s.humanize.singularize %>
+          <input type="radio" name="meal[<%= key %>]" value="true">
+          <input type="radio" name="meal[<%= key %>]" value="false">
+        <% elsif MealProfile::INTEGER_TYPE.include?(key) %>
+          <%= key.to_s.humanize %>
+          <input type="text" name="meal[<%= key %>]" value="" style="width:30px">
+        <% elsif MealProfile::SELECT_TYPE.include?(key) %>
+          <% table = key.to_s.split('_')[0].capitalize.constantize %>
+          <% table_array = table.all %>
+          <%= key.to_s.humanize.singularize %>
+          <select>
+            <% table_array.each do |t| %>
+              <option name="meal[<%= key %>]" value="<%= t.id %>"><%= t.name %></option>
+            <% end %>
+          </select>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
 
 	<div class="actions">
 	  <%= f.submit "Save Meal", :class => "btn btn-primary" %>

@@ -3,6 +3,7 @@ class Location < ActiveRecord::Base
   belongs_to :company
   belongs_to :vendor
   belongs_to :city
+  has_many :meals
 
   accepts_nested_attributes_for :city, :reject_if => proc { |attributes| attributes['name'].blank? }
 
