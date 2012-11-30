@@ -1,0 +1,15 @@
+<h1>Listing Tags</h1>
+<form id="new_tag">
+
+  <div class="input-append">
+    <input type="text" name="tag[name]" id="tag_name" class="span2" placeholder="Name" tabindex="1"/>
+	  <input class="btn" type="submit" value="Add Tag" />
+	</div>
+
+</form>
+
+<table id="tags" class="table table-condensed" >
+  <tr>
+    <th>Name</th>
+  </tr>
+</table>

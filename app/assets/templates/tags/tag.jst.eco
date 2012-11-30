@@ -1,0 +1,8 @@
+<%= console.log @tag %>
+<td contenteditable="true" id="tag_name"><%= @tag.get('name') %></td>
+<td>
+  <a id="save_changes" class="btn" href="#">Save Changes</a>
+</td>
+<td>
+  <a id="destroy_tag" class="btn" href="#">Delete Tag</a>
+</td>

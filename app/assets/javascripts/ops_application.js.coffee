@@ -8,6 +8,7 @@ window.OpsApplication =
     new OpsApplication.Routers.Companies()
     new OpsApplication.Routers.Items()
     new OpsApplication.Routers.Allergens()
+    new OpsApplication.Routers.Tags()
 #    new OpsApplication.Routers.Ingredients()
     Backbone.history.start({pushState: true})
 
