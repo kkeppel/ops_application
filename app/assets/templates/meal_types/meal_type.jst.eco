@@ -1,3 +1,8 @@
-<option id='meal_type_option' value="<%= @meal_type.get('id') %>">
-  <%= @meal_type.get('meal_type') %>
-</option>
+<td contenteditable="true" id="meal_type_name"><%= @meal_type.get('name') %></td>
+<td contenteditable="true" id="meal_type_description"><%= @meal_type.get('description') %></td>
+<td>
+  <a id="save_changes" class="btn" href="#">Save Changes</a>
+</td>
+<td>
+  <a id="destroy_meal_type" class="btn" href="#">Delete Meal Type</a>
+</td>

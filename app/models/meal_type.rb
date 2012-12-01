@@ -1,5 +1,5 @@
 class MealType < ActiveRecord::Base
   belongs_to :meal
 
-  attr_accessible :meal_type, :description
+  attr_accessible :name, :description
 end

@@ -1,7 +1,27 @@
-<select id="meal_type_select">
-  <% for meal_type in @meal_types.models: %>
-    <option id='meal_type_option' value="<%= meal_type.get('id') %>">
-      <%= meal_type.get('meal_type') %>
-    </option>
-  <% end %>
-</select>
+<h1>Meal Types</h1>
+<form id="new_meal_type">
+
+  <div class="row">
+	  <label for="meal_type_name" class="span2">Name</label>
+    <input type="text" name="meal_type[name]" id="meal_type_name" class="span2" tabindex="1"/>
+  </div>
+
+	<div class="row">
+		<label for="meal_type_description" class="span2">Description</label>
+    <input type="text" name="meal_type[description]" id="meal_type_description" class="span4" tabindex="2"/>
+	</div>
+
+	<div class="actions">
+    <input class="btn btn-primary" type="submit" value="Add Meal Type" />
+  </div>
+
+</form>
+
+<br/>
+
+<table id="meal_types" class="table table-condensed" >
+  <tr>
+    <th>Name</th>
+	  <th>Description</th>
+  </tr>
+</table>

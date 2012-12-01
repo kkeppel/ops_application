@@ -1,22 +1,24 @@
-<h1>Listing meal_types</h1>
+<div id="meal_types_container"></div>
 
-<table>
-  <tr>
-    <th>Meal Type</th>
-    <th>Description</th>
-  </tr>
+<!--<h1>Listing meal_types</h1>-->
 
-<% @meal_types.each do |meal_type| %>
-  <tr>
-    <td><%= meal_type.meal_type %></td>
-    <td><%= meal_type.description %></td>
-    <td><%= link_to 'Show', meal_type %></td>
-    <td><%= link_to 'Edit', edit_meal_type_path(meal_type) %></td>
-    <td><%= link_to 'Destroy', meal_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+<!--<table>-->
+  <!--<tr>-->
+    <!--<th>Meal Type</th>-->
+    <!--<th>Description</th>-->
+  <!--</tr>-->
 
-<br />
+<!--<%# @meal_types.each do |meal_type| %>-->
+  <!--<tr>-->
+    <!--<td><%#= meal_type.meal_type %></td>-->
+    <!--<td><%#= meal_type.description %></td>-->
+    <!--<td><%#= link_to 'Show', meal_type %></td>-->
+    <!--<td><%#= link_to 'Edit', edit_meal_type_path(meal_type) %></td>-->
+    <!--<td><%#= link_to 'Destroy', meal_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+  <!--</tr>-->
+<!--<%# end %>-->
+<!--</table>-->
 
-<%= link_to 'New Meal type', new_meal_type_path %>
+<!--<br />-->
+
+<!--<%#= link_to 'New Meal type', new_meal_type_path %>-->

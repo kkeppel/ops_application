@@ -47,7 +47,7 @@
 
   <div class="row">
     <%= f.label :meal_type_id, class: "span2" %>
-    <%= f.collection_select :meal_type_id, MealType.all, :id, :meal_type %>
+    <%= f.collection_select :meal_type_id, MealType.all, :id, :name %>
   </div>
 
 	<div class="row">

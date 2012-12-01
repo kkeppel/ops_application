@@ -1,19 +1,19 @@
-class OpsApplication.Views.MealType extends Backbone.View
-  template: JST['meal_types/meal_type']
+class OpsApplication.Views.VendorType extends Backbone.View
+  template: JST['vendor_types/vendor_type']
   tagName: 'tr'
 
   events:
-    'click #destroy_meal_type': 'destroyMealType'
-    'click #save_changes': 'changeMealType'
+    'click #destroy_vendor_type': 'destroyVendorType'
+    'click #save_changes': 'changeVendorType'
 
   initialize: ->
     @model.on('change', @render)
 
   render: =>
-    $(@el).html(@template(meal_type: @model))
+    $(@el).html(@template(vendor_type: @model))
     this
 
-  changeMealType: (event) ->
+  changeVendorType: (event) ->
     event.preventDefault()
     attributes =
       name: @el.children[0].innerText
@@ -25,7 +25,7 @@ class OpsApplication.Views.MealType extends Backbone.View
       error: ->
         console.log "FAIL TOWN."
 
-  destroyMealType: (event) =>
+  destroyVendorType: (event) =>
     event.preventDefault()
     @model.destroy
       success: (model, response) ->

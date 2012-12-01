@@ -1,0 +1,8 @@
+<td contenteditable="true" id="vendor_type_name"><%= @vendor_type.get('name') %></td>
+<td contenteditable="true" id="vendor_type_description"><%= @vendor_type.get('description') %></td>
+<td>
+  <a id="save_changes" class="btn" href="#">Save Changes</a>
+</td>
+<td>
+  <a id="destroy_vendor_type" class="btn" href="#">Delete Vendor Type</a>
+</td>

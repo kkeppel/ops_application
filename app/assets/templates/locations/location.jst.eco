@@ -1,0 +1,13 @@
+<td contenteditable="true" id="location_name"><%= @location.get('name') %></td>
+<td contenteditable="true" id="location_address1"><%= @location.get('address1') %></td>
+<td contenteditable="true" id="location_address2"><%= @location.get('address2') %></td>
+<td contenteditable="true" id="location_floor"><%= @location.get('floor') %></td>
+<td contenteditable="true" id="location_city_id"><%= @location.get('city_id') %></td>
+<td contenteditable="true" id="location_vendor_id"><%= @location.get('vendor_id') %></td>
+<td contenteditable="true" id="location_company_id"><%= @location.get('company_id') %></td>
+<td>
+  <a id="save_changes" class="btn" href="#">Save Changes</a>
+</td>
+<td>
+  <a id="destroy_location" class="btn" href="#">Delete Location</a>
+</td>

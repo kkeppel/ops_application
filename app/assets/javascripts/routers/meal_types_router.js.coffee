@@ -1,6 +1,6 @@
 class OpsApplication.Routers.MealTypes extends Backbone.Router
   routes:
-    'staff_dashboard': 'index'
+    'meal_types': 'index'
 
   initialize: ->
     @collection = new OpsApplication.Collections.MealTypes()

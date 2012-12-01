@@ -1,0 +1,27 @@
+<h1>Vendor Types</h1>
+<form id="new_vendor_type">
+
+  <div class="row">
+    <label for="vendor_type_name" class="span2">Name</label>
+    <input type="text" name="vendor_type[name]" id="vendor_type_name" class="span2" tabindex="1"/>
+  </div>
+
+  <div class="row">
+    <label for="vendor_type_description" class="span2">Description</label>
+    <input type="text" name="vendor_type[description]" id="vendor_type_description" class="span4" tabindex="2"/>
+  </div>
+
+  <div class="actions">
+    <input class="btn btn-primary" type="submit" value="Add Vendor Type" />
+  </div>
+
+</form>
+
+<br/>
+
+<table id="vendor_types" class="table table-condensed" >
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+</table>
