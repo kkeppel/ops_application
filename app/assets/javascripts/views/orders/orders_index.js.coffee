@@ -6,8 +6,9 @@ class OpsApplication.Views.OrdersIndex extends Backbone.View
 
   events:
     'click #datepicker': 'loadDatepicker'
-    'click #company_select': 'filterVendors'
-    'click #new_order': 'createOrder'
+    'click #company_select': 'loadMeals'
+    'click #meal_select': 'loadVendors'
+#    'click #new_order': 'createOrder'
 
   initialize: ->
     @vendors = new OpsApplication.Collections.Vendors()
@@ -18,6 +19,14 @@ class OpsApplication.Views.OrdersIndex extends Backbone.View
     @items.fetch
       success: ->
         console.log(@items)
+    @meals = new OpsApplication.Collections.Meals
+    @meals.fetch
+      success: ->
+        console.log(@meals)
+    @menus = new OpsApplication.Collections.Menus
+    @menus.fetch
+      success: ->
+        console.log(@menus)
     @company_profiles = new OpsApplication.Collections.CompanyProfiles()
     @company_profiles.fetch()
     @collection = new OpsApplication.Collections.Orders()
@@ -26,7 +35,15 @@ class OpsApplication.Views.OrdersIndex extends Backbone.View
     @companies.on('reset', @render)
 
   render: =>
-    $(@el).html(@template(collection: @collection, companies: @companies, vendors: @vendors, company_profiles: @company_profiles))
+    $(@el).html(@template(
+      collection: @collection,
+      companies: @companies,
+      vendors: @vendors,
+      company_profiles: @company_profiles,
+      meals: @meals,
+      menus: @menus,
+      items: @items
+    ))
     @collection.each(@appendOrder)
     this
 
@@ -37,6 +54,13 @@ class OpsApplication.Views.OrdersIndex extends Backbone.View
   loadDatepicker: (event) ->
     event.preventDefault()
     $('#datepicker').datepicker()
+
+  loadMeals: (event) ->
+    company_id = $("option:selected").val()
+    filtered_meals = @meals.filter (m) ->
+      m.get('company_id') == parseInt(company_id)
+    $(@el).html(@template({companies: @companies, meals: filtered_meals, vendors: @vendors, menus: @menus, items: @items}))
+    this
 
   createOrder: (event) ->
     event.preventDefault()
@@ -51,30 +75,25 @@ class OpsApplication.Views.OrdersIndex extends Backbone.View
         $('#new_order')[0].reset()
       error: @handleError
 
-  filterVendors: (event) ->
-    filtered_allergen_ids = []
+  loadVendors: (event) ->
     filtered_ingredient_ids = []
     all_items = []
     filtered_item_ids = []
     filtered_items = []
     all_allergens_ingredients = []
-    company_allergens = []
     all_allergens = []
+    allergen_ids = []
 
-    company_id = $("option:selected").val()
-    filtered_profiles = @company_profiles.filter (cp) ->
-      cp.get('company_id') == parseInt(company_id) && cp.get('key') == "allergies"
-    for profile in filtered_profiles
-      company_allergens.push(profile.get('value'))
+    meal_id = $("#meal_select option:selected").val()
     $.ajax
-      url: '/allergens/get_allergens'
+      url: '/allergens/get_allergens/' + meal_id
       type: 'GET'
       dataType: 'json'
       async: false
       success: (data) ->
         all_allergens = data
-    all_allergens.filter (a) ->
-      filtered_allergen_ids.push(a.id) if _.contains(company_allergens, a.name)
+    for ids in all_allergens
+      allergen_ids.push(ids.allergen_id)
     $.ajax
       url: '/allergens/get_ingredients'
       type: 'GET'
@@ -82,7 +101,7 @@ class OpsApplication.Views.OrdersIndex extends Backbone.View
       success: (data) ->
         all_allergens_ingredients = data
     all_allergens_ingredients.filter (a) ->
-      filtered_ingredient_ids.push(a.ingredient_id) if _.contains(filtered_allergen_ids, a.allergen_id)
+      filtered_ingredient_ids.push(a.ingredient_id) if _.contains(allergen_ids, a.allergen_id)
     $.ajax
       url: '/items/get_items'
       type: 'GET'
@@ -96,6 +115,13 @@ class OpsApplication.Views.OrdersIndex extends Backbone.View
       filtered_items.push(a) if _.contains(filtered_item_ids, a.id)
     filtered_vendors = @vendors.reject (v) ->
       v.get('id') == filtered_items[0].attributes.vendor_id
+    console.log filtered_items
     console.log filtered_vendors
-    $(@el).html(@template({companies: @companies, vendors: filtered_vendors}))
+    $(@el).html(@template({
+      companies: @companies,
+      vendors: filtered_vendors,
+      items: filtered_items,
+      meals: @meals
+      menus: @menus
+    }))
     this

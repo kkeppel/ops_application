@@ -9,7 +9,7 @@ class AllergensController < ApplicationController
   end
 
   def get_allergens
-    @allergens = Allergen.all
+    @allergens = AllergensMeals.where(meal_id: params[:id])
     if request.xhr?
       render :json => @allergens
     end

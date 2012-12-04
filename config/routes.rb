@@ -1,10 +1,13 @@
 OpsApplication::Application.routes.draw do
 
+  get '/items/get_items' => 'items#get_items'
+  match '/allergens/get_allergens/:id' => 'allergens#get_allergens', :via => :get
+  match '/allergens/get_ingredients' => 'allergens#get_ingredients', :via => :get
+  match '/locations/for_company_id/:id' => 'locations#for_company_id', :via => :get
+
   resources :tags
 
   resources :item_types
-
-  resources :items
 
   resources :contacts
 
@@ -14,10 +17,7 @@ OpsApplication::Application.routes.draw do
 
   resources :proposals
 
-  match '/allergens/get_allergens' => 'allergens#get_allergens', :via => :get
-  match '/allergens/get_ingredients' => 'allergens#get_ingredients', :via => :get
-  match '/items/get_items' => 'items#get_items', :via => :get
-  match '/locations/for_company_id/:id' => 'locations#for_company_id', :via => :get
+  resources :items
 
   resources :meal_preferences
 

@@ -10,10 +10,21 @@
 
 	<br/>
 
-	<!--Date:-->
-	<!--<input type="text" id="datepicker">-->
+	<label for="meal_select" class="span2">Meal: </label>
+	<select id="meal_select">
+		<% for meal in @meals.models || @meals: %>
+			<option id="meal_option" value="<%= meal.get('id') %>" class="new_meal_id">
+				<%= meal.get('name') %>
+			</option>
+		<% end %>
+	</select>
 
-	<!--<br/>-->
+	<br/>
+
+	<label for="datepicker" class="span2">Date: </label>
+	<input type="text" id="datepicker"/>
+
+	<br/>
 
 	<label for="vendor_select" class="span2">Vendor: </label>
 	<select id="vendor_select">
@@ -22,6 +33,28 @@
 	      <%= vendor.get('name') %>
 	    </option>
 	  <% end %>
+	</select>
+
+	<br/>
+
+	<label for="menu_select" class="span2">Menu: </label>
+	<select id="menu_select">
+		<% for menu in @menus.models || @menus: %>
+			<option id="menu_option" value="<%= menu.get('id') %>" class="new_menu_id">
+				<%= menu.get('name') %>
+			</option>
+		<% end %>
+	</select>
+
+	<br/>
+
+	<label for="item_select" class="span2">Items: </label>
+	<select id="item_select">
+		<% for item in @items.models || @items: %>
+			<option id="item_option" value="<%= item.get('id') %>" class="new_item_id">
+				<%= item.get('name') %>
+			</option>
+		<% end %>
 	</select>
 
 	<br/>
