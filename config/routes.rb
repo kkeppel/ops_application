@@ -7,6 +7,8 @@ OpsApplication::Application.routes.draw do
 
   resources :tags
 
+  resources :food_categories
+
   resources :item_types
 
   resources :contacts

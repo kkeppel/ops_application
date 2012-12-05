@@ -1,0 +1,63 @@
+<h1>Menus</h1>
+<form id="new_menu">
+
+  <div class="row">
+    <label for="menu_name" class="span2">Name</label>
+    <input type="text" name="menu[name]" id="menu_name" class="span2" tabindex="1"/>
+  </div>
+
+  <div class="row">
+    <label for="menu_headcount" class="span2">Headcount</label>
+    <input type="text" name="menu[headcount]" id="menu_headcount" class="span2" tabindex="2"/>
+  </div>
+
+  <div class="row">
+    <label for="menu_total" class="span2">Total</label>
+    <input type="text" name="menu[total]" id="menu_total" class="span2" tabindex="3"/>
+  </div>
+
+  <div class="row">
+    <label for="menu_total_per_head" class="span2">Total Per Head</label>
+    <input type="text" name="menu[total_per_head]" id="menu_total_per_head" class="span2" tabindex="4"/>
+  </div>
+
+  <div class="row">
+	  <label for="food_category_select" class="span2">Food Category</label>
+    <select id="food_category_select" tabindex="5" class="span2">
+      <% for food_category in @food_categories.models: %>
+        <option id="menu_food_category_id_id" value="<%= food_category.get('id') %>">
+          <%= food_category.get('name') %>
+        </option>
+      <% end %>
+    </select>
+  </div>
+
+  <div class="row">
+	  <label for="vendor_select" class="span2">Vendor</label>
+    <select id="vendor_select" tabindex="6" class="span2">
+      <% for vendor in @vendors.models: %>
+        <option id="menu_vendor_id" value="<%= vendor.get('id') %>">
+          <%= vendor.get('name') %>
+        </option>
+      <% end %>
+    </select>
+  </div>
+
+  <div class="actions">
+    <input class="btn btn-primary" type="submit" value="Add Menu" />
+  </div>
+
+</form>
+
+<br/>
+
+<table id="menus" class="table table-condensed" >
+  <tr>
+    <th>Name</th>
+    <th>Headcount</th>
+    <th>Total</th>
+    <th>Total Per Head</th>
+    <th>Food Category</th>
+    <th>Vendor</th>
+  </tr>
+</table>

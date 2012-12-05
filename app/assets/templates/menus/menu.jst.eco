@@ -1,0 +1,12 @@
+<td contenteditable="true" id="menu_name"><%= @menu.get('name') %></td>
+<td contenteditable="true" id="menu_headcount"><%= @menu.get('headcount') %></td>
+<td contenteditable="true" id="menu_total"><%= @menu.get('total') %></td>
+<td contenteditable="true" id="menu_total_per_head"><%= @menu.get('total_per_head') %></td>
+<td contenteditable="true" id="menu_food_category_id"><%= @menu.get('food_category_id') %></td>
+<td contenteditable="true" id="menu_vendor_id"><%= @menu.get('vendor_id') %></td>
+<td>
+  <a id="save_changes" class="btn" href="#">Save Changes</a>
+</td>
+<td>
+  <a id="destroy_menu" class="btn" href="#">Delete Menu</a>
+</td>

@@ -1,0 +1,8 @@
+<td contenteditable="true" name="food_category[name]" id="food_category_name"><%= @food_category.get('name') %></td>
+<td contenteditable="true" name="food_category[description]" id="food_category_description"><%= @food_category.get('description') %></td>
+<td>
+  <a id="save_changes" class="btn" href="#">Save Changes</a>
+</td>
+<td>
+  <a id="destroy_food_category" class="btn" href="#">Delete Food Category</a>
+</td>

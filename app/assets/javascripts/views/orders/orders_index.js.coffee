@@ -83,8 +83,12 @@ class OpsApplication.Views.OrdersIndex extends Backbone.View
     all_allergens_ingredients = []
     all_allergens = []
     allergen_ids = []
-    # use meal idea to get allergen ids from allergens_meals
+
     meal_id = $("#meal_select option:selected").val()
+    # record chosen meal
+    $.chosen_meal = @meals.filter (m) ->
+      parseInt(m.id) == parseInt(meal_id)
+    # use meal id to get allergen ids from allergens_meals
     $.ajax
       url: '/allergens/get_allergens/' + meal_id
       type: 'GET'
@@ -121,9 +125,6 @@ class OpsApplication.Views.OrdersIndex extends Backbone.View
     # filter out all vendors who have those item ids (because those items contain the allergens)
     safe_vendors = @vendors.reject (v) ->
       v.get('id') == unsafe_items[0].attributes.vendor_id
-    # record chosen meal
-    chosen_meal = @meals.filter (m) ->
-      parseInt(m.id) == parseInt(meal_id)
     # get safe items
     safe_items = @items.reject (i) ->
       _.contains(unsafe_item_ids, i.id)
@@ -131,17 +132,19 @@ class OpsApplication.Views.OrdersIndex extends Backbone.View
       companies: $.chosen_company,
       vendors: safe_vendors,
       items: safe_items,
-      meals: chosen_meal
+      meals: $.chosen_meal
       menus: @menus
     }))
     this
 
 
-    createOrder: (event) ->
+  createOrder: (event) ->
     event.preventDefault()
-    attributes = {
-    company_id: $('.new_company_id').val()
-    }
+    attributes =
+      name: $('#new_order_name').val()
+      tip: $('#new_order_tip').val()
+      company_id: $.chosen_company.id
+      meal_id: $.chosen_meal.id
     console.log @collection
     @collection.create attributes,
       wait: true

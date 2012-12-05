@@ -1,0 +1,27 @@
+<h1>Food Categories</h1>
+<form id="new_food_category">
+
+  <div class="row">
+    <label for="food_category_name" class="span2">Name</label>
+    <input type="text" name="food_category[name]" id="food_category_name" class="span2" tabindex="1"/>
+  </div>
+
+  <div class="row">
+    <label for="food_category_description" class="span2">Description</label>
+    <input type="text" name="food_category[description]" id="food_category_description" class="span4" tabindex="2"/>
+  </div>
+
+  <div class="actions">
+    <input class="btn btn-primary" type="submit" value="Add Food Category" />
+  </div>
+
+</form>
+
+<br/>
+
+<table id="food_categories" class="table table-condensed" >
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+</table>
