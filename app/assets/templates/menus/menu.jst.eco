@@ -1,9 +1,26 @@
+
 <td contenteditable="true" id="menu_name"><%= @menu.get('name') %></td>
 <td contenteditable="true" id="menu_headcount"><%= @menu.get('headcount') %></td>
-<td contenteditable="true" id="menu_total"><%= @menu.get('total') %></td>
 <td contenteditable="true" id="menu_total_per_head"><%= @menu.get('total_per_head') %></td>
-<td contenteditable="true" id="menu_food_category_id"><%= @menu.get('food_category_id') %></td>
-<td contenteditable="true" id="menu_vendor_id"><%= @menu.get('vendor_id') %></td>
+<td contenteditable="true" id="menu_total"><%= @menu.get('total') %></td>
+<td id="edit_food_category">
+	<select id="edit_food_category_select" style="width:100px">
+		<% for food_category in @food_categories.models: %>
+			<option name="food_category_option" id="<%= @menu.get("id") %>_<%= food_category.get('id') %>" value="<%= food_category.get('id') %>" <%= 'selected=selected' if food_category.get('id') == @menu.get('food_category_id') %>>
+				<%= food_category.get('name') %>
+			</option>
+	  <% end %>
+	</select>
+</td>
+<td id="edit_vendor">
+  <select id="edit_vendor_select" style="width:100px">
+    <% for vendor in @vendors.models: %>
+      <option name="vendor_option" id="<%= @menu.get('id') %>_<%= vendor.get('id') %>" value="<%= vendor.get('id') %>" <%= 'selected=selected' if vendor.get('id') == @menu.get('vendor_id') %>>
+        <%= vendor.get('name') %>
+      </option>
+    <% end %>
+  </select>
+</td>
 <td>
   <a id="save_changes" class="btn" href="#">Save Changes</a>
 </td>

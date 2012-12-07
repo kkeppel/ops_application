@@ -19,11 +19,12 @@
 	</select>
 </td>
 <td>
-	<a href="/items/<%= @item.get('id') %>/ingredients">Add Ingredients</a>
+	<a href="/items/<%= @item.get('id') %>/ingredients" class="btn">Add Ingredients</a>
+</td>
+
+<td>
+  <a id="save_changes" class="btn" href="#">Save Changes</a>
 </td>
 <td>
-	<a id="destroy_item" href="#">Delete Item</a>
-</td>
-<td>
-	<a id="save_changes" href="#">Save Changes</a>
+  <a id="destroy_item" class="btn" href="#">Delete Item</a>
 </td>

@@ -44,10 +44,6 @@ class OpsApplication.Views.Item extends Backbone.View
       description: @el.children[1].innerText
       hot: temp_bool
       price: @el.children[3].innerText
-#      headcount: $('#new_item_headcount').val()
-#      ingredient_ids: $('#new_ingredient_ids').val()
-#      serving_instructions_id: 2
-#      vendor_profiles_id: 2
     }
     @model.set attributes
     @model.save
