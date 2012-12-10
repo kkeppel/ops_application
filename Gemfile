@@ -25,6 +25,11 @@ gem 'rails-backbone-forms'
 
   gem 'uglifier', '>= 1.0.3'
 
+group :development do
+  gem "better_errors"
+end
+
+gem "binding_of_caller"
 
 
 
