@@ -63,4 +63,10 @@
 </form>
 <br/>
 
-<div id="orders_container"></div>
+<table id="orders_container" class="table table-condensed" >
+  <tr>
+    <th>Name</th>
+    <th>Company ID</th>
+    <th>Meal ID</th>
+  </tr>
+</table>

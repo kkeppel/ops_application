@@ -9,32 +9,25 @@ class OpsApplication.Views.OrdersIndex extends Backbone.View
     'click #datepicker': 'loadDatepicker'
     'click #company_select': 'loadMeals'
     'click #meal_select': 'loadVendors'
-#    'click #new_order': 'createOrder'
+    'click #create_order': 'createOrder'
 
 
   initialize: ->
-    @vendors = new OpsApplication.Collections.Vendors()
-    @vendors.fetch()
-    @companies = new OpsApplication.Collections.Companies()
-    @companies.fetch()
+    @vendors = new OpsApplication.Collections.Vendors
+    @vendors.fetch(success: -> console.log(@vendors))
+    @companies = new OpsApplication.Collections.Companies
+    @companies.fetch(success: -> console.log(@companies))
     @items = new OpsApplication.Collections.Items
-    @items.fetch
-      success: ->
-        console.log(@items)
+    @items.fetch(success: -> console.log(@items))
     @meals = new OpsApplication.Collections.Meals
-    @meals.fetch
-      success: ->
-        console.log(@meals)
+    @meals.fetch(success: -> console.log(@meals))
     @menus = new OpsApplication.Collections.Menus
-    @menus.fetch
-      success: ->
-        console.log(@menus)
-    @company_profiles = new OpsApplication.Collections.CompanyProfiles()
-    @company_profiles.fetch()
-    @collection = new OpsApplication.Collections.Orders()
+    @menus.fetch(success: -> console.log(@menus))
+    @collection = new OpsApplication.Collections.Orders
     @collection.fetch()
-#    @collection.on('add', @appendOrder)
     @companies.on('reset', @render)
+    @collection.on('add', @appendOrder)
+    @collection.on('reset', @render)
 
 
   render: =>
@@ -42,7 +35,6 @@ class OpsApplication.Views.OrdersIndex extends Backbone.View
       collection: @collection,
       companies: @companies,
       vendors: @vendors,
-      company_profiles: @company_profiles,
       meals: @meals,
       menus: @menus,
       items: @items
@@ -71,18 +63,21 @@ class OpsApplication.Views.OrdersIndex extends Backbone.View
     filtered_meals = @meals.filter (m) ->
       m.get('company_id') == parseInt(company_id)
     $(@el).html(@template({companies: $.chosen_company, meals: filtered_meals, vendors: @vendors, menus: @menus, items: @items}))
+    @collection.each(@appendOrder)
     this
 
 
   loadVendors: (event) ->
     #declare variables
     filtered_ingredient_ids = []
-    all_items = []
+    all_ingredients_items = []
     unsafe_item_ids = []
     unsafe_items = []
     all_allergens_ingredients = []
     all_allergens = []
     allergen_ids = []
+    all_items_menus = []
+    unsafe_menu_ids = []
 
     meal_id = $("#meal_select option:selected").val()
     # record chosen meal
@@ -114,38 +109,56 @@ class OpsApplication.Views.OrdersIndex extends Backbone.View
       type: 'GET'
       async: false
       success: (data) ->
-        all_items = data
+        all_ingredients_items = data
     # filter all ingredients_items by the ids from allergens_ingredients
-    all_items.filter (a) ->
+    all_ingredients_items.filter (a) ->
       unsafe_item_ids.push(a.item_id) if _.contains(filtered_ingredient_ids, a.ingredient_id)
       unsafe_item_ids = _.unique(unsafe_item_ids)
-    # get the items objects to access their vendor_id
-    @items.filter (a) ->
-      unsafe_items.push(a) if _.contains(unsafe_item_ids, a.id)
-    # filter out all vendors who have those item ids (because those items contain the allergens)
-    safe_vendors = @vendors.reject (v) ->
-      v.get('id') == unsafe_items[0].attributes.vendor_id
-    # get safe items
+    # get all items_menus
+    $.ajax
+      url: '/items_menus'
+      type: 'GET'
+      async: false
+      success: (data) ->
+        all_items_menus = data
+    # get unsafe_menu_ids using the list of unsafe items
+    all_items_menus.filter (menu) ->
+      unsafe_menu_ids.push(menu.menu_id) if _.contains(unsafe_item_ids, menu.item_id)
+    # reset unsafe_item_ids and filter all_items again by both unsafe_menu_ids (so you don't get safe items that are in
+    #   menus with an unsafe item)
+    unsafe_item_ids = []
+    all_items_menus.filter (item) ->
+      unsafe_item_ids.push(item.item_id) if _.contains(unsafe_menu_ids, item.menu_id)
+    # get safe menu objects
+    safe_menus = @menus.reject (m) ->
+      _.contains(unsafe_menu_ids, m.id)
+    # get safe items objects
     safe_items = @items.reject (i) ->
-      _.contains(unsafe_item_ids, i.id)
+      _.contains(unsafe_item_ids, i.id) || _.contains((safe_menus.map (si) -> si.get('id')), i.get('menu_id'))
+#    # filter out all vendors who have those item ids (because those items contain the allergens)
+    safe_vendors = @vendors.filter (v) ->
+      v if _.contains((safe_items.map (si) -> si.get('vendor_id')), v.id)
+
+    #load it all up!!!
     $(@el).html(@template({
       companies: $.chosen_company,
       vendors: safe_vendors,
       items: safe_items,
       meals: $.chosen_meal
-      menus: @menus
+      menus: safe_menus
     }))
+    @collection.each(@appendOrder)
     this
 
 
   createOrder: (event) ->
     event.preventDefault()
     attributes =
-      name: $('#new_order_name').val()
-      tip: $('#new_order_tip').val()
-      company_id: $.chosen_company.id
-      meal_id: $.chosen_meal.id
-    console.log @collection
+#      name: $('#new_order_name').val()
+#      tip: $('#new_order_tip').val()
+      order:
+        company_id: $.chosen_company[0].id
+        meal_id: $.chosen_meal[0].id
     @collection.create attributes,
       wait: true
       success: ->
