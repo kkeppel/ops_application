@@ -15,6 +15,7 @@ window.OpsApplication =
     new OpsApplication.Routers.Menus
     new OpsApplication.Routers.FoodCategories
     new OpsApplication.Routers.ItemsMenus
+    new OpsApplication.Routers.Contacts
 #    new OpsApplication.Routers.Ingredients()
     Backbone.history.start({pushState: true})
 

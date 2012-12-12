@@ -1,0 +1,44 @@
+<td contenteditable="true" id="edit_title"><%= @contact.get("title") %></td>
+<td contenteditable="true" id="edit_first_name"><%= @contact.get("first_name") %></td>
+<td contenteditable="true" id="edit_last_name"><%= @contact.get("last_name") %></td>
+<td contenteditable="true" id="edit_email"><%= @contact.get("email") %></td>
+<td contenteditable="true" id="edit_direct_phone"><%= @contact.get("direct_phone") %></td>
+<td contenteditable="true" id="edit_mobile_phone"><%= @contact.get("mobile_phone") %></td>
+<td contenteditable="true" id="edit_carrier"><%= @contact.get("carrier") %></td>
+<td><input type="checkbox" id="edit_default_contact" <%= 'checked=checked' if @contact.get('default_contact') %>/></td>
+<td><input type="checkbox" id="edit_default_invoiced" <%= 'checked=checked' if @contact.get('default_invoiced') %>/></td>
+<td><input type="checkbox" id="edit_was_lead" <%= 'checked=checked' if @contact.get('was_lead') %>/></td>
+<!--<td contenteditable="true" id="edit_payment_type_id"><%#= @contact.get("payment_type_id") %></td>-->
+<td id="edit_company" >
+  <select id="edit_company_select_contact">
+    <% for company in @companies.models: %>
+      <option name="company_option" id="<%= @contact.get('id') %>_<%= company.get('id') %>"  value="<%= company.get('id') %>" <%= 'selected=selected' if company.get('id') == @contact.get('company_id') %>>
+        <%= company.get('company_name') %>
+      </option>
+    <% end %>
+  </select>
+</td>
+<td id="edit_vendor" >
+  <select id="edit_vendor_select_contact">
+    <% for vendor in @vendors.models: %>
+      <option name="vendor_option" id="<%= @contact.get('id') %>_<%= vendor.get('id') %>"  value="<%= vendor.get('id') %>" <%= 'selected=selected' if vendor.get('id') == @contact.get('vendor_id') %>>
+        <%= vendor.get('name') %>
+      </option>
+    <% end %>
+  </select>
+</td>
+<td id="edit_location" >
+  <select id="edit_location_select_contact">
+    <% for location in @locations.models: %>
+      <option name="location_option" id="<%= @contact.get('id') %>_<%= location.get('id') %>"  value="<%= location.get('id') %>" <%= 'selected=selected' if location.get('id') == @contact.get('location_id') %>>
+        <%= location.get('name') %>
+      </option>
+    <% end %>
+  </select>
+</td>
+<td>
+  <a id="save_changes" class="btn" href="#" style="font-size:13px;padding:2px;line-height:1">Update</a>
+</td>
+<td>
+  <a id="destroy_contact" class="btn" href="#" style="font-size:13px;padding:2px;line-height:1">Delete</a>
+</td>

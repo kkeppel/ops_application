@@ -2,6 +2,7 @@ class Company < ActiveRecord::Base
 
   has_many :clients
   has_many :locations
+  has_many :contacts
   has_many :meals
   has_many :meal_profiles, :through => :meals
   has_many :company_profiles, :foreign_key => :company_id

@@ -1,3 +1,6 @@
 class ProposalLine < ActiveRecord::Base
-  # attr_accessible :title, :body
+  belongs_to :proposal
+
+  attr_accessible :quantity, :description, :total, :taxed, :name, :price, :hot, :allergen_free, :headcount,
+                  :proposal_id, :item_id
 end

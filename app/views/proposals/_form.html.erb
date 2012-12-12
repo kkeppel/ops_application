@@ -11,6 +11,107 @@
     </div>
   <% end %>
 
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span6">
+				<h4>General Information!!</h4>
+				<br/>
+				<div class="row-fluid">
+				  <label for="service_fee" class="span4">Service Fee</label>
+				  <div class="input-prepend">
+						<span class="add-on">$</span>
+					  <%= f.text_field :service_fee, class: "span2" %>
+					</div>
+				</div>
+
+			  <div class="row-fluid">
+			    <label for="percentage_fee" class="span4">Percentage Fee</label>
+			    <div class="input-prepend">
+			      <span class="add-on">$</span>
+			      <%= f.text_field :percentage_fee, class: "span2" %>
+				  </div>
+			  </div>
+
+			  <div class="row-fluid">
+			    <label for="total_pre_taxes" class="span4">Total Pre-Taxes</label>
+			    <div class="input-prepend">
+			      <span class="add-on">$</span>
+			      <%= f.text_field :total_pre_taxes, class: "span2" %>
+				  </div>
+			  </div>
+
+			  <div class="row-fluid">
+			    <label for="total_wtaxes" class="span4">Total with Taxes</label>
+			    <div class="input-prepend">
+			      <span class="add-on">$</span>
+			      <%= f.text_field :total_wtaxes, class: "span2" %>
+				  </div>
+			 	</div>
+
+			  <div class="row-fluid">
+			    <label for="total" class="span4">Total</label>
+			    <div class="input-prepend">
+			      <span class="add-on">$</span>
+			      <%= f.text_field :total, class: "span2" %>
+				  </div>
+			  </div>
+
+			  <div class="row-fluid">
+			    <label for="vendor_tip" class="span4">Vendor Tip</label>
+			    <div class="input-prepend">
+			      <span class="add-on">$</span>
+			      <%= f.text_field :vendor_tip, class: "span2" %>
+				  </div>
+			  </div>
+
+			  <div class="row-fluid">
+			    <label for="price_per_person" class="span4">Price Per Person</label>
+			    <div class="input-prepend">
+			      <span class="add-on">$</span>
+			      <%= f.text_field :price_per_person, class: "span2" %>
+				  </div>
+			  </div>
+
+			  <div class="row-fluid">
+			    <label for="vendor_confirmed" class="span4">Vendor Confirmed?</label>
+			    <%= f.radio_button :vendor_confirmed, "Yes" %>
+			    <%= f.radio_button :vendor_confirmed, "No" %>
+			  </div>
+
+			  <div class="row-fluid">
+			    <label for="client_confirmed" class="span4">Client Confirmed?</label>
+			    <%= f.radio_button :client_confirmed, "Yes" %>
+			    <%= f.radio_button :client_confirmed, "No" %>
+			  </div>
+
+			  <div class="row-fluid">
+			    <label for="proposal_status_id" class="span4">Status</label>
+			    <%= f.collection_select :proposal_status_id, ProposalStatus.all, :id, :name %>
+			  </div>
+
+			  <div class="row-fluid">
+			    <label for="vendor_id" class="span4">Vendor</label>
+			    <%= f.collection_select :vendor_id, Vendor.all, :id, :name %>
+			  </div>
+
+			  <div class="row-fluid">
+			    <label for="menu_id" class="span4">Menu</label>
+			    <%= f.collection_select :menu_id, Menu.all, :id, :name %>
+			  </div>
+
+			  <div class="row-fluid">
+			    <label for="order_id" class="span4">Order</label>
+			    <%= f.collection_select :order_id, Order.all, :id, :name %>
+			  </div>
+			</div>
+			<div class="span6" id="proposal_lines_container">
+				<h4>Proposal Lines!!</h4>
+				<br/>
+			</div>
+		</div>
+	</div>
+
+
   <div class="actions">
     <%= f.submit %>
   </div>

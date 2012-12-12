@@ -1,0 +1,25 @@
+<div class="actions">
+  <input type="submit" value="Add Contact" class="btn btn-primary" id="create_contact"/>
+</div>
+
+<br/>
+<br/>
+
+<table id="contacts" style="font-size:12px;">
+  <tr>
+    <th>Title</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Direct Phone</th>
+    <th>Mobile Phone</th>
+    <th>Carrier</th>
+    <th>Default Contact?</th>
+    <th>Default Invoiced?</th>
+    <th>Was Lead?</th>
+    <!--<th>Payment Type</th>-->
+    <th>Company</th>
+    <th>Vendor</th>
+    <th>Location</th>
+  </tr>
+</table>

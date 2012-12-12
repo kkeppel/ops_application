@@ -1,3 +1,5 @@
 class ProposalStatus < ActiveRecord::Base
-  # attr_accessible :title, :body
+  has_many :proposals
+
+  attr_accessible :name, :description
 end

@@ -1,8 +1,9 @@
 class Vendor < ActiveRecord::Base
 
   has_many :vendor_profiles, :foreign_key => :vendor_id
-  belongs_to :vendor_type
+  has_many :contacts
   has_many :items
+  belongs_to :vendor_type
 
   attr_accessible :bio, :name, :public_name, :tagline, :vendor_type_id, :website, :vendor_id,
                   :preferences
