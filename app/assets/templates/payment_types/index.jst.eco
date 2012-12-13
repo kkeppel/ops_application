@@ -1,0 +1,13 @@
+<div class="actions">
+  <input type="submit" value="Add Payment Type" class="btn btn-primary" id="create_payment_type"/>
+</div>
+
+<br/>
+<br/>
+
+<table id="payment_types">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+</table>

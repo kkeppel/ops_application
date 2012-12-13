@@ -17,7 +17,7 @@
     <th>Default Contact?</th>
     <th>Default Invoiced?</th>
     <th>Was Lead?</th>
-    <!--<th>Payment Type</th>-->
+    <th>Payment Type</th>
     <th>Company</th>
     <th>Vendor</th>
     <th>Location</th>

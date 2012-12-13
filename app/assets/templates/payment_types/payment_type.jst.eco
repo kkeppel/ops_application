@@ -1,0 +1,8 @@
+<td contenteditable="true" id="edit_name"><%= @payment_type.get("name") %></td>
+<td contenteditable="true" id="edit_description"><%= @payment_type.get("description") %></td>
+<td>
+  <a id="save_changes" class="btn" href="#">Update</a>
+</td>
+<td>
+  <a id="destroy_payment_type" class="btn" href="#">Delete</a>
+</td>

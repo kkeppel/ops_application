@@ -1,0 +1,14 @@
+<h1>Payment Types</h1>
+
+<form id="new_payment_type">
+  <div class="row">
+    <label for="payment_type_name" class="span2">Name</label>
+    <%= text_field_tag "payment_type[name]", "", class: "span2" %>
+  </div>
+  <div class="row">
+    <label for="payment_type_description" class="span2">Description</label>
+    <%= text_field_tag "payment_type[description]", "", class: "span4" %>
+  </div>
+</form>
+
+<div id="payment_types_container" class="table table-condensed"></div>

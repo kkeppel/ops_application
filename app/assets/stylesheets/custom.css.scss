@@ -107,7 +107,10 @@ table#edit tr:hover td i.icon-pencil {
   display:inline-block;
 }
 
-select#edit_vendor_select_contact, select#edit_company_select_contact, select#edit_location_select_contact {
+select#edit_vendor_select_contact,
+select#edit_company_select_contact,
+select#edit_location_select_contact,
+select#edit_payment_type_select_contact {
   width:100px;
   font-size:12px;
   height:24px;

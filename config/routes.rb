@@ -5,6 +5,8 @@ OpsApplication::Application.routes.draw do
   match '/allergens/get_ingredients' => 'allergens#get_ingredients', :via => :get
   match '/locations/for_company_id/:id' => 'locations#for_company_id', :via => :get
 
+  resources :payment_types
+
   resources :items_menus
 
   resources :tags

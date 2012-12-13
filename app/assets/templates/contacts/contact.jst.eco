@@ -9,6 +9,15 @@
 <td><input type="checkbox" id="edit_default_invoiced" <%= 'checked=checked' if @contact.get('default_invoiced') %>/></td>
 <td><input type="checkbox" id="edit_was_lead" <%= 'checked=checked' if @contact.get('was_lead') %>/></td>
 <!--<td contenteditable="true" id="edit_payment_type_id"><%#= @contact.get("payment_type_id") %></td>-->
+<td id="edit_payment_type" >
+  <select id="edit_payment_type_select_contact">
+    <% for payment_type in @payment_types.models: %>
+      <option name="payment_type_option" id="<%= @contact.get('id') %>_<%= payment_type.get('id') %>"  value="<%= payment_type.get('id') %>" <%= 'selected=selected' if payment_type.get('id') == @contact.get('payment_type_id') %>>
+        <%= payment_type.get('name') %>
+      </option>
+    <% end %>
+  </select>
+</td>
 <td id="edit_company" >
   <select id="edit_company_select_contact">
     <% for company in @companies.models: %>

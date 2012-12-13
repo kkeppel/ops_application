@@ -44,6 +44,10 @@
 	  Yes <%= radio_button_tag "contact[was_lead]", "Yes" %>
 	  No <%= radio_button_tag "contact[was_lead]", "No" %>
 	</div>
+	<div class="row">
+		<label for="contact_payment_type_id" class="span2">Payment Type</label>
+		<%= select_tag "contact[payment_type_id]", options_from_collection_for_select(PaymentType.all, "id", "name"), class: "span2" %>
+	</div>
   <div class="row">
     <label for="contact_company_id" class="span2">Company</label>
     <%= select_tag "contact[company_id]", options_from_collection_for_select(Company.all, "id", "company_name"), class: "span2" %>
@@ -56,8 +60,6 @@
     <label for="contact_location_id" class="span2">Location</label>
     <%= select_tag "contact[location_id]", options_from_collection_for_select(Location.all, "id", "name"), class: "span2" %>
   </div>
-
-	<%#= collection_select :contact, :payment_type_id, PaymentType.all, :id, :name %>
 </form>
 
 <div id="contacts_container" class="table table-condensed"></div>

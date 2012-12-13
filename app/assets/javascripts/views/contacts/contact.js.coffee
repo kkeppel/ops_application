@@ -8,22 +8,30 @@ class OpsApplication.Views.Contact extends Backbone.View
     'click #edit_vendor_select_contact': 'saveVendor'
     'click #edit_company_select_contact': 'saveCompany'
     'click #edit_location_select_contact': 'saveLocation'
+    'click #edit_payment_type_select_contact': 'savePaymentType'
 
   initialize: ->
     @model.on('change', @render)
 
   render: =>
     contact = @model
+    payment_types = @options.payment_types
     vendors = @options.vendors
     companies = @options.companies
     locations = @options.locations
+    console.log payment_types
     console.log locations
     console.log vendors
     console.log companies
+    payment_type_filter = payment_types.filter (payment_type) ->
+      p_id = parseInt(payment_type.id)
+      i_id = payment_type.get('payment_type_id')
+      p_id == i_id
+    payment_type = new OpsApplication.Models.PaymentType(payment_type_filter)
     location_filter = locations.filter (location) ->
       l_id = parseInt(location.id)
       i_id = contact.get('location_id')
-      c_id = i_id
+      l_id == i_id
     location = new OpsApplication.Models.Location(location_filter)
     company_filter = companies.filter (company) ->
       c_id = parseInt(company.id)
@@ -37,6 +45,8 @@ class OpsApplication.Views.Contact extends Backbone.View
     vendor = new OpsApplication.Models.Vendor(vendor_filter)
     $(@el).html(@template(
       contact: @model,
+      payment_type: payment_type,
+      payment_types: payment_types,
       vendor: vendor,
       vendors: vendors,
       company: company,
@@ -46,15 +56,25 @@ class OpsApplication.Views.Contact extends Backbone.View
     ))
     this
 
+  savePaymentType: (event) ->
+    event.preventDefault
+    kids = event.target.children
+    for k in kids
+      p_id = k.value if k.selected
+      option_id = k.id if k.selected
+    @model.save({payment_type_id: p_id},
+      success: -> console.log "New Payment Type, brah!"
+      error: -> console.log "You are teh suck."
+    )
+    $("#edit_payment_type_select_contact option[id='" + option_id + "']").attr("selected","selected")
+
   saveLocation: (event) ->
     event.preventDefault
     kids = event.target.children
     for k in kids
       l_id = k.value if k.selected
       option_id = k.id if k.selected
-    @model.save({
-      location_id: l_id
-    },
+    @model.save({location_id: l_id},
       success: -> console.log "New Location, brah!"
       error: -> console.log "You are teh suck."
     )
@@ -66,9 +86,7 @@ class OpsApplication.Views.Contact extends Backbone.View
     for k in kids
       c_id = k.value if k.selected
       option_id = k.id if k.selected
-    @model.save({
-      company_id: c_id
-    },
+    @model.save({company_id: c_id},
       success: -> console.log "New Company, brah!"
       error: -> console.log "You are teh suck."
     )
@@ -80,9 +98,7 @@ class OpsApplication.Views.Contact extends Backbone.View
     for k in kids
       v_id = k.value if k.selected
       option_id = k.id if k.selected
-    @model.save({
-      vendor_id: v_id
-    },
+    @model.save({vendor_id: v_id},
       success: -> console.log "You the man now dog."
       error: -> console.log "OMG STILL DOES NOT WORK."
     )
@@ -106,10 +122,8 @@ class OpsApplication.Views.Contact extends Backbone.View
         default_invoiced: d_invoiced
         was_lead: was_lead
       },
-        success: ->
-          console.log "GREAT SUCCESS!"
-        error: ->
-          console.log "FAIL TOWN."
+        success: -> console.log "GREAT SUCCESS!"
+        error: -> console.log "FAIL TOWN."
         silent: true
       )
 
@@ -119,9 +133,5 @@ class OpsApplication.Views.Contact extends Backbone.View
       success: (model, response) ->
         this.remove
         console.log "Success"
-        console.log model
-        console.log response
       error: (model, response) ->
         console.log "Error"
-        console.log model
-        console.log response
