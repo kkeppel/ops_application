@@ -50,15 +50,15 @@
 	</div>
   <div class="row">
     <label for="contact_company_id" class="span2">Company</label>
-    <%= select_tag "contact[company_id]", options_from_collection_for_select(Company.all, "id", "company_name"), class: "span2" %>
+    <%= select_tag "contact[company_id]", options_from_collection_for_select(Company.all, "id", "company_name"), :prompt => "Select..", class: "span2" %>
   </div>
   <div class="row">
     <label for="contact_vendor_id" class="span2">Vendor</label>
-    <%= select_tag "contact[vendor_id]", options_from_collection_for_select(Vendor.all, "id", "name"), class: "span2" %>
+    <%= select_tag "contact[vendor_id]", options_from_collection_for_select(Vendor.all, "id", "name"), :prompt => "Select..", class: "span2" %>
   </div>
   <div class="row">
     <label for="contact_location_id" class="span2">Location</label>
-    <%= select_tag "contact[location_id]", options_from_collection_for_select(Location.all, "id", "name"), class: "span2" %>
+    <%= select_tag "contact[location_id]", options_from_collection_for_select(Location.all, "id", "name"), :prompt => "Select..", class: "span2" %>
   </div>
 </form>
 

@@ -5,7 +5,7 @@ class Ability
     if user ||= User.new #guest
          if user.role? :admin
            can :manage, User
-           can :manage, ClientProfile
+           can :manage, CompanyProfile
            can :manage, VendorProfile
            can :manage, Meal
            can :manage, Item

@@ -19,10 +19,6 @@ class OpsApplication.Views.Contact extends Backbone.View
     vendors = @options.vendors
     companies = @options.companies
     locations = @options.locations
-    console.log payment_types
-    console.log locations
-    console.log vendors
-    console.log companies
     payment_type_filter = payment_types.filter (payment_type) ->
       p_id = parseInt(payment_type.id)
       i_id = payment_type.get('payment_type_id')

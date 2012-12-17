@@ -7,25 +7,12 @@ class OpsApplication.Views.OrdersIndex extends Backbone.View
 
   events:
     'click #datepicker': 'loadDatepicker'
-    'click #company_select': 'loadMeals'
+    'click #company_select': 'loadContactsAndMeals'
     'click #meal_select': 'loadVendors'
     'click #create_order': 'createOrder'
 
 
   initialize: ->
-    @vendors = new OpsApplication.Collections.Vendors
-    @vendors.fetch(success: -> console.log(@vendors))
-    @companies = new OpsApplication.Collections.Companies
-    @companies.fetch(success: -> console.log(@companies))
-    @items = new OpsApplication.Collections.Items
-    @items.fetch(success: -> console.log(@items))
-    @meals = new OpsApplication.Collections.Meals
-    @meals.fetch(success: -> console.log(@meals))
-    @menus = new OpsApplication.Collections.Menus
-    @menus.fetch(success: -> console.log(@menus))
-    @collection = new OpsApplication.Collections.Orders
-    @collection.fetch()
-    @companies.on('reset', @render)
     @collection.on('add', @appendOrder)
     @collection.on('reset', @render)
 
@@ -33,11 +20,12 @@ class OpsApplication.Views.OrdersIndex extends Backbone.View
   render: =>
     $(@el).html(@template(
       collection: @collection,
-      companies: @companies,
-      vendors: @vendors,
-      meals: @meals,
-      menus: @menus,
-      items: @items
+      companies: @options.companies,
+      vendors: @options.vendors,
+      meals: @options.meals,
+      menus: @options.menus,
+      items: @options.items,
+      contacts: @options.contacts
     ))
     @collection.each(@appendOrder)
     this
@@ -52,20 +40,27 @@ class OpsApplication.Views.OrdersIndex extends Backbone.View
     event.preventDefault()
     $('#datepicker').datepicker()
 
-
-  loadMeals: (event) ->
+  loadContactsAndMeals: (event) ->
     # grab company_id
     company_id = $("option:selected").val()
     # record chosen company
-    $.chosen_company = @companies.filter (c) ->
+    $.chosen_company = @options.companies.filter (c) ->
       parseInt(c.id) == parseInt(company_id)
     # filter meals by the company_id
-    filtered_meals = @meals.filter (m) ->
+    $.chosen_contact = @options.contacts.filter (c) ->
+      c.get('company_id') == parseInt(company_id)
+    filtered_meals = @options.meals.filter (m) ->
       m.get('company_id') == parseInt(company_id)
-    $(@el).html(@template({companies: $.chosen_company, meals: filtered_meals, vendors: @vendors, menus: @menus, items: @items}))
+    $(@el).html(@template({
+      companies: $.chosen_company,
+      meals: filtered_meals,
+      vendors: @options.vendors,
+      menus: @options.menus,
+      items: @options.items,
+      contacts: $.chosen_contact
+    }))
     @collection.each(@appendOrder)
     this
-
 
   loadVendors: (event) ->
     #declare variables
@@ -81,7 +76,7 @@ class OpsApplication.Views.OrdersIndex extends Backbone.View
 
     meal_id = $("#meal_select option:selected").val()
     # record chosen meal
-    $.chosen_meal = @meals.filter (m) ->
+    $.chosen_meal = @options.meals.filter (m) ->
       parseInt(m.id) == parseInt(meal_id)
     # use meal id to get allergen ids from allergens_meals
     $.ajax
@@ -130,13 +125,13 @@ class OpsApplication.Views.OrdersIndex extends Backbone.View
     all_items_menus.filter (item) ->
       unsafe_item_ids.push(item.item_id) if _.contains(unsafe_menu_ids, item.menu_id)
     # get safe menu objects
-    safe_menus = @menus.reject (m) ->
+    safe_menus = @options.menus.reject (m) ->
       _.contains(unsafe_menu_ids, m.id)
     # get safe items objects
-    safe_items = @items.reject (i) ->
+    safe_items = @options.items.reject (i) ->
       _.contains(unsafe_item_ids, i.id) || _.contains((safe_menus.map (si) -> si.get('id')), i.get('menu_id'))
 #    # filter out all vendors who have those item ids (because those items contain the allergens)
-    safe_vendors = @vendors.filter (v) ->
+    safe_vendors = @options.vendors.filter (v) ->
       v if _.contains((safe_items.map (si) -> si.get('vendor_id')), v.id)
 
     #load it all up!!!
@@ -146,6 +141,7 @@ class OpsApplication.Views.OrdersIndex extends Backbone.View
       items: safe_items,
       meals: $.chosen_meal
       menus: safe_menus
+      contacts: $.chosen_contact
     }))
     @collection.each(@appendOrder)
     this

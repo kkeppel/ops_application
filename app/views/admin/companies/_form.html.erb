@@ -17,7 +17,7 @@
   </div>
   <div class="row">
     <%= f.label :Nb_employee, "Number of Employees", class: "span2" %>
-    <%= f.text_field :nb_employee, class: "span3" %>
+    <%= f.text_field :nb_employee, class: "span1" %>
   </div>
   <div class="row">
     <%= f.label :website, class: "span2" %>
@@ -25,7 +25,7 @@
   </div>
   <div class="row">
     <%= f.label :phone, class: "span2" %>
-    <%= f.text_field :phone, class: "span3" %>
+    <%= f.text_field :phone, class: "span2" %>
   </div>
 
   <h2>Add a Primary Location</h2>
@@ -48,14 +48,22 @@
       <%= loc.text_field :floor, class: "span1" %>
     </div>
     <div class="row">
-      <%=	loc.label :city, class: "span2" %>
-      <%= collection_select :city, :city_id, City.all, :id, :name  %>
+      <%=	loc.label :city_id, "City", class: "span2" %>
+      <%= loc.select :city_id, options_from_collection_for_select(City.all, :id, :name) %>
+    </div>
+    <div class="row">
+      <%=	loc.label :state, class: "span2" %>
+      <%= loc.select :state, options_for_select([["CA", "CA"],["NY","NY"]]), :class => "span1" %>
+    </div>
+    <div class="row">
+      <%=	loc.label :zip, class: "span2" %>
+      <%= loc.text_field :zip, class: "span2" %>
     </div>
   <% end %>
 
   <h2>Company Profile Info</h2>
 
-  <% if @company_profile_keys %>
+  <% if !@company_profile_keys.empty? %>
       <% @company_profile_keys.each do |key| %>
           <div class="row" id="company_<%= key.key %>">
             <% values = @company_profile.where(key: key.key) %>
@@ -88,3 +96,10 @@
   </div>
 
 <% end %>
+
+<script type="text/javascript">
+	$("#company_phone").mask("(999) 999-9999",{placeholder:" "});
+	$("#company_locations_attributes_0_zip").mask("99999?-9999",{placeholder:" "});
+	$("#company_nb_employee").mask("9?99",{placeholder:" "});
+	$("#company_locations_attributes_0_floor").mask("9?99",{placeholder:" "});
+</script>

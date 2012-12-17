@@ -11,6 +11,7 @@
 <!--<td contenteditable="true" id="edit_payment_type_id"><%#= @contact.get("payment_type_id") %></td>-->
 <td id="edit_payment_type" >
   <select id="edit_payment_type_select_contact">
+    <option name="payment_type_option"></option>
     <% for payment_type in @payment_types.models: %>
       <option name="payment_type_option" id="<%= @contact.get('id') %>_<%= payment_type.get('id') %>"  value="<%= payment_type.get('id') %>" <%= 'selected=selected' if payment_type.get('id') == @contact.get('payment_type_id') %>>
         <%= payment_type.get('name') %>
@@ -20,6 +21,7 @@
 </td>
 <td id="edit_company" >
   <select id="edit_company_select_contact">
+	  <option name="company_option"></option>
     <% for company in @companies.models: %>
       <option name="company_option" id="<%= @contact.get('id') %>_<%= company.get('id') %>"  value="<%= company.get('id') %>" <%= 'selected=selected' if company.get('id') == @contact.get('company_id') %>>
         <%= company.get('company_name') %>
@@ -29,6 +31,7 @@
 </td>
 <td id="edit_vendor" >
   <select id="edit_vendor_select_contact">
+    <option name="vendor_option"></option>
     <% for vendor in @vendors.models: %>
       <option name="vendor_option" id="<%= @contact.get('id') %>_<%= vendor.get('id') %>"  value="<%= vendor.get('id') %>" <%= 'selected=selected' if vendor.get('id') == @contact.get('vendor_id') %>>
         <%= vendor.get('name') %>
@@ -38,6 +41,7 @@
 </td>
 <td id="edit_location" >
   <select id="edit_location_select_contact">
+    <option name="location_option"></option>
     <% for location in @locations.models: %>
       <option name="location_option" id="<%= @contact.get('id') %>_<%= location.get('id') %>"  value="<%= location.get('id') %>" <%= 'selected=selected' if location.get('id') == @contact.get('location_id') %>>
         <%= location.get('name') %>

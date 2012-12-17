@@ -7,8 +7,6 @@ class Company < ActiveRecord::Base
   has_many :meal_profiles, :through => :meals
   has_many :company_profiles, :foreign_key => :company_id
 
-  validates :company_name, :presence => true
-  validates :nb_employee, :presence => true
 
   validates_associated :locations
 

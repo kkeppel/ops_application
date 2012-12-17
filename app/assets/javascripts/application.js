@@ -19,6 +19,7 @@
 //= require backbone
 //= require ops_application
 //= require backbone-forms-bootstrap
+//= require masked_input
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections

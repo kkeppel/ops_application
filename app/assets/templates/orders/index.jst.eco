@@ -10,6 +10,17 @@
 
 	<br/>
 
+  <label for="contact_select" class="span2">Contact: </label>
+  <select id="contact_select">
+    <% for contact in @contacts.models || @contacts: %>
+      <option id="contacts_option" value="<%= contact.get('id') %>" class="new_contact_id">
+        <%= contact.get('first_name') %> <%= contact.get('last_name') %>
+      </option>
+    <% end %>
+  </select>
+
+  <br/>
+
 	<label for="meal_select" class="span2">Meal: </label>
 	<select id="meal_select">
 		<% for meal in @meals.models || @meals: %>
