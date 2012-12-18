@@ -1,38 +1,113 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @company.company_name %>
-</p>
+<h1>Stuff about <%= @company.company_name %></h1>
 
-<p>
-  <b>NB employee:</b>
-  <%= @company.nb_employee %>
-</p>
+<div class="container offset1">
+	<div class="row">
+		<b>Company Name: </b>
+		<%= @company.company_name %>
+	</div>
+	<div class="row">
+	  <b>Number of Employees: </b>
+	  <%= @company.nb_employee %>
+	</div>
+	<div class="row">
+	  <b>Website: </b>
+	  <%= @company.website %>
+	</div>
+	<div class="row">
+	  <b>Phone: </b>
+	  <%= @company.phone %>
+	</div>
+</div>
+<br/>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span6">
+      <h2>Primary Location</h2>
+      <div class="row-fluid">
+        <b>Location Name: </b>
+        <%= @location.name %>
+      </div>
+      <div class="row-fluid">
+        <b>Street Address: </b>
+        <%= @location.address1 %>
+      </div>
+      <div class="row-fluid">
+        <b>Address 2: </b>
+        <%= @location.address2 %>
+      </div>
+      <div class="row-fluid">
+        <b>Cross Streets: </b>
+        <%= @location.cross_streets %>
+      </div>
+      <div class="row-fluid">
+        <b>Floor: </b>
+        <%= @location.floor %>
+      </div>
+      <div class="row-fluid">
+        <b>City: </b>
+        <%= @location.city.name %>
+      </div>
+      <div class="row-fluid">
+        <b>State: </b>
+	      <%= @location.state %>
+      </div>
+      <div class="row-fluid">
+        <b>Zip: </b>
+        <%= @location.zip %>
+      </div>
+    </div>
 
-<p>
-  <b>Website:</b>
-  <%= @company.website %>
-</p>
-
-<p>
-  <b>Phone:</b>
-  <%= @company.phone %>
-</p>
-
-<p>
-  <b>Locations:</b>
-  <%= collection_select @company, :location , @company.locations, :id, :name %>
-</p>
-
-<p>
-	<% @company_profile_keys.each do |k| %>
-	  <b><%= k.key %></b>
-	  <% @company_profile.each do |profile| %>
-	      <%= profile.value if profile.key == k.key  %>
-	  <% end %>
-	<% end %>
-</p>
+    <div class="span6">
+      <h2>Primary Contact</h2>
+      <div class="row-fluid">
+        <b>Title: </b>
+	      <%= @contact.title %>
+      </div>
+      <div class="row-fluid">
+        <b>First Name: </b>
+	      <%= @contact.first_name %>
+      </div>
+      <div class="row-fluid">
+        <b>Last Name: </b>
+        <%= @contact.last_name %>
+      </div>
+      <div class="row-fluid">
+        <b>Email: </b>
+	      <%= @contact.email %>
+      </div>
+      <div class="row-fluid">
+        <b>Work Email: </b>
+	      <%= @contact.work_email %>
+      </div>
+      <div class="row-fluid">
+        <b>Direct Phone: </b>
+	      <%= @contact.direct_phone %>
+      </div>
+      <div class="row-fluid">
+        <b>Mobile Phone: </b>
+	      <%= @contact.mobile_phone %>
+      </div>
+      <div class="row-fluid">
+        <b>Carrier: </b>
+	      <%= @contact.carrier %>
+      </div>
+      <div class="row-fluid">
+        <b>Fax: </b>
+	      <%= @contact.fax %>
+      </div>
+      <div class="row-fluid">
+        <b>Payment Type: </b>
+	      <%= @contact.payment_type.name %>
+      </div>
+      <div class="row-fluid">
+        <b>Was Lead? </b>
+        <%= @contact.was_lead ? "yes" : "no" %>
+      </div>
+    </div>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_admin_company_path(@company), :class => "btn"  %> |
 <%= link_to 'Back', admin_companies_path, :class => "btn" %>

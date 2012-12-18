@@ -6,14 +6,14 @@ class CompanyProfile < ActiveRecord::Base
   #validates :value, :presence => true
   #validates :company_id, :presence => true
 
-  attr_accessible :key, :value, :value2, :company_id
+  attr_accessible :key, :value, :value2, :company_id, :allergies
 
   SINGLEVALUE_KEYS = [
-    :favorite_foods, :allergies
+    :favorite_foods
   ]
 
   MULTIVALUE_KEYS = [
-
+    :allergies
   ]
 
   KEYS = SINGLEVALUE_KEYS + MULTIVALUE_KEYS

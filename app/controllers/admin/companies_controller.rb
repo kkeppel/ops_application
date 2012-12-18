@@ -1,18 +1,14 @@
 class Admin::CompaniesController < ApplicationController
-
   respond_to :html, :json
-  # GET /companies
-  # GET /companies.json
-
 
   def index
     respond_with(@companies = Company.all)
   end
 
-  # GET /companies/1
-  # GET /companies/1.json
   def show
     @company = Company.find(params[:id])
+    @location = Location.where(company_id: params[:id]).last
+    @contact = Contact.where(company_id: params[:id]).last
     @company_profile = CompanyProfile.where(company_id: params[:id])
     @company_profile_keys = @company_profile.group('company_profiles.key')
 
@@ -22,11 +18,11 @@ class Admin::CompaniesController < ApplicationController
     end
   end
 
-  # GET /companies/new
-  # GET /companies/new.json
   def new
     @company = Company.new
     @company.locations.build
+    @company.contacts.build
+
     @company_profile = CompanyProfile.where(company_id: params[:id])
     @company_profile_keys = @company_profile.group('company_profiles.key')
     respond_to do |format|
@@ -35,7 +31,6 @@ class Admin::CompaniesController < ApplicationController
     end
   end
 
-  # GET /companies/1/edit
   def edit
     @company = Company.find(params[:id])
     @company_profile = CompanyProfile.where(company_id: params[:id])
@@ -43,16 +38,16 @@ class Admin::CompaniesController < ApplicationController
 
   end
 
-  # POST /companies
-  # POST /companies.json
   def create
     @company = Company.new(params[:company])
 
     respond_to do |format|
       if @company.save
+        new_contact = Contact.last
+        new_contact.update_attribute(:location_id, Location.last.id)
         #update key value table
-        @company.update_profile(params)
-        CompanyProfile.delete_all("value LIKE '%=>%' or company_id = 0")
+        #@company.update_profile(params)
+        CompanyProfile.delete_all("value LIKE '%=>%' or company_id = 0 or value LIKE ''")
         format.html { redirect_to admin_company_path(@company), notice: 'Company was successfully created.' }
         format.json { render json: @company, status: :created, location: @company }
       else
@@ -62,8 +57,6 @@ class Admin::CompaniesController < ApplicationController
     end
   end
 
-  # PUT /companies/1
-  # PUT /companies/1.json
   def update
     @company = Company.find(params[:id])
 
@@ -82,8 +75,6 @@ class Admin::CompaniesController < ApplicationController
     end
   end
 
-  # DELETE /companies/1
-  # DELETE /companies/1.json
   def destroy
     @company = Company.find(params[:id])
     @company.destroy

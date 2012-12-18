@@ -7,14 +7,13 @@ class Company < ActiveRecord::Base
   has_many :meal_profiles, :through => :meals
   has_many :company_profiles, :foreign_key => :company_id
 
-
   validates_associated :locations
+  validates_associated :contacts
 
   accepts_nested_attributes_for :locations
+  accepts_nested_attributes_for :contacts
 
-
-
-  attr_accessible :company_name, :nb_employee, :website, :phone, :locations_attributes, :company_id,
+  attr_accessible :company_name, :nb_employee, :website, :phone, :locations_attributes, :contacts_attributes,
                   :allergies, :favorite_foods # add attributes here for the key-value pairs in CompanyProfile
 
 
@@ -36,10 +35,10 @@ class Company < ActiveRecord::Base
       end
     }
     define_method("#{k}=") {|parameter|
-      company_profiles.delete(company_profiles.where(:key => k))
+      #company_profiles.delete(company_profiles.where(:key => k))
       instance_variable_set("@#{k}", parameter)
       unless parameter.blank?
-        profile_record = company_profiles.build(:key => k, :value => parameter.try(:to_s).try(:strip), :company_id => id)
+        profile_record = company_profiles.build(:key => k, :value => parameter.try(:to_s).try(:strip), :value2 => value_2.try(:to_s).try(:strip), :company_id => id)
         profile_record.save unless new_record?
       end
     }
@@ -53,26 +52,29 @@ class Company < ActiveRecord::Base
 
 
   def update_profile(params, company_id = nil)
-    params['company'].try(:each){|key, value|
+    params['company']['company_profiles_attributes'].each do |key, value|
       key = key.to_sym
       if CompanyProfile::KEYS.include?(key)
         if value.is_a?(Array)
           company_profiles.delete(company_profiles.where(:key => key))
           value.each{|v|
             send("add_#{key}", v, company_id) unless v.blank?
-            send("add_#{key}", v, company_id) unless v.blank?
           }
         elsif value.is_a?(Hash)
-          company_profiles.delete(company_profiles.where(:key => key))
-          value.each_with_index{|v,i|
-            send("add_#{key}", v[1], value.try(:[],i), company_id) unless v.blank?
-          }
+          if CompanyProfile::MULTIVALUE_KEYS.include?(key)
+            send("add_#{key}", value.each{|v| v[0][1]}, value.each{|v|v[1][1]}, company_id)
+          else
+            company_profiles.delete(company_profiles.where(:key => key))
+            value.each_with_index{|v,i|
+              send("add_#{key}", v[1], value.try(:[],i), company_id) unless v.blank?
+            }
+          end
         else
           company_profiles.delete(company_profiles.where(:key => key))
           send("#{key}=", value, params[:id])
         end
       end
-    }
+    end
   end
 
 

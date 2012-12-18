@@ -1,4 +1,4 @@
-<%= form_for(@company, :url => admin_companies_path) do |f| %>
+<%= form_for(@company, :url => admin_companies_path(@companies)) do |f| %>
   <% if @company.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
@@ -28,66 +28,101 @@
     <%= f.text_field :phone, class: "span2" %>
   </div>
 
-  <h2>Add a Primary Location</h2>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span6">
+			  <h2>Add a Primary Location</h2>
+			  <%= f.fields_for :locations do |loc| %>
+			    <div class="row-fluid">
+			      <%= loc.label :location_name, "Location Name", class: "span3" %>
+			      <%= loc.text_field :name, class: "span6" %>
+			    </div>
+			    <div class="row-fluid">
+			      <%= loc.label :address1, "Street Address", class: "span3" %>
+			      <%= loc.text_field :address1, class: "span6" %>
+			    </div>
+			    <div class="row-fluid">
+			      <%= loc.label :address2, "Address 2", class: "span3" %>
+			      <%= loc.text_field :address2, class: "span6" %>
+			    </div>
+					<div class="row-fluid">
+						<%= loc.label :cross_streets, class: "span3" %>
+						<%= loc.text_field :cross_streets, class: "span6" %>
+					</div>
+			    <div class="row-fluid">
+			      <%= loc.label :floor, class: "span3" %>
+			      <%= loc.text_field :floor, class: "span2" %>
+			    </div>
+			    <div class="row-fluid">
+			      <%=	loc.label :city_id, "City", class: "span3" %>
+			      <%= loc.select :city_id, options_from_collection_for_select(City.all, :id, :name) %>
+			    </div>
+			    <div class="row-fluid">
+			      <%=	loc.label :state, class: "span3" %>
+			      <%= loc.select :state, options_for_select([["CA", "CA"],["NY","NY"]]), :class => "span1" %>
+			    </div>
+			    <div class="row-fluid">
+			      <%=	loc.label :zip, class: "span3" %>
+			      <%= loc.text_field :zip, class: "span3" %>
+			    </div>
+			  <% end %>
+			</div>
 
-  <%= f.fields_for :locations do |loc| %>
-    <div class="row">
-      <%= loc.label :location_name, "Location Name", class: "span2" %>
-      <%= loc.text_field :name, class: "span3" %>
-    </div>
-    <div class="row">
-      <%= loc.label :address1, "Street Address", class: "span2" %>
-      <%= loc.text_field :address1, class: "span3" %>
-    </div>
-    <div class="row">
-      <%= loc.label :address2, "Address 2", class: "span2" %>
-      <%= loc.text_field :address2, class: "span3" %>
-    </div>
-    <div class="row">
-      <%= loc.label :floor, class: "span2" %>
-      <%= loc.text_field :floor, class: "span1" %>
-    </div>
-    <div class="row">
-      <%=	loc.label :city_id, "City", class: "span2" %>
-      <%= loc.select :city_id, options_from_collection_for_select(City.all, :id, :name) %>
-    </div>
-    <div class="row">
-      <%=	loc.label :state, class: "span2" %>
-      <%= loc.select :state, options_for_select([["CA", "CA"],["NY","NY"]]), :class => "span1" %>
-    </div>
-    <div class="row">
-      <%=	loc.label :zip, class: "span2" %>
-      <%= loc.text_field :zip, class: "span2" %>
-    </div>
-  <% end %>
+			<div class="span6">
+				<h2>Add a Primary Contact</h2>
+			  <%= f.fields_for :contacts do |con| %>
+					<div class="row-fluid">
+						<%= con.label :title, class: "span3" %>
+						<%= con.select :title, options_for_select(Contact.title_options) %>
+					</div>
+			    <div class="row-fluid">
+			      <%= con.label :first_name, class: "span3" %>
+			      <%= con.text_field :first_name, class: "span6" %>
+			    </div>
+			    <div class="row-fluid">
+			      <%= con.label :last_name, class: "span3" %>
+			      <%= con.text_field :last_name, class: "span6" %>
+			    </div>
+			    <div class="row-fluid">
+			      <%= con.label :email, class: "span3" %>
+			      <%= con.email_field :email, class: "span6" %>
+			    </div>
+			    <div class="row-fluid">
+			      <%= con.label :work_email, class: "span3" %>
+			      <%= con.email_field :work_email, class: "span6" %>
+			    </div>
+			    <div class="row-fluid">
+			      <%=	con.label :direct_phone, class: "span3" %>
+			      <%= con.text_field :direct_phone, class: "span4" %>
+			    </div>
+			    <div class="row-fluid">
+			      <%=	con.label :mobile_phone, class: "span3" %>
+			      <%= con.text_field :mobile_phone, class: "span4" %>
+			    </div>
+			    <div class="row-fluid">
+			      <%=	con.label :carrier, class: "span3" %>
+			      <%= con.select :carrier, options_for_select(Contact.carrier_options) %>
+			    </div>
+					<div class="row-fluid">
+						<%= con.label :fax, class: "span3" %>
+						<%= con.text_field :fax, class: "span4" %>
+					</div>
+					<div class="row-fluid">
+						<%= con.label :payment_type_id, "Payment Type", class: "span3" %>
+						<%= con.select :payment_type_id, options_from_collection_for_select(PaymentType.all, :id, :name) %>
+					</div>
+					<div class="row-fluid">
+						<%= con.label :was_lead, class: "span3" %>
+						<%= con.check_box :was_lead %>
+					</div>
+					<%= con.hidden_field :default_contact, value: true %>
+					<%= con.hidden_field :default_invoiced, value: true %>
+				<% end %>
+			</div>
+		</div>
+	</div>
 
-  <h2>Company Profile Info</h2>
 
-  <% if !@company_profile_keys.empty? %>
-      <% @company_profile_keys.each do |key| %>
-          <div class="row" id="company_<%= key.key %>">
-            <% values = @company_profile.where(key: key.key) %>
-            <% i = 0 %>
-            <% values.each do |value| %>
-                <input type="text" id="company_<%= key.key %>_<%= i %>" name="company[<%= key.key %>][<%= i %>]" size="30" value="<%= value.value && value.key == key.key ? value.value : '' %>"/>
-                <input type="button" value="Remove <%= key.key.humanize.singularize %>" id="remove_<%= key.key %>_<%= i %>" />
-                <% i += 1 %>
-            <% end %>
-            <input type="button" value="Add Another <%= key.key.humanize.singularize %>" class="add_<%= key.key %>_field"/>
-          </div>
-      <% end %>
-  <% else %>
-      <% CompanyProfile::KEYS.each do |key| %>
-          <div class="row" id="company_<%= key.to_s %>">
-            <% i = 0 %>
-            <%= key.to_s.humanize.singularize %>
-            <input type="text" id="company_<%= key.to_s %>_<%= i %>" name="company[<%= key.to_s %>][<%= i %>]" size="30" value=""/>
-            <input type="button" value="Remove" id="remove_<%= key.to_s %>_<%= i %>" />
-            <% i += 1 %>
-            <input type="button" value="Add Another <%= key.to_s.humanize.singularize %>" class="add_<%= key %>_field"/>
-          </div>
-      <% end %>
-  <% end %>
 
   <br/>
 
@@ -98,6 +133,9 @@
 <% end %>
 
 <script type="text/javascript">
+	$("#company_contacts_attributes_0_direct_phone").mask("(999) 999-9999",{placeholder:" "});
+	$("#company_contacts_attributes_0_mobile_phone").mask("(999) 999-9999",{placeholder:" "});
+	$("#company_contacts_attributes_0_fax").mask("(999) 999-9999",{placeholder:" "});
 	$("#company_phone").mask("(999) 999-9999",{placeholder:" "});
 	$("#company_locations_attributes_0_zip").mask("99999?-9999",{placeholder:" "});
 	$("#company_nb_employee").mask("9?99",{placeholder:" "});
