@@ -4,6 +4,7 @@ class Vendor < ActiveRecord::Base
   has_many :contacts
   has_many :items
   belongs_to :vendor_type
+  has_many :users
 
   attr_accessible :bio, :name, :public_name, :tagline, :vendor_type_id, :website, :vendor_id,
                   :preferences

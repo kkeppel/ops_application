@@ -61,11 +61,7 @@ class Admin::CompaniesController < ApplicationController
     @company = Company.find(params[:id])
 
     respond_to do |format|
-      if @company.update_attributes(params[:company].except(:allergies, :favorite_foods))
-        CompanyProfile.delete_all(company_id: @company.id)
-        #update key value table
-        @company.update_profile(params)
-        CompanyProfile.delete_all("value LIKE '%=>%' or company_id = 0")
+      if @company.update_attributes(params[:company])
         format.html { redirect_to admin_company_path(@company), notice: 'Company was successfully updated.' }
         format.json { head :no_content }
       else
@@ -73,6 +69,20 @@ class Admin::CompaniesController < ApplicationController
         format.json { render json: @company.errors, status: :unprocessable_entity }
       end
     end
+    #
+    #respond_to do |format|
+    #  #if @company.update_attributes(params[:company].except(:allergies, :favorite_foods))
+    #  #  CompanyProfile.delete_all(company_id: @company.id)
+    #  #  #update key value table
+    #  #  @company.update_profile(params)
+    #  #  CompanyProfile.delete_all("value LIKE '%=>%' or company_id = 0")
+    #  #  format.html { redirect_to admin_company_path(@company), notice: 'Company was successfully updated.' }
+    #  #  format.json { head :no_content }
+    #  #else
+    #    format.html { render action: "edit" }
+    #    format.json { render json: @company.errors, status: :unprocessable_entity }
+    #  #end
+    #end
   end
 
   def destroy

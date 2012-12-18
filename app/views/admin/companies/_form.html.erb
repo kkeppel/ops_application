@@ -1,4 +1,4 @@
-<%= form_for(@company, :url => admin_companies_path(@companies)) do |f| %>
+
   <% if @company.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
@@ -127,10 +127,10 @@
   <br/>
 
   <div class="actions">
-    <%= f.submit "Create Company", class: "btn btn-primary"%>
+    <%= f.submit class: "btn btn-primary"%>
   </div>
 
-<% end %>
+
 
 <script type="text/javascript">
 	$("#company_contacts_attributes_0_direct_phone").mask("(999) 999-9999",{placeholder:" "});

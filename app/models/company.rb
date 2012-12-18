@@ -6,6 +6,7 @@ class Company < ActiveRecord::Base
   has_many :meals
   has_many :meal_profiles, :through => :meals
   has_many :company_profiles, :foreign_key => :company_id
+  has_many :users
 
   validates_associated :locations
   validates_associated :contacts

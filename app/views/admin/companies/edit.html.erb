@@ -1,6 +1,7 @@
 <h1>Edit Company!</h1>
-
-<%= render 'form' %>
+<%= form_for(@company, :url => admin_company_path(@company), method: 'PUT') do |f| %>
+	<%= render 'form', f: f %>
+<% end %>
 
 
 <%= link_to 'Show', admin_company_path(@company), :class => 'btn' %> |
