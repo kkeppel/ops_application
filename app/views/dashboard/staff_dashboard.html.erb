@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>Welcome C2me Staff</h1>
+  <h1>Welcome C2me <%= current_user.role.capitalize %></h1>
   <p><%= link_to "Signup", new_user_registration_path  %> or <%= link_to "Sign in", new_user_session_path %></p>
 </div>
 
@@ -13,22 +13,29 @@
         <li><%= link_to "Manage Users", admin_users_path %> </li>
         <li><%= link_to "Manage Companies", admin_companies_path %></li>
         <li><%= link_to "Manage Vendors", admin_vendors_path %></li>
-        <li><%= link_to "Manage Locations", locations_path %></li>
         <li><%= link_to "Manage Meal Types", meal_types_path %></li>
         <li><%= link_to "Manage Food Categories", food_categories_path %></li>
         <li><%= link_to "Manage Menus", menus_path %></li>
-        <li><%= link_to "Manage Contacts", contacts_path %></li>
         <li><%= link_to "Manage Payment Types", payment_types_path %></li>
         <li><%= link_to "Manage Tags", tags_path %></li>
+        <li><%= link_to "Manage Items", items_path %></li>
+        <li><%= link_to "Manage Meals", meals_path %></li>
+    <% elsif current_user.role?(:ops) || current_user.role?(:admin) %>
+        <li><%= link_to "Manage Meal Types", meal_types_path %></li>
+        <li><%= link_to "Manage Food Categories", food_categories_path %></li>
+        <li><%= link_to "Manage Menus", menus_path %></li>
+        <li><%= link_to "Manage Payment Types", payment_types_path %></li>
+        <li><%= link_to "Manage Tags", tags_path %></li>
+        <li><%= link_to "Manage Items", items_path %></li>
+        <li><%= link_to "Manage Meals", meals_path %></li>
     <% end %>
-    <li><%= link_to "Manage Items", items_path %></li>
-    <li><%= link_to "Manage Meals", meals_path %></li>
-
+    <li><%= link_to "Manage Locations", locations_path %></li>
+    <li><%= link_to "Manage Contacts", contacts_path %></li>
   </ul>
 
 </div>
 
-You're <%= current_user.role?(:admin) ? "an admin" : "ops" %>!! Good for you!!
+You're <%= current_user.role %>!! Good for you!!
 
 <br/>
 <br/>

@@ -97,7 +97,7 @@
       </div>
       <div class="row-fluid">
         <b>Payment Type: </b>
-	      <%= @contact.payment_type.name %>
+	      <%= @contact.payment_type.name if @contact.payment_type %>
       </div>
       <div class="row-fluid">
         <b>Was Lead? </b>

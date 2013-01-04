@@ -55,6 +55,8 @@ module OpsApplication
     # parameters by using an attr_accessible or attr_protected declaration.
     config.active_record.whitelist_attributes = true
 
+    #config.action_mailer.delivery_method = :sendmail
+
     # Enable the asset pipeline
     config.assets.enabled = true
 

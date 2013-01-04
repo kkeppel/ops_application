@@ -107,7 +107,7 @@
 		      <%= key.to_s.humanize.singularize %>
           <select>
             <% table_array.each do |t| %>
-              <option name="meal[<%= key %>]" value="<%= t.id %>"><%= t.name %></option>
+              <option name="meal[<%= key %>]" value="<%= t.id %>"><%= t.instance_of?(Contact) ? t.first_name : t.name %></option>
             <% end %>
           </select>
         <% end %>

@@ -11,11 +11,11 @@ Role.find_or_create_by_name(name: "admin", description: "Can do everything in hi
 Role.find_or_create_by_name(name: "ops", description: "ops team of cater2.me")
 Role.find_or_create_by_name(name: "sales", description: "sales team of cater2.me")
 #company
-Role.find_or_create_by_name(name: "office_manager", description: "Can access data of his company")
+Role.find_or_create_by_name(name: "client_contact", description: "Can access data of his company")
 Role.find_or_create_by_name(name: "employee", description: "employee of the company, can access dashboard")
 #vendor
 Role.find_or_create_by_name(name: "vendor", description: "Owner of the restaurants, can admin his businesses")
-Role.find_or_create_by_name(name: "carrier", description: "Deliver food. Get access to the delivery list")
+Role.find_or_create_by_name(name: "delivery_staff", description: "Deliver food. Get access to the delivery list")
 
 
 State.find_or_create_by_name([

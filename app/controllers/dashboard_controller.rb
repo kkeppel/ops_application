@@ -9,7 +9,7 @@ class DashboardController < Devise::SessionsController
       elsif current_user.is_vendor
         redirect_to :action => "vendor_dashboard"
       else
-        redirect_to :action => "staff_dashboard"
+        render :action => "staff_dashboard"
       end
     else
       redirect_to :controller => "static_pages", :action => "home"

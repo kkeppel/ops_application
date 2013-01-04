@@ -26,6 +26,12 @@ class User < ActiveRecord::Base
     return !!self.roles.find_by_name(role.to_s.camelize)
   end
 
+  def role
+    self.roles.name
+    role_id = RolesUser.where(user_id: self.id)
+    Role.find(role_id[0].role_id).name.humanize
+  end
+
   def client_or_vendor(role_id)
     client_roles = %w(employee client_contact)
     vendor_roles = %w(vendor delivery_staff)
