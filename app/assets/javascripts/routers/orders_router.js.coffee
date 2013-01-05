@@ -1,6 +1,6 @@
 class OpsApplication.Routers.Orders extends Backbone.Router
   routes:
-    'staff_dashboard': 'index'
+    '': 'index'
 
   initialize: ->
     @vendors = new OpsApplication.Collections.Vendors

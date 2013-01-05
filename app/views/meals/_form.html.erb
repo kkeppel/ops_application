@@ -36,7 +36,7 @@
 
   <div class="row">
     <%= f.label :company_id, class: "span2" %>
-    <%= f.collection_select :company_id, Company.all, :id, :company_name %>
+    <%= f.collection_select :company_id, Company.all, :id, :name %>
   </div>
 
   <div class="row">

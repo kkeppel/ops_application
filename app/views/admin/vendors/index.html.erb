@@ -23,6 +23,8 @@
       <td><%= vendor.website %></td>
       <td><%= vendor.bio %></td>
       <td><%= vendor.vendor_type_id %></td>
+      <td><%= link_to 'Manage Locations', admin_vendor_locations_path(vendor)  %></td>
+      <td><%= link_to 'Manage Contacts', admin_vendor_contacts_path(vendor) %></td>
       <td><%= link_to 'Show', admin_vendor_path(vendor) %></td>
       <td><%= link_to 'Edit', edit_admin_vendor_path(vendor) %></td>
       <td><%= link_to 'Destroy', admin_vendor_path(vendor), method: :delete, data: { confirm: 'Are you sure?' } %></td>

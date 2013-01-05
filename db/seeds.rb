@@ -17,6 +17,12 @@ Role.find_or_create_by_name(name: "employee", description: "employee of the comp
 Role.find_or_create_by_name(name: "vendor", description: "Owner of the restaurants, can admin his businesses")
 Role.find_or_create_by_name(name: "delivery_staff", description: "Deliver food. Get access to the delivery list")
 
+PaymentType.find_or_create_by_name(name: "Cash", fee: "0")
+PaymentType.find_or_create_by_name(name: "Check", fee: "0")
+PaymentType.find_or_create_by_name(name: "Visa", fee: ".05")
+PaymentType.find_or_create_by_name(name: "Discover", fee: ".01")
+
+
 
 State.find_or_create_by_name([
   {:name => 'Alabama', :code => 'AL'},

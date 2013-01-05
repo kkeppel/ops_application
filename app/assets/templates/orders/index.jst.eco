@@ -3,7 +3,7 @@
 	<select id="company_select">
 	  <% for company in @companies.models || @companies: %>
 	    <option id="company_option" value="<%= company.get('id') %>" class="new_company_id">
-	      <%= company.get('company_name') %>
+	      <%= company.get('name') %>
 	    </option>
 	  <% end %>
 	</select>

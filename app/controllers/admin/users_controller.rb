@@ -7,7 +7,7 @@ class Admin::UsersController < ApplicationController
 
   def edit
     @roles = Role.find_by_sql('SELECT * from roles group by name').map {|r| [r.name, r.id]}
-    @companies = Company.all.map {|c| [c.company_name, c.id] }
+    @companies = Company.all.map {|c| [c.name, c.id] }
     @vendors = Vendor.all.map {|v| [v.name, v.id] }
   end
 

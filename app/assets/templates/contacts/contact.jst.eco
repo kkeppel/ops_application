@@ -24,7 +24,7 @@
 	  <option name="company_option"></option>
     <% for company in @companies.models: %>
       <option name="company_option" id="<%= @contact.get('id') %>_<%= company.get('id') %>"  value="<%= company.get('id') %>" <%= 'selected=selected' if company.get('id') == @contact.get('company_id') %>>
-        <%= company.get('company_name') %>
+        <%= company.get('name') %>
       </option>
     <% end %>
   </select>

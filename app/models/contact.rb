@@ -1,12 +1,12 @@
 class Contact < ActiveRecord::Base
-  belongs_to :companies
-  belongs_to :locations
-  belongs_to :vendors
+  belongs_to :company
+  belongs_to :location
+  belongs_to :vendor
   belongs_to :payment_type
 
   attr_accessible :first_name, :last_name, :email, :direct_phone, :mobile_phone, :carrier, :title, :default_contact,
                   :default_invoiced, :was_lead, :company_id, :vendor_id, :location_id,
-                  :work_email, :fax, :payment_type_id
+                  :work_email, :fax, :payment_type_id, :company
 
   def self.title_options
     options = [

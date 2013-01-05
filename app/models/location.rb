@@ -12,6 +12,14 @@ class Location < ActiveRecord::Base
                   :perimeter, :time_required, :vendor_profile_id, :city_attributes, :vendor_id, :company_id
 
 
+	def self.state_abbreviations
+		[
+			["CA", "CA"],
+		  ["NY", "NY"]
+		]
+	end
+
+
 
 
 

@@ -14,7 +14,7 @@ class Company < ActiveRecord::Base
   accepts_nested_attributes_for :locations
   accepts_nested_attributes_for :contacts
 
-  attr_accessible :company_name, :nb_employee, :website, :phone, :locations_attributes, :contacts_attributes,
+  attr_accessible :name, :nb_employee, :website, :phone, :locations_attributes, :contacts_attributes,
                   :allergies, :favorite_foods # add attributes here for the key-value pairs in CompanyProfile
 
 

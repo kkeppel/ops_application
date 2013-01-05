@@ -15,10 +15,12 @@
   <tbody>
 <% @companies.each do |company| %>
   <tr>
-    <td><%= company.company_name %></td>
+    <td><%= company.name %></td>
     <td><%= company.nb_employee %></td>
     <td><%= company.website %></td>
     <td><%= company.phone %></td>
+    <td><%= link_to 'Manage Locations', admin_company_locations_path(company) %></td>
+    <td><%= link_to 'Manage Contacts', admin_company_contacts_path(company) %></td>
     <td><%= link_to 'Show', admin_company_path(company) %></td>
     <td><%= link_to 'Edit', edit_admin_company_path(company) %></td>
     <td><%= link_to 'Destroy', admin_company_path(company), method: :delete, data: { confirm: 'Are you sure?' } %></td>

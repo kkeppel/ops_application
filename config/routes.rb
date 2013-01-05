@@ -69,8 +69,16 @@ OpsApplication::Application.routes.draw do
 
   namespace "admin" do
 
-    resources :vendors
-    resources :companies
+    resources :vendors do
+	    resources :locations
+	    resources :contacts
+    end
+
+    resources :companies do
+      resources :locations
+      resources :contacts
+    end
+
     resources :users do
       collection do
         get "clients/" => "users#fetch_users"

@@ -18,7 +18,7 @@
 
 	<div class="row">
 		<%= f.label :company_id, "Company", class: "span2" %>
-		<%= f.select :company_id, options_from_collection_for_select(Company.all, :id, :company_name), {}, prompt: "Select Company..", disabled: true %>
+		<%= f.select :company_id, options_from_collection_for_select(Company.all, :id, :name), {}, prompt: "Select Company..", disabled: true %>
 	</div>
 
   <div class="row">

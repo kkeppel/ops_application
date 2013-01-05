@@ -1,0 +1,5 @@
+<h2>New location</h2>
+<br/>
+<%= form_for(@location, :url => params.include?(:company_id) ? admin_company_locations_path(@company) : admin_vendor_locations_path(@vendor), method: "POST") do |f| %>
+  <%= render 'form', f: f %>
+<% end %>
