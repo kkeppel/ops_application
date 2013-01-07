@@ -3,8 +3,9 @@
 
   <div class="input-append">
     <input type="text" name="tag[name]" id="tag_name" class="span2" placeholder="Name" tabindex="1"/>
-	  <input class="btn" type="submit" value="Add Tag" />
+	  <input class="btn btn-primary" type="submit" value="Add Tag" />
 	</div>
+	<a href="/" class="btn">Back</a>
 
 </form>
 

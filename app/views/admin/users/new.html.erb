@@ -41,8 +41,12 @@
 		<%= f.password_field :password_confirmation, class: "span2" %>
 	</div>
 
+	<br/>
 
-  <div><%= f.submit "Create User", class: "btn btn-large btn-primary" %></div>
+  <div>
+    <%= link_to "Back", :back, class: "btn" %>
+    <%= f.submit "Create User", class: "btn btn-primary" %>
+  </div>
 <% end %>
 
 <script type="text/javascript">

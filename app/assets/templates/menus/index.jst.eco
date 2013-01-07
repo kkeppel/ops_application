@@ -49,7 +49,11 @@
 		        <% end %>
 		      </select>
 		    </div>
+
+		    <br />
+
 		    <div class="actions">
+		      <a href="/" class="btn">Back</a>
 		      <input class="btn btn-primary" type="submit" value="Add Menu" tabindex="7"/>
 		    </div>
 

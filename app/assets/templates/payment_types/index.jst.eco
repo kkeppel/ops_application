@@ -1,4 +1,5 @@
 <div class="actions">
+  <a href="/" class="btn">Back</a>
   <input type="submit" value="Add Payment Type" class="btn btn-primary" id="create_payment_type"/>
 </div>
 
