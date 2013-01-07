@@ -1,0 +1,76 @@
+<h1>Editing vendor</h1>
+
+<%= form_for(@vendor, :url => vendor_path) do |f| %>
+  <% if @vendor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@vendor.errors.count, "error") %> prohibited this vendor from being saved:</h2>
+
+      <ul>
+        <% @vendor.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :public_name %>
+    <%= f.text_field :public_name %>
+  </div>
+  <div class="field">
+    <%= f.label :tagline %>
+    <%= f.text_area :tagline, :rows => 3 %>
+  </div>
+  <div class="field">
+    <%= f.label :website %>
+    <%= f.text_field :website %>
+  </div>
+  <div class="field">
+    <%= f.label :bio %>
+    <%= f.text_area :bio, :rows => 3 %>
+  </div>
+  <div class="field">
+    <%= f.label :vendor_type_id, "Vendor Type" %>
+    <%= f.collection_select :vendor_type_id, VendorType.all, :id, :name %>
+  </div>
+
+  <h2>Vendor profile info</h2>
+  <% unless @vendor_profile_keys.empty? %>
+    <% @vendor_profile_keys.each do |key| %>
+      <div class="field" id="vendor_<%= key.key %>">
+        <% values = @vendor_profile.where(key: key.key) %>
+        <% i = 0 %>
+        <% values.each do |value| %>
+	  <%= puts "\n\n\n\n value='#{value}'" %>
+          <input type="text" id="vendor_<%= key.key %>_<%= i %>" name="vendor[<%= key.key %>][<%= i %>]" size="30" value="<%= value.value && value.key == key.key ? value.value : '' %>"/>
+          <input type="button" value="Remove <%= key.key.humanize.singularize %>" id="remove_<%= key.key %>_<%= i %>" onclick="$('#vendor_<%= key.key %>_<%= i %>').remove();$('#remove_<%= key.key %>_<%= i %>').remove();"/>
+          <% i += 1 %>
+        <% end %>
+        <input type="button" value="Add Another <%= key.key.humanize.singularize %>" class="add_<%= key.key %>_field"/>
+      </div>
+    <% end %>
+  <% else %>
+    <% VendorProfile::KEYS.each do |key| %>
+      <div class="field" id="vendor_<%= key.to_s %>">
+        <% i = 0 %>
+        <%= key.to_s.humanize.singularize %>
+        <input type="text" id="vendor_<%= key.to_s %>_<%= i %>" name="vendor[<%= key.to_s %>][<%= i %>]" size="30" value=""/>
+        <input type="button" value="Remove" id="remove_<%= key.to_s %>_<%= i %>" />
+        <% i += 1 %>
+        <input type="button" value="Add Another <%= key.to_s.humanize.singularize %>" class="add_<%= key %>_field"/>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "Save Vendor", :class => "btn btn-primary" %>
+  </div>
+<% end %>
+
+
+<%= link_to 'Show', vendor_path(@vendor), :class => "btn" %> |
+<%= link_to 'Back', vendors_path %>

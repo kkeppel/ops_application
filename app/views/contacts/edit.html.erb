@@ -1,0 +1,7 @@
+<h1>Editing contact</h1>
+
+<%= form_for(@contact, :url => params.include?(:company_id) ? company_contact_path(@company, @contact) : vendor_contact_path(@vendor, @contact), method: "PUT") do |f| %>
+  <%= render 'form', f: f %>
+<% end %>
+
+

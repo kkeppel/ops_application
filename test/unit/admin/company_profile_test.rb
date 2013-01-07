@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Admin::CompanyProfileTest < ActiveSupport::TestCase
+class CompanyProfileTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

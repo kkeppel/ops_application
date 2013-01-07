@@ -1,0 +1,92 @@
+<h1>Add a User!</h1>
+<br/>
+<%= form_for @user, url: users_path, method: "POST" do |f| %>
+	<div class="row">
+		<%= f.label :first_name, class: "span2" %>
+		 <%= f.text_field :first_name, tabindex: 1, class: "span2" %>
+	</div>
+
+	<div class="row">
+		<%= f.label :last_name, class: "span2" %>
+		<%= f.text_field :last_name, tabindex: 2, class: "span2" %>
+	</div>
+
+	<div class="row">
+		<%= f.label :role_ids, "Role", class: "span2" %>
+		<%= f.collection_select :role_ids, Role.all, :id, :name %>
+	</div>
+
+	<div class="row">
+		<%= f.label :company_id, "Company", class: "span2" %>
+		<%= f.select :company_id, options_from_collection_for_select(Company.all, :id, :name), {}, prompt: "Select Company..", disabled: true %>
+	</div>
+
+  <div class="row">
+    <%= f.label :vendor_id, "Vendor", class: "span2" %>
+    <%= f.select :vendor_id, options_from_collection_for_select(Vendor.all, :id, :name), {}, prompt: "Select Vendor..", :disabled => true %>
+  </div>
+
+	<div class="row">
+		<%= f.label :email, class: "span2" %>
+		<%= f.text_field :email, tabindex: 3, class: "span2" %>
+	</div>
+
+	<div class="row">
+		<%= f.label :password, class: "span2" %>
+		<%= f.password_field :password, tabindex: 4, class: "span2" %>
+	</div>
+
+	<div class="row">
+		<%= f.label :password_confirmation, class: "span2" %>
+		<%= f.password_field :password_confirmation, tabindex: 5, class: "span2" %>
+	</div>
+
+	<br/>
+
+  <div>
+    <%= link_to "Back", :back, tabindex: 7, class: "btn" %>
+    <%= f.submit "Create User", tabindex: 6, class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		$("#user_role_ids").click(function(){
+			if(this.value == 4 || this.value == 5) {
+				$("#user_company_id").removeAttr('disabled');
+				$("#user_vendor_id").attr("disabled", "disabled");
+				$("#user_vendor_id").val('');
+			} else if(this.value == 6 || this.value == 7) {
+				$("#user_company_id").attr("disabled", "disabled");
+				$("#user_company_id").val("");
+				$("#user_vendor_id").removeAttr('disabled');
+			} else {
+				$("#user_vendor_id").attr("disabled", "disabled");
+				$("#user_vendor_id").val('');
+				$("#user_company_id").attr("disabled", "disabled");
+				$("#user_company_id").val("");
+			}
+		});
+
+		$("#user_role_ids").keypress(function(event){
+			if (event.which == 13) {
+				event.preventDefault();
+				if(this.value == 4 || this.value == 5) {
+					$("#user_company_id").removeAttr('disabled');
+					$("#user_vendor_id").attr("disabled", "disabled");
+					$("#user_vendor_id").val('');
+				} else if(this.value == 6 || this.value == 7) {
+					$("#user_company_id").attr("disabled", "disabled");
+					$("#user_company_id").val("");
+					$("#user_vendor_id").removeAttr('disabled');
+				} else {
+					$("#user_vendor_id").attr("disabled", "disabled");
+					$("#user_vendor_id").val('');
+					$("#user_company_id").attr("disabled", "disabled");
+					$("#user_company_id").val("");
+				}
+			}
+		});
+	});
+</script>

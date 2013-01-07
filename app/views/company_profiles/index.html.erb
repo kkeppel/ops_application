@@ -1,4 +1,4 @@
-<h1>Listing admin_company_profiles</h1>
+<h1>Listing company profiles</h1>
 
 <table>
   <tr>
@@ -7,15 +7,15 @@
     <th></th>
   </tr>
 
-<% @admin_company_profiles.each do |admin_company_profile| %>
+<% @company_profiles.each do |company_profile| %>
   <tr>
-    <td><%= link_to 'Show', admin_company_profile %></td>
-    <td><%= link_to 'Edit', edit_admin_company_profile_path(admin_company_profile) %></td>
-    <td><%= link_to 'Destroy', admin_company_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', company_profile %></td>
+    <td><%= link_to 'Edit', edit_company_profile_path(company_profile) %></td>
+    <td><%= link_to 'Destroy', company_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Company profile', new_admin_company_profile_path %>
+<%= link_to 'New Company profile', new_company_profile_path %>

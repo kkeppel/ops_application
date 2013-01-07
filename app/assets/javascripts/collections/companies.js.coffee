@@ -1,5 +1,5 @@
 class OpsApplication.Collections.Companies extends Backbone.Collection
-  url: '/admin/companies'
+  url: '/companies'
   model: OpsApplication.Models.Company
 
   chosenCompany: ->

@@ -1,0 +1,104 @@
+<% if @contact.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+    <ul>
+    <% @contact.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="row">
+  <%= f.label :location_id, class: "span2" %>
+  <%= f.collection_select :location_id, @locations, :id, :name, class: "span2" %>
+</div>
+
+<div class="row">
+  <%= f.label :title, class: "span2" %>
+  <%= f.select :title, Contact.title_options, class: "span2" %>
+</div>
+
+<div class="row">
+	<%= f.label :first_name, class: "span2" %>
+	<%= f.text_field :first_name, class: "span2" %>
+</div>
+
+<div class="row">
+  <%= f.label :last_name, class: "span2" %>
+  <%= f.text_field :last_name, class: "span2" %>
+</div>
+
+<div class="row">
+  <%= f.label :email, class: "span2" %>
+  <%= f.email_field :email, class: "span2" %>
+</div>
+
+<div class="row">
+  <%= f.label :work_email, class: "span2" %>
+  <%= f.email_field :work_email, class: "span2" %>
+</div>
+
+<div class="row">
+  <%= f.label :direct_phone, class: "span2" %>
+  <%= f.text_field :direct_phone, class: "span2" %>
+</div>
+
+<div class="row">
+  <%= f.label :mobile_phone, class: "span2" %>
+  <%= f.text_field :mobile_phone, class: "span2" %>
+</div>
+
+<div class="row">
+  <%= f.label :carrier, class: "span2" %>
+  <%= f.select :carrier, Contact.carrier_options, class: "span2" %>
+</div>
+
+<div class="row">
+  <%= f.label :fax, class: "span2" %>
+  <%= f.text_field :fax, class: "span2" %>
+</div>
+
+<div class="row">
+  <%= f.label :payment_type_id, class: "span2" %>
+  <%= f.collection_select :payment_type_id, @payment_types, :id, :name, class: "span2" %>
+</div>
+
+<div class="row">
+  <%= f.label :default_contact, "Default Contact?", class: "span2" %>
+	Yes! <%= f.radio_button :default_contact, :true %>
+	Nope! <%= f.radio_button :default_contact, :false %>
+</div>
+
+<div class="row">
+  <%= f.label :default_invoiced, "Default Invoiced?", class: "span2" %>
+  Yes! <%= f.radio_button :default_invoiced, :true %>
+  Nope! <%= f.radio_button :default_invoiced, :false %>
+</div>
+
+<div class="row">
+  <%= f.label :was_lead, "Was Lead?", class: "span2" %>
+  Yes! <%= f.radio_button :was_lead, :true %>
+  Nope! <%= f.radio_button :was_lead, :false %>
+</div>
+
+<% if params.include?(:company_id) %>
+  <input type="hidden" name="contact[company_id]" id="contact_company_id" value="<%= params[:company_id] %>" />
+<% elsif params.include?(:vendor_id) %>
+  <input type="hidden" name="contact[vendor_id]" id="contact_vendor_id" value="<%= params[:vendor_id] %>" />
+<% end %>
+
+<br/>
+
+<div class="actions">
+  <%= link_to 'Back', params.include?(:company_id) ? company_contacts_path : vendor_contacts_path, class: "btn" %>
+  <%= f.submit "Submit", :class => "btn btn-primary" %>
+</div>
+
+<script type="text/javascript">
+	$("#contact_direct_phone").mask("(999) 999-9999",{placeholder:" "});
+	$("#contact_mobile_phone").mask("(999) 999-9999",{placeholder:" "});
+	$("#contact_fax").mask("(999) 999-9999",{placeholder:" "});
+</script>
+
+

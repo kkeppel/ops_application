@@ -67,27 +67,25 @@ OpsApplication::Application.routes.draw do
 
   resources :dashboard
 
-  namespace "admin" do
 
-    resources :vendors do
-	    resources :locations
-	    resources :contacts
+  resources :vendors do
+    resources :locations
+    resources :contacts
+  end
+
+  resources :companies do
+    resources :locations
+    resources :contacts
+  end
+
+  resources :users do
+    collection do
+      get "clients/" => "users#fetch_users"
+      get "vendors/" => "users#fetch_users"
+      get "others/" => "users#fetch_users"
     end
-
-    resources :companies do
-      resources :locations
-      resources :contacts
-    end
-
-    resources :users do
-      collection do
-        get "clients/" => "users#fetch_users"
-        get "vendors/" => "users#fetch_users"
-        get "others/" => "users#fetch_users"
-      end
-      member do
-        get "activation/" => "users#activation"
-      end
+    member do
+      get "activation/" => "users#activation"
     end
   end
 
@@ -140,7 +138,7 @@ OpsApplication::Application.routes.draw do
 
   # Sample resource route within a namespace:
   #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
+  #     # Directs /admin/products/* to ProductsController
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end

@@ -1,0 +1,30 @@
+<div class="row-fluid">
+
+  <div class="span6">
+    <h1 xmlns="http://www.w3.org/1999/html">User List</h1>
+  </div>
+
+  <div class="span2 offset2">
+    <form class="form-search">
+        <div class="input-append">
+          <input type="text" class="span12 search-query" placeholder="Type a company name, restaurant..." tabindex="1">
+          <button type="submit" class="btn" tabindex="2">Search</button>
+        </div>
+    </form>
+  </div>
+
+</div>
+  <div class="btn-group management">
+    <%= link_to "Manage Clients", clients_users_path(type: "client"), :remote => true, tabindex: 3, class: "btn" %>
+    <%= link_to "Manage Vendors", vendors_users_path(type: "vendor"), :remote => true, tabindex: 4, class: "btn" %>
+    <%= link_to "Manage C2me Users", others_users_path(type: "other"), :remote => true, tabindex: 5, class: "btn" %>
+    <%= link_to "Add User", new_user_path, tabindex: 6, class: "btn btn-primary" %>
+  </div>
+
+
+<div id="users">
+</div>
+
+<br/>
+
+<%= link_to "Back", root_path, tabindex: 7, class: "btn" %>

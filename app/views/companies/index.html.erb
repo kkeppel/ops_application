@@ -1,0 +1,35 @@
+<h1>Listing companies</h1>
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Company Name</th>
+    <th>NB employee</th>
+    <th>Website</th>
+    <th>Phone</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+<% @companies.each do |company| %>
+  <tr>
+    <td><%= company.name %></td>
+    <td><%= company.nb_employee %></td>
+    <td><%= company.website %></td>
+    <td><%= company.phone %></td>
+    <td><%= link_to 'Manage Locations', company_locations_path(company) %></td>
+    <td><%= link_to 'Manage Contacts', company_contacts_path(company) %></td>
+    <td><%= link_to 'Show', company_path(company) %></td>
+    <td><%= link_to 'Edit', edit_company_path(company) %></td>
+    <td><%= link_to 'Destroy', company_path(company), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+
+<br />
+<%=	link_to 'Back', root_path, :class => "btn"  %>
+<%= link_to 'New Company', new_company_path, :class => "btn btn-primary" %>
+

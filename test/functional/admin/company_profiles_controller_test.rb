@@ -1,14 +1,14 @@
 require 'test_helper'
 
-class Admin::CompanyProfilesControllerTest < ActionController::TestCase
+class CompanyProfilesControllerTest < ActionController::TestCase
   setup do
-    @admin_company_profile = admin_company_profiles(:one)
+    @company_profile = company_profiles(:one)
   end
 
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:admin_company_profiles)
+    assert_not_nil assigns(:company_profiles)
   end
 
   test "should get new" do
@@ -16,34 +16,34 @@ class Admin::CompanyProfilesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create admin_company_profile" do
-    assert_difference('Admin::CompanyProfile.count') do
-      post :create, admin_company_profile: {  }
+  test "should create company_profile" do
+    assert_difference('CompanyProfile.count') do
+      post :create, company_profile: {  }
     end
 
-    assert_redirected_to admin_company_profile_path(assigns(:admin_company_profile))
+    assert_redirected_to company_profile_path(assigns(:company_profile))
   end
 
-  test "should show admin_company_profile" do
-    get :show, id: @admin_company_profile
+  test "should show company_profile" do
+    get :show, id: @company_profile
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @admin_company_profile
+    get :edit, id: @company_profile
     assert_response :success
   end
 
-  test "should update admin_company_profile" do
-    put :update, id: @admin_company_profile, admin_company_profile: {  }
-    assert_redirected_to admin_company_profile_path(assigns(:admin_company_profile))
+  test "should update company_profile" do
+    put :update, id: @company_profile, company_profile: {  }
+    assert_redirected_to company_profile_path(assigns(:company_profile))
   end
 
-  test "should destroy admin_company_profile" do
-    assert_difference('Admin::CompanyProfile.count', -1) do
-      delete :destroy, id: @admin_company_profile
+  test "should destroy company_profile" do
+    assert_difference('CompanyProfile.count', -1) do
+      delete :destroy, id: @company_profile
     end
 
-    assert_redirected_to admin_company_profiles_path
+    assert_redirected_to company_profiles_path
   end
 end

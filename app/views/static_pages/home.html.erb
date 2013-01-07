@@ -11,9 +11,9 @@
       </a>
       <ul class="dropdown-menu">
         <% if current_user.role?('admin') %>
-          <li><%= link_to "Manage Users", admin_users_path %> </li>
-          <li><%= link_to "Manage Clients", admin_companies_path %></li>
-          <li><%= link_to "Manage Vendors", admin_vendors_path %></li>
+          <li><%= link_to "Manage Users", users_path %> </li>
+          <li><%= link_to "Manage Clients", companies_path %></li>
+          <li><%= link_to "Manage Vendors", vendors_path %></li>
         <% elsif current_user.is_client  %>
             <li>Manage Employees</li>
             <li>View Order Status</li>

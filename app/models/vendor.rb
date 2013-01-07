@@ -2,11 +2,19 @@ class Vendor < ActiveRecord::Base
 
   has_many :vendor_profiles, :foreign_key => :vendor_id
   has_many :contacts
+  has_many :locations
   has_many :items
   belongs_to :vendor_type
   has_many :users
 
-  attr_accessible :bio, :name, :public_name, :tagline, :vendor_type_id, :website, :vendor_id,
+  validates_associated :locations
+  validates_associated :contacts
+
+  accepts_nested_attributes_for :locations
+  accepts_nested_attributes_for :contacts
+
+  attr_accessible :bio, :name, :public_name, :tagline, :vendor_type_id, :website, :vendor_id, :locations_attributes,
+                  :contacts_attributes,
                   :preferences
 
 
