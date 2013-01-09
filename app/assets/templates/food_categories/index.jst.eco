@@ -12,8 +12,8 @@
   </div>
 
   <div class="actions">
-    <a href="/" class="btn">Back</a>
-    <input class="btn btn-primary" type="submit" value="Add Food Category" />
+    <a href="/" tabindex="4" class="btn">Back</a>
+    <input class="btn btn-primary" type="submit" value="Add Food Category" tabindex="3"/>
   </div>
 
 </form>

@@ -9,6 +9,6 @@
 <table id="payment_types">
   <tr>
     <th>Name</th>
-    <th>Description</th>
+    <th>Fee</th>
   </tr>
 </table>

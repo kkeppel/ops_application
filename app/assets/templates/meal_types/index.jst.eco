@@ -7,13 +7,18 @@
   </div>
 
 	<div class="row">
-		<label for="meal_type_description" class="span2">Description</label>
-    <input type="text" name="meal_type[description]" id="meal_type_description" class="span4" tabindex="2"/>
+		<label for="meal_type_start_time" class="span2">Start Time</label>
+    <input type="text" name="meal_type[start_time]" id="meal_type_start_time" class="span2" tabindex="2"/>
 	</div>
 
+	<div class="row">
+    <label for="meal_type_end_time" class="span2">End Time</label>
+    <input type="text" name="meal_type[end_time]" id="meal_type_end_time" class="span2" tabindex="3"/>
+  </div>
+
 	<div class="actions">
-		<a href="/" class="btn">Back</a>
-    <input class="btn btn-primary" type="submit" value="Add Meal Type" />
+		<a href="/" class="btn" tabindex="5">Back</a>
+    <input class="btn btn-primary" type="submit" value="Add Meal Type" tabindex="4"/>
   </div>
 
 </form>

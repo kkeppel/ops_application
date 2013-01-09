@@ -25,6 +25,7 @@
       <td><%= vendor.vendor_type_id %></td>
       <td><%= link_to 'Manage Locations', vendor_locations_path(vendor)  %></td>
       <td><%= link_to 'Manage Contacts', vendor_contacts_path(vendor) %></td>
+      <td><%= link_to 'Manage Items', vendor_items_path(vendor) %></td>
       <td><%= link_to 'Show', vendor_path(vendor) %></td>
       <td><%= link_to 'Edit', edit_vendor_path(vendor) %></td>
       <td><%= link_to 'Destroy', vendor_path(vendor), method: :delete, data: { confirm: 'Are you sure?' } %></td>

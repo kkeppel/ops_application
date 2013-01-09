@@ -17,7 +17,8 @@ class OpsApplication.Views.MealType extends Backbone.View
     event.preventDefault()
     attributes =
       name: @el.children[0].innerText
-      description: @el.children[1].innerText
+      start_time: @el.children[1].innerText
+      end_time: @el.children[2].innerText
     @model.set attributes
     @model.save
       success: ->

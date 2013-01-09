@@ -36,6 +36,8 @@ class CompaniesController < ApplicationController
     @company = Company.find(params[:id])
     @company_profile = CompanyProfile.where(company_id: params[:id])
     @company_profile_keys = @company_profile.group('company_profiles.key')
+    ops_ids = RolesUser.where(role_id: 2).select('user_id')
+	  @ops_users = User.where(id: ops_ids.map{|m| m.user_id})
 
   end
 

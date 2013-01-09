@@ -6,7 +6,7 @@ window.OpsApplication =
   initialize: ->
     new OpsApplication.Routers.Orders
 #    new OpsApplication.Routers.Companies
-    new OpsApplication.Routers.Items
+#    new OpsApplication.Routers.Items
     new OpsApplication.Routers.Allergens
     new OpsApplication.Routers.Tags
     new OpsApplication.Routers.MealTypes

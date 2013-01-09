@@ -1,5 +1,6 @@
 <td contenteditable="true" id="meal_type_name"><%= @meal_type.get('name') %></td>
-<td contenteditable="true" id="meal_type_description"><%= @meal_type.get('description') %></td>
+<td contenteditable="true" id="meal_type_start_time"><%= @meal_type.get('start_time') %></td>
+<td contenteditable="true" id="meal_type_end_time"><%= @meal_type.get('end_time') %></td>
 <td>
   <a id="save_changes" class="btn" href="#">Save Changes</a>
 </td>

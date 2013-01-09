@@ -9,9 +9,11 @@ class Vendor < ActiveRecord::Base
 
   validates_associated :locations
   validates_associated :contacts
+  validates_associated :items
 
   accepts_nested_attributes_for :locations
   accepts_nested_attributes_for :contacts
+  accepts_nested_attributes_for :items
 
   attr_accessible :bio, :name, :public_name, :tagline, :vendor_type_id, :website, :vendor_id, :locations_attributes,
                   :contacts_attributes,

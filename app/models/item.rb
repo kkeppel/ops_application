@@ -10,7 +10,8 @@ class Item < ActiveRecord::Base
   accepts_nested_attributes_for :ingredients
 
   attr_accessible :name, :description, :price, :hot, :allergen_free, :headcount,
-                  :nb_time_used, :serving_instructions_id, :vendor_id, :vendor_profiles_id, :ingredient_ids
+                  :nb_time_used, :serving_instructions_id, :vendor_id, :ingredient_ids,
+                  :calories_per_serving, :nutritional_information, :notes
 
   #validates :name, :presence => true
   #validates :description, :presence => true

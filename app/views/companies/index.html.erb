@@ -7,6 +7,7 @@
     <th>NB employee</th>
     <th>Website</th>
     <th>Phone</th>
+    <th>Client Manager</th>
     <th></th>
     <th></th>
     <th></th>
@@ -19,9 +20,9 @@
     <td><%= company.nb_employee %></td>
     <td><%= company.website %></td>
     <td><%= company.phone %></td>
+    <td><%= User.find(company.manager_id).email %></td>
     <td><%= link_to 'Manage Locations', company_locations_path(company) %></td>
     <td><%= link_to 'Manage Contacts', company_contacts_path(company) %></td>
-    <td><%= link_to 'Show', company_path(company) %></td>
     <td><%= link_to 'Edit', edit_company_path(company) %></td>
     <td><%= link_to 'Destroy', company_path(company), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>

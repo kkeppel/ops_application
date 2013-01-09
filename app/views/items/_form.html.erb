@@ -11,56 +11,131 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+  <div class="row">
+    <%= f.label :name, class: "span2" %>
+    <%= f.text_field :name, class: "span2" %>
   </div>
 
-    <div class="field">
-      <%= f.label :description %>
-      <%= f.text_area :description %>
-    </div>
-
-    <div class="field">
-      <%= f.label :price %>
-      <%= f.text_field :price %>
-    </div>
-
-		    <div class="control-group radio_buttons optional">
-			    <label class="radio_buttons control-label inline">Hot</label>
-			    <div class="controls">
-				      <%= f.label :hot, "Yes", :class=>"radio inline" %>
-				      <%= f.radio_button :hot, true, :class=>"radio_buttons" %>
-				      <%= f.label :hot, "No", :class=> "radio inline" %>
-				      <%= f.radio_button :hot, false, :class=>"radio_buttons" %>
-			    </div>
-
-	    </div>
-
-    <div class="field">
-      <%= f.label :headcount %>
-      <%= f.number_field :headcount %>
-    </div>
-
-    <div class="field">
-      <%= f.label :nb_time_used %>
-      <%= f.number_field :nb_time_used %>
-    </div>
-
-    <div class="field">
-      <%= f.label :vendor_id %>
-      <%= f.select :vendor_id, Vendor.all.collect {|v| [v.name, v.id]}  %>
-    </div>
-
-	<div class="field">
-		<%= f.label :ingredient_ids %>
-		<%= f.collection_select :ingredient_ids, @ingredients, :id, :name, {}, :multiple => true %>
+	<div class="row">
+		<%= f.label :food_category_id, class: "span2" %>
+		<%= f.collection_select :food_category_id, @food_categories, :id, :name %>
 	</div>
 
-    <%= f.hidden_field :serving_instructions_id, :value => 2 %>
-    <%= f.hidden_field :vendor_profiles_id, :value => 2 %>
+  <div class="row">
+    <%= f.label :headcount, "# of Servings", class: "span2" %>
+    <%= f.text_field :headcount, class: "span1" %>
+  </div>
+
+  <div class="row">
+    <%= f.label :price, class: "span2" %>
+    <div class="input-prepend">
+      <span class="add-on">$</span>
+      <%= f.text_field :price, class: "span1" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <%= f.label :taxed, class: "span2" %>
+    Yes! <%= f.radio_button :taxed, :true %>
+    Nope! <%= f.radio_button :taxed, :false %>
+  </div>
+
+  <div class="row">
+    <%= f.label :hot, class: "span2" %>
+    Yes! <%= f.radio_button :hot, :true %>
+    Nope! <%= f.radio_button :hot, :false %>
+  </div>
+
+  <div class="row">
+    <%= f.label :vegetarian, class: "span2" %>
+    Yes! <%= f.radio_button :vegetarian, :true %>
+    Nope! <%= f.radio_button :vegetarian, :false %>
+  </div>
+
+  <div class="row">
+    <%= f.label :dairy, class: "span2" %>
+    Yes! <%= f.radio_button :dairy, :true %>
+    Nope! <%= f.radio_button :dairy, :false %>
+  </div>
+
+  <div class="row">
+    <%= f.label :nuts, class: "span2" %>
+    Yes! <%= f.radio_button :nuts, :true %>
+    Nope! <%= f.radio_button :nuts, :false %>
+  </div>
+
+  <div class="row">
+    <%= f.label :eggs, class: "span2" %>
+    Yes! <%= f.radio_button :eggs, :true %>
+    Nope! <%= f.radio_button :eggs, :false %>
+  </div>
+
+  <div class="row">
+    <%= f.label :soy, class: "span2" %>
+    Yes! <%= f.radio_button :soy, :true %>
+    Nope! <%= f.radio_button :soy, :false %>
+  </div>
+
+  <div class="row">
+    <%= f.label :honey, class: "span2" %>
+    Yes! <%= f.radio_button :honey, :true %>
+    Nope! <%= f.radio_button :honey, :false %>
+  </div>
+
+  <div class="row">
+    <%= f.label :shellfish, class: "span2" %>
+    Yes! <%= f.radio_button :shellfish, :true %>
+    Nope! <%= f.radio_button :shellfish, :false %>
+  </div>
+
+  <div class="row">
+    <%= f.label :alcohol, class: "span2" %>
+    Yes! <%= f.radio_button :alcohol, :true %>
+    Nope! <%= f.radio_button :alcohol, :false %>
+  </div>
+
+  <div class="row">
+    <%= f.label :individual_menus, class: "span2" %>
+    Yes! <%= f.radio_button :individual_menus, :true %>
+    Nope! <%= f.radio_button :individual_menus, :false %>
+  </div>
+
+  <div class="row">
+    <%= f.label :old, class: "span2" %>
+    Yes! <%= f.radio_button :old, :true %>
+    Nope! <%= f.radio_button :old, :false %>
+  </div>
+
+  <div class="row">
+    <%= f.label :description, class: "span2" %>
+    <%= f.text_area :description, rows: 3, class: "span6" %>
+  </div>
+
+	<div class="row">
+		<%= f.label :calories_per_serving, class: "span2" %>
+		<%= f.text_field :calories_per_serving, class: "span2" %>
+	</div>
+
+	<div class="row">
+		<%= f.label :nutritional_information, class: "span2" %>
+		<%= f.text_area :nutritional_information, rows: 3, class: "span6" %>
+	</div>
+
+  <div class="row">
+    <%= f.label :notes, class: "span2" %>
+    <%= f.text_area :notes, rows: 3, class: "span6" %>
+  </div>
+
+  <%= f.hidden_field :serving_instructions_id, :value => 2 %>
+  <%= f.hidden_field :vendor_id, value: params[:vendor_id] %>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= link_to 'Back', vendor_items_path(@vendor.id), class: 'btn' %>
+    <%= f.submit class: 'btn btn-primary' %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+	$("#item_price").maskMoney({thousands:'', decimal:'.'});
+	$("input#item_headcount").mask("9?999",{placeholder:""});
+</script>

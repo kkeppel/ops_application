@@ -71,6 +71,7 @@ OpsApplication::Application.routes.draw do
   resources :vendors do
     resources :locations
     resources :contacts
+	  resources :items
   end
 
   resources :companies do

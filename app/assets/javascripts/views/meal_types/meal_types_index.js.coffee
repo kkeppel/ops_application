@@ -24,7 +24,8 @@ class OpsApplication.Views.MealTypesIndex extends Backbone.View
     attributes =
       meal_type:
         name: $('#meal_type_name').val()
-        description: $('#meal_type_description').val()
+        start_time: $('#meal_type_start_time').val()
+        end_time: $('#meal_type_end_time').val()
     @collection.create attributes,
       wait: true
       success: ->

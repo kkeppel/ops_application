@@ -1,1 +1,42 @@
-<div id="items_container"></div>
+<h1>Contacts</h1>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Unit Price</th>
+    <th>Hot?</th>
+    <th>Servings</th>
+    <th>Vendor</th>
+    <th>Description</th>
+  </tr>
+  <% unless @items.empty? %>
+
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.name %></td>
+        <td><%= item.price %></td>
+        <td><%= item.hot %></td>
+        <td><%= item.headcount %></td>
+        <td><%= item.vendor.name %></td>
+        <td><%= item.description %></td>
+        <td><%= link_to 'Edit', edit_vendor_item_path(@vendor, item.id) %></td>
+        <td><%= link_to 'Destroy', vendor_item_path(@vendor, item.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+
+  <% else %>
+    <tr>
+      <td colspan="6" style="text-align: center;">
+        <%= link_to "Start Making Items!", new_vendor_item_path(@vendor) %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'Back', vendors_path, class: 'btn' %>
+<%= link_to 'New Item', new_vendor_item_path(@vendor), class: 'btn btn-primary' %>
+
+<!--<div id="items_container"></div>-->
+

@@ -1,3 +1,5 @@
+<%= @ops_users[0].id %>
+
 
   <% if @company.errors.any? %>
     <div id="error_explanation">
@@ -26,6 +28,11 @@
   <div class="row">
     <%= f.label :phone, class: "span2" %>
     <%= f.text_field :phone, class: "span2" %>
+  </div>
+
+  <div class="row">
+	  <%= f.label :manager_id, "Client Manager", class: "span2" %>
+	  <%= f.collection_select :manager_id, @ops_users, :id, :email %>
   </div>
 
 	<div class="container-fluid">
