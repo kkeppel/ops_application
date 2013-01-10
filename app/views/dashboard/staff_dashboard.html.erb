@@ -33,10 +33,4 @@
 
 You're <%= current_user.role %>!! Good for you!!
 
-<br/>
-<br/>
-
-<h4>Start an Order! Yay!!</h4>
-<br/>
-
-<div id="container"></div>
+<%= link_to "Manage Orders", orders_path, class: 'btn' %>

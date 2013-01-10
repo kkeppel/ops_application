@@ -90,27 +90,27 @@
 			  </div>
 
 			  <div class="row-fluid">
-			    <label for="vendor_id" class="span4">Vendor</label>
-			    <%= f.collection_select :vendor_id, Vendor.all, :id, :name %>
-			  </div>
-
-			  <div class="row-fluid">
 			    <label for="menu_id" class="span4">Menu</label>
 			    <%= f.collection_select :menu_id, Menu.all, :id, :name %>
 			  </div>
 
-			  <div class="row-fluid">
-			    <label for="order_id" class="span4">Order</label>
-			    <%= f.collection_select :order_id, Order.all, :id, :name %>
-			  </div>
 			</div>
 			<div class="span6" id="proposal_lines_container">
 				<h4>Proposal Lines!!</h4>
 				<br/>
+				<div class="row">
+					<%= f.label :vendor_id, class: "span2" %>
+					<%= f.collection_select :vendor_id, @vendors, :id, :name, class: "span2" %>
+				</div>
+				<%= f.fields_for :proposal_lines_path do |line| %>
+			    <%= render 'proposals/proposal_line_fields', f: line %>
+				<% end %>
+				<%= link_to_add_fields "Add Item", f, :proposal_lines %>
 			</div>
 		</div>
 	</div>
 
+	<input type="hidden" name="proposal[order_id]" value="<%= params[:order_id] %>" id="proposal_order_id"/>
 
   <div class="actions">
     <%= f.submit %>

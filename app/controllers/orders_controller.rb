@@ -22,19 +22,23 @@ class OrdersController < ApplicationController
     respond_with(@order = Order.destroy(params[:id]))
   end
 
-  #def new
-  #  @item = Item.new
-  #  @ingredients = Ingredient.all
-  #  @vendors = Vendor.all
-  #
-  #  respond_to do |format|
-  #    format.html # new.html.erb
-  #    format.json { render json: @item }
-  #  end
-  #end
+  def new_order_and_proposal
+	  Order.create
+	  order_id = Order.last.id
+	  redirect_to "/orders/#{order_id}/proposals/new"
+  end
 
-  #def edit
-  #  @item = Item.find(params[:id])
-  #end
+  def new
+    @order = Order.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @order }
+    end
+  end
+
+  def edit
+    @order = Order.find(params[:id])
+  end
 
 end

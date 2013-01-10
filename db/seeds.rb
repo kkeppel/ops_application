@@ -22,6 +22,13 @@ PaymentType.find_or_create_by_name(name: "Check", fee: "0")
 PaymentType.find_or_create_by_name(name: "Visa", fee: ".05")
 PaymentType.find_or_create_by_name(name: "Discover", fee: ".01")
 
+ProposalStatus.find_or_create_by_name(name: "New Create")
+ProposalStatus.find_or_create_by_name(name: "Awaiting Approval")
+ProposalStatus.find_or_create_by_name(name: "Approved")
+ProposalStatus.find_or_create_by_name(name: "Denied")
+ProposalStatus.find_or_create_by_name(name: "Lost")
+ProposalStatus.find_or_create_by_name(name: "Selected")
+
 
 
 State.find_or_create_by_name([

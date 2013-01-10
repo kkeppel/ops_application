@@ -23,8 +23,11 @@ class ProposalsController < ApplicationController
 
   # GET /proposals/new
   # GET /proposals/new.json
+
   def new
-    @proposal = Proposal.new
+	  @proposal = Proposal.new
+	  @vendors = Vendor.all
+	  @items = Item.all
     @proposal.proposal_lines.build
 
     respond_to do |format|

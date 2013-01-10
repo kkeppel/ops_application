@@ -5,6 +5,8 @@ OpsApplication::Application.routes.draw do
   match '/allergens/get_ingredients' => 'allergens#get_ingredients', :via => :get
   match '/locations/for_company_id/:id' => 'locations#for_company_id', :via => :get
 
+  match '/orders/new_order_and_proposal' => 'orders#new_order_and_proposal', :as => :new_order_and_proposal, :via => :get
+
   resources :payment_types
 
   resources :items_menus
@@ -31,7 +33,15 @@ OpsApplication::Application.routes.draw do
 
   resources :vendor_types
 
-  resources :orders
+  resources :orders do
+	  resources :proposals
+  end
+
+  resources :proposals do
+	  resources :proposal_lines
+
+	  resources :proposal_statuses
+  end
 
   resources :menus
 

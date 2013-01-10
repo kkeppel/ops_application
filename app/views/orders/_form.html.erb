@@ -11,6 +11,12 @@
     </div>
   <% end %>
 
+	<p>
+		Would you like to <%= link_to "Create a New Proposal", new_order_and_proposal_path %> for this order or <%= link_to "Import an Old Proposal", "#" %>?
+	</p>
+
+
+
   <div class="actions">
     <%= f.submit %>
   </div>
