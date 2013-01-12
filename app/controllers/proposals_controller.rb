@@ -3,6 +3,8 @@ class ProposalsController < ApplicationController
   # GET /proposals.json
   def index
     @proposals = Proposal.all
+    @orders = Order.all
+    @order = Order.find(params[:order_id]) if params[:order_id]
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +16,7 @@ class ProposalsController < ApplicationController
   # GET /proposals/1.json
   def show
     @proposal = Proposal.find(params[:id])
+    @order = Order.find(params[:order_id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +28,7 @@ class ProposalsController < ApplicationController
   # GET /proposals/new.json
 
   def new
+	  @order = Order.find(params[:order_id])
 	  @proposal = Proposal.new
 	  @vendors = Vendor.all
 	  @items = Item.all
@@ -39,6 +43,9 @@ class ProposalsController < ApplicationController
   # GET /proposals/1/edit
   def edit
     @proposal = Proposal.find(params[:id])
+    @order = Order.find(params[:order_id])
+    @vendors = Vendor.all
+    @items = Item.all
   end
 
   # POST /proposals
@@ -48,7 +55,7 @@ class ProposalsController < ApplicationController
 
     respond_to do |format|
       if @proposal.save
-        format.html { redirect_to @proposal, notice: 'Proposal was successfully created.' }
+        format.html { redirect_to order_proposals_path(@order), notice: 'Proposal was successfully created.' }
         format.json { render json: @proposal, status: :created, location: @proposal }
       else
         format.html { render action: "new" }
@@ -61,10 +68,11 @@ class ProposalsController < ApplicationController
   # PUT /proposals/1.json
   def update
     @proposal = Proposal.find(params[:id])
+    @order = Order.find(params[:order_id])
 
     respond_to do |format|
       if @proposal.update_attributes(params[:proposal])
-        format.html { redirect_to @proposal, notice: 'Proposal was successfully updated.' }
+        format.html { redirect_to order_proposals_path(@order), notice: 'Proposal was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -77,10 +85,11 @@ class ProposalsController < ApplicationController
   # DELETE /proposals/1.json
   def destroy
     @proposal = Proposal.find(params[:id])
+    @order = Order.find(params[:order_id])
     @proposal.destroy
 
     respond_to do |format|
-      format.html { redirect_to proposals_url }
+      format.html { redirect_to order_proposals_path(@order) }
       format.json { head :no_content }
     end
   end

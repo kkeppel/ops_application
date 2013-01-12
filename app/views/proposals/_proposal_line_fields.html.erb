@@ -1,6 +1,14 @@
 <div class="row">
   <%= f.label :item_id, class: "span2" %>
-  <%= f.collection_select :item_id, @items, :id, :name %>
-  Quantity: <%= f.text_field :quantity, class: "span1" %>
-  <%= link_to_remove_fields "remove", f %>
+	<%= f.collection_select :item_id, @items, :id, :name %>
+	Quantity: <%= f.text_field :quantity, class: "span1" %>
+	<%= link_to_remove_fields "remove", f %>
 </div>
+
+<script type="text/javascript">
+	function remove_fields(link) {
+		$(link).prev("input[type=hidden]").val("1");
+		$(link).closest(".row").remove();
+		$(link).remove();
+	}
+</script>

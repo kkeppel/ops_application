@@ -1,0 +1,51 @@
+<tr>
+	<th>Service Fee</th>
+	<th>Percentage Fee</th>
+	<th>Total Pre-Tax</th>
+	<th>Total W/ Tax</th>
+	<th>Total</th>
+	<th>Vendor Tip</th>
+	<th>Price per Person</th>
+	<th>Vendor Confirmed?</th>
+	<th>Client Confirmed?</th>
+	<th>Prop Status</th>
+	<th>Menu ID</th>
+</tr>
+
+<tr>
+	<td><%= f.text_field :service_fee, class: "span1" %></td>
+	<td><%= f.text_field :percentage_fee, class: "span1" %></td>
+	<td><%= f.text_field :total_pre_taxes, class: "span1" %></td>
+	<td><%= f.text_field :total_wtaxes, class: "span1" %></td>
+	<td><%= f.text_field :total, class: "span1" %></td>
+	<td><%= f.text_field :vendor_tip, class: "span1" %></td>
+	<td><%= f.text_field :price_per_person, class: "span1" %></td>
+	<td><%= f.check_box :vendor_confirmed, class: "span1" %></td>
+	<td><%= f.check_box :client_confirmed, class: "span1" %></td>
+	<td><%= f.collection_select :proposal_status_id, @proposal_statuses, :id, :name, class: "span1" %></td>
+	<td><%= f.collection_select :menu_id, @menus, :id, :name, class: "span1" %></td>
+</tr>
+
+<tr>
+	<td colspan="11">
+		<h5>Proposal Lines</h5>
+	</td>
+</tr>
+<% if @proposal_lines.empty? %>
+	<tr>
+		<td colspan="11">
+			<%= link_to "Make Proposal Lines!", order_proposals_path(@order) %>
+		</td>
+	</tr>
+<% else %>
+  <% @proposal_lines.each do |ff| %>
+    <tr>
+      <td colspan="11">
+        Name: <%= ff.name %>
+        Item: <%= ff.item_id %>
+        Quantity: <%= ff.quantity %>
+	      <%= link_to "edit proposal lines", edit_order_proposal_path(@order, ff.id) %>
+      </td>
+    </tr>
+  <% end %>
+<% end %>

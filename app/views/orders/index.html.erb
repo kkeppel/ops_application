@@ -2,14 +2,15 @@
 
 <table>
   <tr>
-    <th></th>
-    <th></th>
+    <th>ID</th>
+    <th>Name</th>
     <th></th>
   </tr>
 
 <% @orders.each do |order| %>
   <tr>
-    <td><%= link_to 'Show', order %></td>
+	  <td><%= order.id %></td>
+	  <td><%= order.name %></td>
     <td><%= link_to 'Edit', edit_order_path(order) %></td>
     <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>

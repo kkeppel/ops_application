@@ -1,23 +1,45 @@
-<%= form_for(@order) do |f| %>
-  <% if @order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
 
-      <ul>
-      <% @order.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<% if @order.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
 
-	<p>
-		Would you like to <%= link_to "Create a New Proposal", new_order_and_proposal_path %> for this order or <%= link_to "Import an Old Proposal", "#" %>?
-	</p>
-
-
-
-  <div class="actions">
-    <%= f.submit %>
+    <ul>
+    <% @order.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
   </div>
 <% end %>
+
+<h2>Order Section</h2>
+
+<div class="row">
+	<%= f.label :name, class: "span2" %>
+	<%= f.text_field :name, class: 'span2' %>
+</div>
+
+<div class="row">
+	<%= f.label :tip, class: "span2" %>
+	<%= f.text_field :tip, class: "span2" %>
+</div>
+
+
+<% unless (request.fullpath).include?("new") %>
+	<h2>Proposal Section</h2>
+	<p>
+	  Would you like to <%= link_to "Create a New Proposal", new_order_proposal_path(@order) %> for this order or <%= link_to "Import a Proposal", proposals_path %>?
+	</p>
+
+	<table class="table table-condensed">
+	  <%= f.fields_for :proposals do |ff| %>
+	    <%= render 'orders/order_proposals', f: ff %>
+	  <% end %>
+	</table>
+<% end %>
+
+
+<div class="actions">
+  <%= link_to 'Back', orders_path, class: "btn" %>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+</div>
+

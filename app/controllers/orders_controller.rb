@@ -11,11 +11,31 @@ class OrdersController < ApplicationController
   end
 
   def create
-    respond_with(@order = Order.create(params[:order]))
+	  @order = Order.new(params[:order])
+
+	  respond_to do |format|
+		  if @order.save
+			  format.html { redirect_to edit_order_path(@order), notice: 'Order was successfully created.' }
+			  format.json { render json: @order, status: :created, location: @order }
+		  else
+			  format.html { render action: "new" }
+			  format.json { render json: @order.errors, status: :unprocessable_entity }
+		  end
+	  end
   end
 
   def update
-    respond_with(@order = Order.update(params[:id], params[:order]))
+	  @order = Order.find(params[:id])
+
+	  respond_to do |format|
+		  if @order.update_attributes(params[:order])
+			  format.html { redirect_to orders_path, notice: 'Order was successfully updated.' }
+			  format.json { head :no_content }
+		  else
+			  format.html { render action: "edit" }
+			  format.json { render json: @order.errors, status: :unprocessable_entity }
+		  end
+	  end
   end
 
   def destroy
@@ -30,6 +50,7 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @proposals = Proposal.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,6 +60,13 @@ class OrdersController < ApplicationController
 
   def edit
     @order = Order.find(params[:id])
+    @proposals = Proposal.where(order_id: params[:id])
+    @proposal_lines = ProposalLine.where(proposal_id: @proposals.map{|m| m.id})
+    @proposal_statuses = ProposalStatus.all
+    @items = Item.all
+    @menus = Menu.all
+	  #@order.proposals.build if @proposals.empty?
+
   end
 
 end
