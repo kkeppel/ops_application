@@ -82,6 +82,8 @@
   Nope! <%= f.radio_button :was_lead, :false %>
 </div>
 
+
+
 <% if params.include?(:company_id) %>
   <input type="hidden" name="contact[company_id]" id="contact_company_id" value="<%= params[:company_id] %>" />
 <% elsif params.include?(:vendor_id) %>

@@ -19,6 +19,7 @@
         <td><%= contact.mobile_phone %></td>
         <td><%= contact.location.name %></td>
         <td><%= params.include?(:company_id) ? contact.company.name : contact.vendor.name %></td>
+				<td><%= link_to "Manage Meals", contact_meals_path(contact.id) %></td>
         <td><%= link_to 'Edit', params.include?(:company_id) ? edit_company_contact_path(@company, contact.id) : edit_vendor_contact_path(@vendor, contact.id) %></td>
         <td><%= link_to 'Destroy', params.include?(:company_id) ? company_contact_path(@company, contact.id) : vendor_contact_path(@vendor, contact.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

@@ -6,6 +6,7 @@ OpsApplication::Application.routes.draw do
   match '/locations/for_company_id/:id' => 'locations#for_company_id', :via => :get
 
   match '/orders/new_order_and_proposal' => 'orders#new_order_and_proposal', :as => :new_order_and_proposal, :via => :get
+  match '/orders/update_locations' => 'orders#update_locations', :via => :get, :as => :update_locations
 
   resources :payment_types
 
@@ -17,13 +18,13 @@ OpsApplication::Application.routes.draw do
 
   resources :item_types
 
-  resources :contacts
+  resources :contacts do
+	  resources :meals
+  end
 
-  resources :proposal_lines
-
-  resources :proposal_statuses
-
-  resources :proposals
+  resources :meals do
+	  resources :meal_profiles
+  end
 
   resources :items
 
@@ -32,6 +33,9 @@ OpsApplication::Application.routes.draw do
   resources :meal_types
 
   resources :vendor_types
+
+  match '/orders/:id/import_proposal' => 'orders#import_proposal', :via => :get
+  match '/orders/:order_id/clone_proposal/:id' => 'orders#clone_proposal', via: :get
 
   resources :orders do
 	  resources :proposals
@@ -45,8 +49,6 @@ OpsApplication::Application.routes.draw do
 
   resources :menus
 
-  resources :meals
-
   resources :items do
     match '/ingredients/:id(.:format)' => 'ingredients#destroy', :via => :delete, :as => :remove_ingredient
     resources :ingredients
@@ -56,15 +58,9 @@ OpsApplication::Application.routes.draw do
     resources :allergens
   end
 
-  resources :allergens
-
-  resources :meal_profiles
-
   resources :company_profiles
 
   resources :vendor_profiles
-
-  resources :locations
 
   resources :roles
 
@@ -76,7 +72,6 @@ OpsApplication::Application.routes.draw do
   end
 
   resources :dashboard
-
 
   resources :vendors do
     resources :locations

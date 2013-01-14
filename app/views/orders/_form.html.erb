@@ -14,6 +14,16 @@
 <h2>Order Section</h2>
 
 <div class="row">
+	<%= f.label :company_id, class: "span2" %>
+	<%= collection_select(nil, :company_id, @companies, :id, :name, {:id => 'companies_select'}, @order.company_id ? {:selected => @order.company_id} : {}) %>
+</div>
+
+<div class="row">
+	<%= f.label :location_id, class: "span2" %>
+	<%= collection_select(nil, :location_id, @locations, :id, :name, {:id => 'locations_select'}, @order.location_id ? {:selected => @order.location_id} : {}) %>
+</div>
+
+<div class="row">
 	<%= f.label :name, class: "span2" %>
 	<%= f.text_field :name, class: 'span2' %>
 </div>
@@ -27,7 +37,7 @@
 <% unless (request.fullpath).include?("new") %>
 	<h2>Proposal Section</h2>
 	<p>
-	  Would you like to <%= link_to "Create a New Proposal", new_order_proposal_path(@order) %> for this order or <%= link_to "Import a Proposal", proposals_path %>?
+	  Would you like to <%= link_to "Create a New Proposal", new_order_proposal_path(@order) %> for this order or <%= link_to "Import a Proposal", "/orders/#{@order.id}/import_proposal" %>?
 	</p>
 
 	<table class="table table-condensed">
@@ -43,3 +53,17 @@
   <%= f.submit "Submit", class: "btn btn-primary" %>
 </div>
 
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#companies_select').change(function() {
+			$.ajax({
+				url: "/orders/update_locations",
+				data: {
+					company_id : $('#companies_select').val()
+				},
+				dataType: "script"
+			});
+		});
+	});
+</script>

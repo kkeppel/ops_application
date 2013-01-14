@@ -8,7 +8,7 @@ class MealProfile < ActiveRecord::Base
   ]
 
   SELECT_TYPE = [
-    :contact_id
+
   ]
 
   INTEGER_TYPE = [

@@ -1,5 +1,5 @@
 <h1>Editing meal</h1>
-<%= form_for(@meal) do |f| %>
+<%= form_for(@meal, :url => contact_meal_path(@contact, @meal), method: :put) do |f| %>
   <% if @meal.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@meal.errors.count, "error") %> prohibited this meal from being saved:</h2>
@@ -11,6 +11,16 @@
       </ul>
     </div>
   <% end %>
+
+  <div class="row">
+    <%= f.label :company_id, class: "span2" %>
+    <%= @contact.company.name %>
+  </div>
+
+  <div class="row">
+    <%= f.label :location_id, class: "span2" %>
+    <%= @contact.location.name %>
+  </div>
 
   <div class="row">
     <%= f.label :name, class: "span2" %>
@@ -33,16 +43,6 @@
   <div class="row">
     <%= f.label :serving_time, class: "span2" %>
     <%= f.text_field :serving_time, class: "span1" %>
-  </div>
-
-  <div class="row">
-    <%= f.label :company_id, class: "span2" %>
-    <%= f.collection_select :company_id, Company.all, :id, :name %>
-  </div>
-
-  <div class="row">
-    <%= f.label :location_id, class: "span2" %>
-    <%= f.collection_select :location_id, Location.all, :id, :name %>
   </div>
 
   <div class="row">
@@ -94,21 +94,21 @@
     <% end %>
   <% else %>
     <% MealProfile::KEYS.each do |key| %>
-      <div class="field" id="meal_<%= key.to_s %>">
+      <div class="field">
         <% if MealProfile::TEXT_TYPE.include?(key) %>
-          <%= key.to_s.humanize.singularize %>
-          <input type="text" name="meal[<%= key %>]" value="">
+          <label for="meal_<%= key %>" class="span2"><%= key.to_s.humanize.singularize %></label>
+          <input type="text" name="meal[<%= key %>]" value="" class="span2">
         <% elsif MealProfile::BOOL_TYPE.include?(key) %>
-          <%= key.to_s.humanize.singularize %>
+          <label for="meal_<%= key %>" class="span2"><%= key.to_s.humanize.singularize %></label>
           <input type="radio" name="meal[<%= key %>]" value="true">
           <input type="radio" name="meal[<%= key %>]" value="false">
         <% elsif MealProfile::INTEGER_TYPE.include?(key) %>
-          <%= key.to_s.humanize %>
-          <input type="text" name="meal[<%= key %>]" value="" style="width:30px">
+          <label for="meal_<%= key %>" class="span2"><%= key.to_s.humanize.singularize %></label>
+          <input type="text" name="meal[<%= key %>]" value="" class="span2">
         <% elsif MealProfile::SELECT_TYPE.include?(key) %>
           <% table = key.to_s.split('_')[0].capitalize.constantize %>
           <% table_array = table.all %>
-          <%= key.to_s.humanize.singularize %>
+          <label for="meal_<%= key %>" class="span2"><%= key.to_s.humanize.singularize %></label>
           <select>
             <% table_array.each do |t| %>
               <option name="meal[<%= key %>]" value="<%= t.id %>"><%= t.name %></option>

@@ -1,17 +1,27 @@
 <h1>Listing proposals</h1>
 
 <table class="table table-condensed">
+<% @proposals.each do |proposal| %>
+	<tr>
+		<th>Proposal</th>
+	</tr>
+
   <tr>
-    <th>ID</th>
-    <th></th>
-    <th></th>
+	  <td>Order ID</td>
+    <td>ID</td>
+    <td></td>
+    <td></td>
   </tr>
 
-<% @proposals.each do |proposal| %>
   <tr>
+	  <td><%= proposal.order_id %></td>
 	  <td><%= proposal.id %></td>
     <td><%= link_to 'Edit', edit_order_proposal_path(proposal.order_id, proposal) %></td>
-	  <td><a href="#chooseOrderModal" data-toggle="modal" class="awesome" id="<%= proposal.id %>">Import</a></td>
+	  <% if @orders %>
+	    <!--<td><a href="#chooseOrderModal" data-toggle="modal" class="awesome" id="<%#= proposal.id %>">Import</a></td>-->
+		<% else %>
+		  <td><%= link_to "Import", "/orders/#{params[:id]}/clone_proposal/#{proposal.id}" %></td>
+		<% end %>
     <td><%= link_to 'Destroy', order_proposal_path(proposal.order_id, proposal), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 	<tr>
@@ -34,6 +44,8 @@
 
 <%= link_to "Back", proposals_path, class: "btn" %>
 <%= link_to "Back to Order", edit_order_path(@order), class: "btn" if @order %>
+
+<% if @orders %>
 
 <div id="chooseOrderModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
@@ -63,3 +75,5 @@
     <button class="btn btn-primary">Save changes</button>
   </div>
 </div>
+
+<% end %>

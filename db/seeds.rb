@@ -29,6 +29,12 @@ ProposalStatus.find_or_create_by_name(name: "Denied")
 ProposalStatus.find_or_create_by_name(name: "Lost")
 ProposalStatus.find_or_create_by_name(name: "Selected")
 
+FoodCategory.find_or_create_by_name(name: "American")
+FoodCategory.find_or_create_by_name(name: "French")
+FoodCategory.find_or_create_by_name(name: "Japanese")
+FoodCategory.find_or_create_by_name(name: "Italian")
+FoodCategory.find_or_create_by_name(name: "Chinesealex")
+
 
 
 State.find_or_create_by_name([

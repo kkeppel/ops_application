@@ -3,7 +3,13 @@ class OrdersController < ApplicationController
   respond_to :html, :json
 
   def index
-    respond_with(@orders = Order.all)
+	  @orders = Order.all
+	  @companies = Company.all
+
+    respond_to do |format|
+	    format.html
+	    format.json { render json: @orders }
+    end
   end
 
   def show
@@ -50,6 +56,8 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @companies = Company.all
+    @locations = Location.all
     @proposals = Proposal.all
 
     respond_to do |format|
@@ -60,6 +68,8 @@ class OrdersController < ApplicationController
 
   def edit
     @order = Order.find(params[:id])
+    @companies = Company.all
+    @locations = Location.all
     @proposals = Proposal.where(order_id: params[:id])
     @proposal_lines = ProposalLine.where(proposal_id: @proposals.map{|m| m.id})
     @proposal_statuses = ProposalStatus.all
@@ -68,5 +78,34 @@ class OrdersController < ApplicationController
 	  #@order.proposals.build if @proposals.empty?
 
   end
+
+  def import_proposal
+		@order_id = params[:id]
+		@proposals = Proposal.all
+
+	  render 'proposals/index'
+  end
+
+	def clone_proposal
+		@proposal_lines = []
+		existing_proposal = Proposal.find(params[:id])
+		@proposal = Proposal.new(existing_proposal.attributes)
+		@proposal.update_attribute(:order_id, params[:order_id])
+
+		existing_proposal_lines = ProposalLine.where(:proposal_id => params[:id])
+		existing_proposal_lines.each do |line|
+			new_proposal_line = ProposalLine.new(line.attributes)
+			new_proposal_line.update_attribute(:proposal_id, @proposal.id)
+			@proposal_lines << new_proposal_line
+		end
+
+		redirect_to edit_order_path(params[:order_id])
+	end
+
+	def update_locations
+		company = Company.find(params[:company_id])
+		#@locations = Location.where(company_id: company.id)
+		@locations = company.locations.map{|l| [l.name, l.id]}.insert(0, "Select a Location")
+	end
 
 end

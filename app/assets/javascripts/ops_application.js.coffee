@@ -13,12 +13,12 @@ window.OpsApplication =
 #    new OpsApplication.Routers.VendorTypes
 #    new OpsApplication.Routers.Locations
 #    new OpsApplication.Routers.Menus
-#    new OpsApplication.Routers.FoodCategories
+    new OpsApplication.Routers.FoodCategories
 #    new OpsApplication.Routers.ItemsMenus
 #    new OpsApplication.Routers.Contacts
 #    new OpsApplication.Routers.PaymentTypes
 #    new OpsApplication.Routers.Ingredients()
-#    Backbone.history.start({pushState: true})
+    Backbone.history.start({pushState: true})
 
-#$(document).ready ->
-#  OpsApplication.initialize()
+$(document).ready ->
+  OpsApplication.initialize()

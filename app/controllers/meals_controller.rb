@@ -2,6 +2,7 @@ class MealsController < ApplicationController
 
   def index
     @meals = Meal.all
+    @contact = Contact.find(params[:contact_id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -21,9 +22,11 @@ class MealsController < ApplicationController
   end
 
   def new
+	  @contact = Contact.find(params[:contact_id])
     @meal = Meal.new
     @meal_profile = MealProfile.where(meal_id: params[:id])
     @meal_profile_keys = @meal_profile.group('meal_profiles.key')
+	  @meal_types = MealType.all
     @allergens = Allergen.all
 
     respond_to do |format|
@@ -34,6 +37,8 @@ class MealsController < ApplicationController
 
   def edit
     @meal = Meal.find(params[:id])
+    @contact = Contact.find(params[:contact_id])
+
     @meal_profile = MealProfile.where(meal_id: params[:id])
     @meal_profile_keys = @meal_profile.group('meal_profiles.key')
     @allergens_for_meal = AllergensMeals.where(meal_id: params[:id]).collect { |a| a.allergen_id }
@@ -42,13 +47,14 @@ class MealsController < ApplicationController
   end
 
   def create
+	  @contact = Contact.find(params[:contact_id])
     @meal = Meal.new(params[:meal])
 
     respond_to do |format|
       if @meal.save
         @meal.update_profile(params)
         MealProfile.delete_all("value LIKE '%=>%' or meal_id = 0")
-        format.html { redirect_to @meal, notice: 'Meal was successfully created.' }
+        format.html { redirect_to contact_meals_path(@contact), notice: 'Meal was successfully created.' }
         format.json { render json: @meal, status: :created, location: @meal }
       else
         format.html { render action: "new" }
@@ -60,16 +66,19 @@ class MealsController < ApplicationController
   def update
     new_allergens = params[:meal][:allergen_ids]
     @meal = Meal.find(params[:id])
+    @contact = Contact.find(params[:contact_id])
 
     respond_to do |format|
       if @meal.update_attributes(params[:meal].except(params[:meal][:allergen_ids]))
         AllergensMeals.where(meal_id: params[:id]).delete_all
-        new_allergens.each do |a|
-          AllergensMeals.add_allergens(a, params[:id])
-        end
+        if new_allergens
+		      new_allergens.each do |a|
+		        AllergensMeals.add_allergens(a, params[:id])
+		      end
+		    end
         @meal.update_profile(params)
         MealProfile.delete_all("value LIKE '%=>%' or meal_id = 0")
-        format.html { redirect_to @meal, notice: 'Meal was successfully updated.' }
+        format.html { redirect_to contact_meals_path(@contact), notice: 'Meal was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

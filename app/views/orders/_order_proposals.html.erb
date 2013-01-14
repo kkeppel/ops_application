@@ -34,7 +34,7 @@
 <% if @proposal_lines.empty? %>
 	<tr>
 		<td colspan="11">
-			<%= link_to "Make Proposal Lines!", order_proposals_path(@order) %>
+			<%= link_to "Make Proposal Lines!", edit_order_proposal_path(@order, f.object.id) %>
 		</td>
 	</tr>
 <% else %>
@@ -44,8 +44,9 @@
         Name: <%= ff.name %>
         Item: <%= ff.item_id %>
         Quantity: <%= ff.quantity %>
-	      <%= link_to "edit proposal lines", edit_order_proposal_path(@order, ff.id) %>
+	      <%= link_to "edit proposal lines", edit_order_proposal_path(@order, f.object.id) %>
       </td>
     </tr>
   <% end %>
 <% end %>
+

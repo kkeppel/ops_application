@@ -1,6 +1,6 @@
 <h1>Listing orders</h1>
 
-<table>
+<table class="table table-condensed">
   <tr>
     <th>ID</th>
     <th>Name</th>
@@ -19,4 +19,4 @@
 
 <br />
 
-<%= link_to 'New Order', new_order_path %>
+<%= link_to "Back", root_path, class: "btn" %> <%= link_to 'New Order', new_order_path, class: "btn btn-primary" %>

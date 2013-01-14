@@ -1,6 +1,5 @@
 class ProposalsController < ApplicationController
-  # GET /proposals
-  # GET /proposals.json
+
   def index
     @proposals = Proposal.all
     @orders = Order.all
@@ -12,8 +11,6 @@ class ProposalsController < ApplicationController
     end
   end
 
-  # GET /proposals/1
-  # GET /proposals/1.json
   def show
     @proposal = Proposal.find(params[:id])
     @order = Order.find(params[:order_id])
@@ -23,9 +20,6 @@ class ProposalsController < ApplicationController
       format.json { render json: @proposal }
     end
   end
-
-  # GET /proposals/new
-  # GET /proposals/new.json
 
   def new
 	  @order = Order.find(params[:order_id])
@@ -40,7 +34,6 @@ class ProposalsController < ApplicationController
     end
   end
 
-  # GET /proposals/1/edit
   def edit
     @proposal = Proposal.find(params[:id])
     @order = Order.find(params[:order_id])
@@ -48,8 +41,6 @@ class ProposalsController < ApplicationController
     @items = Item.all
   end
 
-  # POST /proposals
-  # POST /proposals.json
   def create
     @proposal = Proposal.new(params[:proposal])
 
@@ -64,8 +55,6 @@ class ProposalsController < ApplicationController
     end
   end
 
-  # PUT /proposals/1
-  # PUT /proposals/1.json
   def update
     @proposal = Proposal.find(params[:id])
     @order = Order.find(params[:order_id])
@@ -81,8 +70,6 @@ class ProposalsController < ApplicationController
     end
   end
 
-  # DELETE /proposals/1
-  # DELETE /proposals/1.json
   def destroy
     @proposal = Proposal.find(params[:id])
     @order = Order.find(params[:order_id])
@@ -94,3 +81,5 @@ class ProposalsController < ApplicationController
     end
   end
 end
+
+
