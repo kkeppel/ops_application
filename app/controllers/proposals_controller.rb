@@ -1,9 +1,14 @@
 class ProposalsController < ApplicationController
 
   def index
-    @proposals = Proposal.all
-    @orders = Order.all
-    @order = Order.find(params[:order_id]) if params[:order_id]
+	  if params[:order_id]
+		  @proposals = Proposal.where(order_id: params[:order_id])
+		  @order = Order.find(params[:order_id])
+	  else
+		  @proposals = Proposal.all
+		  @orders = Order.all
+	  end
+
 
     respond_to do |format|
       format.html # index.html.erb

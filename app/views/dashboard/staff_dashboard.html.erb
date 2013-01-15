@@ -18,14 +18,12 @@
         <li><%= link_to "Manage Menus", menus_path %></li>
         <li><%= link_to "Manage Payment Types", payment_types_path %></li>
         <li><%= link_to "Manage Tags", tags_path %></li>
-        <li><%= link_to "Manage Meals", meals_path %></li>
     <% elsif current_user.role?(:ops) || current_user.role?(:admin) %>
         <li><%= link_to "Manage Meal Types", meal_types_path %></li>
         <li><%= link_to "Manage Food Categories", food_categories_path %></li>
         <li><%= link_to "Manage Menus", menus_path %></li>
         <li><%= link_to "Manage Payment Types", payment_types_path %></li>
         <li><%= link_to "Manage Tags", tags_path %></li>
-        <li><%= link_to "Manage Meals", meals_path %></li>
     <% end %>
   </ul>
 
